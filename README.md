@@ -13,10 +13,12 @@ classDiagram
     class Game {
         +ui()
         +Maze maze
+        + step()
+        + isOver()
+        + playGame()
     }
     class Maze {
         - Room[] rooms
-        + step()
     }
     class Room {
         + ArrayList<Room> connectedRooms
