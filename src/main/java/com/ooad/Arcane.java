@@ -4,8 +4,10 @@ public class Arcane {
     private Room[] maze;
     private int mazeWidth;
     private int mazeHeight;
+    private int turnLimit = 5;
+    private boolean notDone = true;
 
-    public Arcane () {
+    public Arcane() {
         mazeWidth = 2;
         mazeHeight = 2;
         instantiateRooms();
@@ -13,7 +15,23 @@ public class Arcane {
 
     private void instantiateRooms() {
         maze = new Room[mazeHeight*mazeWidth];
+        createRooms();
+        setRoomNames();
         autofillRoomConnections();
+    }
+
+    private void createRooms() {
+        for(int i = 0; i<maze.length; i++) {
+            maze[i] = new Room();
+        }
+    }
+
+    private void setRoomNames() {
+        //gross hard-coded names because these are definitely gonna get changed later when we have more than 4 rooms
+        String[] roomNames = {"Northwest", "Northeast", "Southwest", "Southeast"};
+        for(int i=0; i<maze.length; i++) {
+            maze[i].setName(roomNames[i%roomNames.length]);
+        }
     }
 
     private void autofillRoomConnections() {

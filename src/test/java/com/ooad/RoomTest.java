@@ -2,8 +2,7 @@ package com.ooad;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.*;
 
 public class RoomTest {
 
@@ -13,5 +12,12 @@ public class RoomTest {
         Room room2 = new Room();
         room1.addRoomConnection(room2);
         assertSame(room1.getConnectedRooms().get(0), room2);
+    }
+
+    @Test
+    public void roomNameTest() {
+        Room room = new Room();
+        room.setName("Atrium");
+        assertEquals("Atrium",room.getName());
     }
 }
