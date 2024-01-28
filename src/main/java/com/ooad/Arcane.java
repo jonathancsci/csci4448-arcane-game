@@ -19,16 +19,20 @@ public class Arcane {
     }
 
     public void runGame() {
-        while(notDone && turnCounter < 5) {
+        runGame(5);
+    }
+
+    public void runGame(int turnLimit) {
+        while(notDone && turnCounter < turnLimit) {
+            step();
             System.out.println(this);
             turnCounter++;
         }
     }
 
-    public void runGame(int turnLimit) {
-        while(notDone && turnCounter < turnLimit) {
-            System.out.println(this);
-            turnCounter++;
+    private void step() {
+        for(int i=0; i<maze.length; i++) {
+            maze[i].step();
         }
     }
 

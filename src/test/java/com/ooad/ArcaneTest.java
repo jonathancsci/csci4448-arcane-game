@@ -59,9 +59,10 @@ public class ArcaneTest {
     @Test
     public void printTest() {
         Arcane arcane = new Arcane();
+        arcane.runGame(1);
         String[] printedLines = outContent.toString().split("\n");
         System.out.println(printedLines);
         assertEquals("ARCANE MAZE: turn 1",printedLines[0]);
-        assertEquals("Norhtwest",printedLines[1]);
+        assertEquals("  Northwest",printedLines[1]);
     }
 }

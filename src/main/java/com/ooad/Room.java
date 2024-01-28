@@ -29,6 +29,13 @@ public class Room {
         this.name = name;
     }
 
+    public void step() {
+        for(int i=0; i < occupants.size(); i++) {
+            //TODO integrate
+            //occupants.get(i).step()
+        }
+    }
+
     public String toString() {
         String status = "  "+name+"\n";
         for(int i=0; i<occupants.size(); i++) {
