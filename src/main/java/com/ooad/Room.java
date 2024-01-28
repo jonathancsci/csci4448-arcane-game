@@ -28,4 +28,12 @@ public class Room {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String toString() {
+        String status = "  "+name+"\n";
+        for(int i=0; i<occupants.size(); i++) {
+            status += "    "+occupants.get(i)+"\n";
+        }
+        return status;
+    }
 }

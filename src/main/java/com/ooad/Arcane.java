@@ -4,13 +4,32 @@ public class Arcane {
     private Room[] maze;
     private int mazeWidth;
     private int mazeHeight;
-    private int turnLimit = 5;
+    private int turnCounter = 0;
     private boolean notDone = true;
+
+    public static void main(String [] args) {
+        Arcane arcane = new Arcane();
+        arcane.runGame();
+    }
 
     public Arcane() {
         mazeWidth = 2;
         mazeHeight = 2;
         instantiateRooms();
+    }
+
+    public void runGame() {
+        while(notDone && turnCounter < 5) {
+            System.out.println(this);
+            turnCounter++;
+        }
+    }
+
+    public void runGame(int turnLimit) {
+        while(notDone && turnCounter < turnLimit) {
+            System.out.println(this);
+            turnCounter++;
+        }
     }
 
     private void instantiateRooms() {
@@ -62,5 +81,13 @@ public class Arcane {
 
     public Room[] getMaze () {
         return maze;
+    }
+
+    public String toString() {
+        String status = "ARCANE MAZE: turn "+(turnCounter+1)+"\n";
+        for(int i=0; i<maze.length; i++) {
+            status += maze[i];
+        }
+        return status;
     }
 }

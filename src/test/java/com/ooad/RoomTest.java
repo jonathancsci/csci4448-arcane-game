@@ -20,4 +20,11 @@ public class RoomTest {
         room.setName("Atrium");
         assertEquals("Atrium",room.getName());
     }
+
+    @Test
+    public void toStringTest() {
+        Room room = new Room();
+        room.setName("Southwest");
+        assertEquals("  Southwest\n",room.toString());
+    }
 }
