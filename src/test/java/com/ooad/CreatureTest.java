@@ -31,10 +31,11 @@ public class CreatureTest {
     }
 
     @Test
-    public void methodsTest() {
+    public void methodsTest() { // TODO: change name
         Room room = new Room();
         Creature testCreature = new Creature("Ogre", 5, room);
         Integer diceRollResult = testCreature.rollDice();
         assertTrue(diceRollResult >= 1 && diceRollResult <= 6, "Error in Creature.rollDice");
     }
+    // TODO: write test to see if it's in a room
 }

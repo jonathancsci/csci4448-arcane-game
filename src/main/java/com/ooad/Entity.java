@@ -31,6 +31,10 @@ public class Entity {
         return this.currentRoom;
     }
 
+    public Random getRandomNumberGenerator() {
+        return this.randomNumberGenerator;
+    }
+
     // Setters
     public void setName(String newName) {
         this.name = newName;

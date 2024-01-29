@@ -31,7 +31,7 @@ public class EntityTest {
     }
 
     @Test
-    public void methodsTest() {
+    public void methodsTest() { // TODO: change name
         Room room = new Room();
         Entity testEntity = new Entity("Bob", 5, room);
         Integer diceRollResult = testEntity.rollDice();
