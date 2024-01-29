@@ -31,6 +31,7 @@ public class ArcaneTest {
         assertNotNull(arcane.getMaze());
     }
 
+    @Test
     public void runGameTest() {
         String[] expected = {"    Adventurer Tim(health:4) is here","    Creature Cobblebeast(health:4) is here"};
         Arcane arcane = new Arcane();
@@ -38,14 +39,16 @@ public class ArcaneTest {
         String[] printedLines = outContent.toString().split("\n");
         boolean timHurt = Arrays.asList(printedLines).contains(expected[0]);
         boolean monsterHurt = Arrays.asList(printedLines).contains(expected[1]);
-        assertTrue(timHurt || monsterHurt);
+        assertTrue(timHurt || monsterHurt, "Expected an entity to take damage.");
     }
+
+    @Test
     public void toStringTest() {
         String[] expected = {"ARCANE MAZE: turn 1","  Northwest","    Adventurer Tim(health:5) is here","    Creature Cobblebeast(health:5) is here"};
         Arcane arcane = new Arcane();
         String[] printedLines = arcane.toString().split("\n");
         for (int i = 0; i < expected.length; i++) {
-            assertTrue(Arrays.asList(printedLines).contains(expected[i]));
+            assertTrue(Arrays.asList(printedLines).contains(expected[i]), "The first turn of the game did not print what was expected.");
         }
     }
 
@@ -59,8 +62,8 @@ public class ArcaneTest {
         boolean monsterDied = Arrays.asList(printedLines).contains(expected[1]);
         boolean timZero = Arrays.asList(printedLines).contains(expected2[0]);
         boolean monsterZero = Arrays.asList(printedLines).contains(expected2[1]);
-        assertTrue((timDied && timZero) ^ (monsterDied && monsterZero));
-        assertFalse((timDied && monsterZero) || (monsterDied && timZero));
+        assertTrue((timDied && timZero) ^ (monsterDied && monsterZero), "Expected dead entity to have 0 health");
+        assertFalse((timDied && monsterZero) || (monsterDied && timZero), "Expected only one entity to die.");
     }
 
     @Test
