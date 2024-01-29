@@ -38,6 +38,11 @@ public class Arcane {
         }
     }
 
+    public static void endGame(String endMessage) {
+        arcane.gameNotOver = false;
+        arcane.endMessage = endMessage;
+    }
+
     private void instantiateRooms() {
         int mazeSize = mazeHeight*mazeWidth;
         maze = new Room[mazeSize];
@@ -78,11 +83,6 @@ public class Arcane {
                 currentRoom.addRoomConnection(adjacentRooms[i]);
             }
         }
-    }
-
-    public static void endGame(String endMessage) {
-        arcane.gameNotOver = false;
-        arcane.endMessage = endMessage;
     }
 
     public Room getRoom(int x, int y) {

@@ -13,6 +13,37 @@ public class Room {
         name = "None";
     }
 
+    public void turn() {
+        Adventurer adventurer = (Adventurer)getEntityOfClass("Adventurer");
+        if(adventurer != null) {
+            Creature creature = (Creature)getEntityOfClass("Creature");
+            if(creature != null) {
+                Combat(adventurer, creature);
+            } else {
+                adventurer.moveRooms();
+            }
+        }
+    }
+
+    private void Combat(Entity combatantA, Entity combatantB) {
+        int rollA = combatantA.rollDice();
+        int rollB = combatantB.rollDice();
+        if(rollA > rollB) {
+            combatantB.takeDamage();
+        } else if(rollB > rollA) {
+            combatantA.takeDamage();
+        }
+    }
+
+    public Entity getEntityOfClass(String classname) {
+        for (int i = 0; i < occupants.size(); i++) {
+            if(occupants.get(i).getClass().getName().equals("com.ooad."+classname)) {
+                return occupants.get(i);
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Entity> getOccupants() {
         return this.occupants;
     }
@@ -40,38 +71,6 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void turn() {
-        Adventurer adventurer = (Adventurer)getEntityOfClass("Adventurer");
-        if(adventurer != null) {
-            Creature creature = (Creature)getEntityOfClass("Creature");
-            if(creature != null) {
-                Combat(adventurer, creature);
-            } else {
-                adventurer.moveRooms();
-            }
-        }
-    }
-
-    private void Combat(Entity combatantA, Entity combatantB) {
-        int rollA = combatantA.rollDice();
-        int rollB = combatantB.rollDice();
-        boolean fightOver = false;
-        if(rollA > rollB) {
-            combatantB.takeDamage();
-        } else if(rollB > rollA) {
-            combatantA.takeDamage();
-        }
-    }
-
-    private Entity getEntityOfClass(String classname) {
-        for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("com.ooad."+classname)) {
-                return occupants.get(i);
-            }
-        }
-        return null;
     }
 
     public String toString() {

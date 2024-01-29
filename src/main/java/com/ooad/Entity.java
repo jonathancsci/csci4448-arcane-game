@@ -64,7 +64,4 @@ public class Entity {
         return this.health <= 0;
     }
 
-    public void step() {
-        throw new UnsupportedOperationException("Entity.step() must be overridden.");
-    }
 }
