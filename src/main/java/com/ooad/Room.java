@@ -13,8 +13,20 @@ public class Room {
         name = "None";
     }
 
+    public ArrayList<Entity> getOccupants() {
+        return this.occupants;
+    }
+
     public void addRoomConnection(Room room) {
         connectedRooms.add(room);
+    }
+
+    public void addOccupant(Entity entity) {
+        occupants.add(entity);
+    }
+
+    public void removeOccupant(Entity entity) {
+        occupants.remove(entity);
     }
 
     public ArrayList<Room> getConnectedRooms() {
