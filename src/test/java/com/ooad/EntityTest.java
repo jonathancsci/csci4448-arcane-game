@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class EntityTest {
     @Test
@@ -36,5 +37,12 @@ public class EntityTest {
         Entity testEntity = new Entity("Bob", 5, room);
         Integer diceRollResult = testEntity.rollDice();
         assertTrue(diceRollResult >= 1 && diceRollResult <= 6, "Error in Entity.rollDice");
+    }
+
+    @Test
+    public void stepTest() {
+        Room room = new Room();
+        Entity testEntity = new Entity("Bob", 5, room);
+        assertThrows(UnsupportedOperationException.class, testEntity::step);
     }
 }

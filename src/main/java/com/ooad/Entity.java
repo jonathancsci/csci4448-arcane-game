@@ -52,4 +52,8 @@ public class Entity {
     public Integer rollDice() {
         return randomNumberGenerator.nextInt(6) + 1;
     }
+
+    public void step() {
+        throw new UnsupportedOperationException("Entity.step() must be overridden.");
+    }
 }

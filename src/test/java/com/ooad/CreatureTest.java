@@ -44,4 +44,11 @@ public class CreatureTest {
         Creature testCreature = new Creature("Ogre", 5, room);
         assertTrue(room.getOccupants().contains(testCreature));
     }
+
+    @Test
+    public void testStep() {
+        Room room = new Room();
+        Creature testCreature = new Creature("Ogre", 5, room);
+        testCreature.step();
+    }
 }

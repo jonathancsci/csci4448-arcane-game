@@ -5,4 +5,8 @@ public class Creature extends Entity {
         super(name, health, currentRoom);
         currentRoom.addOccupant(this);
     }
+
+    public void step() {
+        ;
+    }
 }

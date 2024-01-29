@@ -28,4 +28,8 @@ public class Adventurer extends Entity {
         this.setCurrentRoom(newRoom);
         newRoom.addOccupant(this);
     }
+
+    public void step() {
+        this.moveRooms();
+    }
 }
