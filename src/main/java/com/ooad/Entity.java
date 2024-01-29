@@ -53,7 +53,15 @@ public class Entity {
         return randomNumberGenerator.nextInt(6) + 1;
     }
 
-    public void step() {
-        throw new UnsupportedOperationException("Entity.step() must be overridden.");
+    public void takeDamage() {
+        this.health -= 1;
+        if(isDead()) {
+            Arcane.endGame(this.name+" was defeated!");
+        }
     }
+
+    public boolean isDead() {
+        return this.health <= 0;
+    }
+
 }

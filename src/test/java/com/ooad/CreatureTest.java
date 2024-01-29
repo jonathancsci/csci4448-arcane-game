@@ -46,9 +46,10 @@ public class CreatureTest {
     }
 
     @Test
-    public void testStep() {
+    public void toStringTest() {
         Room room = new Room();
         Creature testCreature = new Creature("Ogre", 5, room);
-        testCreature.step();
+        assertEquals("Creature Ogre(health: 5)",testCreature.toString());
     }
+
 }

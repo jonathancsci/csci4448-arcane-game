@@ -6,7 +6,7 @@ public class Creature extends Entity {
         currentRoom.addOccupant(this);
     }
 
-    public void step() {
-        ;
+    public String toString() {
+        return "Creature "+this.getName()+"(health: "+this.getHealth()+")";
     }
 }

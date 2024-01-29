@@ -1,14 +1,19 @@
 package com.ooad;
 
+import java.util.Random;
+
 public class Arcane {
+    private static Arcane arcane;
     private Room[] maze;
     private int mazeWidth;
     private int mazeHeight;
     private int turnCounter = 0;
-    private boolean notDone = true;
+    private boolean gameNotOver = true;
+    private String endMessage = "";
+    private Random randomNumberGenerator = new Random();
 
     public static void main(String [] args) {
-        Arcane arcane = new Arcane();
+        arcane = new Arcane();
         arcane.runGame();
     }
 
@@ -19,28 +24,33 @@ public class Arcane {
     }
 
     public void runGame() {
-        runGame(5);
-    }
-
-    public void runGame(int turnLimit) {
-        while(notDone && turnCounter < turnLimit) {
-            step();
+        while(gameNotOver) {
+            turn();
             System.out.println(this);
             turnCounter++;
         }
+        System.out.println(endMessage);
     }
 
-    private void step() {
+    private void turn() {
         for(int i=0; i<maze.length; i++) {
-            maze[i].step();
+            maze[i].turn();
         }
     }
 
+    public static void endGame(String endMessage) {
+        arcane.gameNotOver = false;
+        arcane.endMessage = endMessage;
+    }
+
     private void instantiateRooms() {
-        maze = new Room[mazeHeight*mazeWidth];
+        int mazeSize = mazeHeight*mazeWidth;
+        maze = new Room[mazeSize];
         createRooms();
         setRoomNames();
         autofillRoomConnections();
+        new Adventurer("Tim",5,maze[randomNumberGenerator.nextInt(mazeSize)]);
+        new Creature("Cobblebeast",5,maze[randomNumberGenerator.nextInt(mazeSize)]);
     }
 
     private void createRooms() {

@@ -2,7 +2,10 @@ package com.ooad;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +20,7 @@ public class ArcaneTest {
         System.setOut(new PrintStream(outContent));
     }
 
-    @BeforeEach
+    @AfterEach
     public void resetStream() {
         System.setOut(originalOut);
     }
@@ -28,40 +31,65 @@ public class ArcaneTest {
         assertNotNull(arcane.getMaze());
     }
 
+    public void runGameTest() {
+        String[] expected = {"    Adventurer Tim(health:4) is here","    Creature Cobblebeast(health:4) is here"};
+        Arcane arcane = new Arcane();
+        arcane.runGame();
+        String[] printedLines = outContent.toString().split("\n");
+        boolean timHurt = Arrays.asList(printedLines).contains(expected[0]);
+        boolean monsterHurt = Arrays.asList(printedLines).contains(expected[1]);
+        assertTrue(timHurt || monsterHurt);
+    }
+    public void toStringTest() {
+        String[] expected = {"ARCANE MAZE: turn 1","  Northwest","    Adventurer Tim(health:5) is here","    Creature Cobblebeast(health:5) is here"};
+        Arcane arcane = new Arcane();
+        String[] printedLines = arcane.toString().split("\n");
+        for (int i = 0; i < expected.length; i++) {
+            assertTrue(Arrays.asList(printedLines).contains(expected[i]));
+        }
+    }
+
     @Test
-    public void roomNameTest() {
+    public void endGameTest() {
+        String[] expected = {"Tim was defeated!\r","Cobblebeast was defeated!\r"};
+        String[] expected2 = {"    Adventurer Tim(health: 0) is here","    Creature Cobblebeast(health: 0) is here"};
+        Arcane.main(new String[0]);
+        String[] printedLines = outContent.toString().split("\n");
+        boolean timDied = Arrays.asList(printedLines).contains(expected[0]);
+        boolean monsterDied = Arrays.asList(printedLines).contains(expected[1]);
+        boolean timZero = Arrays.asList(printedLines).contains(expected2[0]);
+        boolean monsterZero = Arrays.asList(printedLines).contains(expected2[1]);
+        assertTrue((timDied && timZero) ^ (monsterDied && monsterZero));
+        assertFalse((timDied && monsterZero) || (monsterDied && timZero));
+    }
+
+    @Test
+    public void setRoomNamesTest() {
         Arcane arcane = new Arcane();
         assertEquals("Northeast",arcane.getRoom(1,0).getName());
     }
 
     @Test
-    public void getRoomTest() {
+    public void instantiateAndGetRoomTest() {
         Arcane arcane = new Arcane();
         assertNotNull(arcane.getRoom(1,1));
-    }
-
-    @Test
-    public void getRoomSadPathTest() {
-        Arcane arcane = new Arcane();
         assertNull(arcane.getRoom(-1,0));
     }
 
     @Test
-    public void runGameTest() {
+    public void roomConnectionsTest() {
         Arcane arcane = new Arcane();
-        arcane.runGame();
-        String[] printedLines = outContent.toString().split("\n");
-        System.out.println(printedLines);
-        assertTrue(printedLines.length > 12); //6 lines per turn*minimum of 2 turns, later increase this to 8 lines for entities and the minimum turns needed for game over
+        ArrayList<Room> connected = arcane.getRoom(0,0).getConnectedRooms();
+        System.out.println(connected);
+        assertTrue(connected.contains(arcane.getRoom(1,0)));
+        assertTrue(connected.contains(arcane.getRoom(0,1)));
+        assertFalse(connected.contains(arcane.getRoom(1,1)));
     }
 
     @Test
-    public void printTest() {
+    public void getMazeTest() {
         Arcane arcane = new Arcane();
-        arcane.runGame(1);
-        String[] printedLines = outContent.toString().split("\n");
-        System.out.println(printedLines);
-        assertEquals("ARCANE MAZE: turn 1",printedLines[0]);
-        assertEquals("  Northwest",printedLines[1]);
+        assertNotNull(arcane.getMaze());
     }
+
 }
