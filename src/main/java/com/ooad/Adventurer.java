@@ -29,7 +29,7 @@ public class Adventurer extends Entity {
         newRoom.addOccupant(this);
     }
 
-    public void step() {
-        this.moveRooms();
+    public String toString() {
+        return "Adventurer "+this.getName()+"(health: "+this.getHealth()+")";
     }
 }

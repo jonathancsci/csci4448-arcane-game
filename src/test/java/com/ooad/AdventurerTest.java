@@ -52,17 +52,4 @@ public class AdventurerTest {
         assertTrue(roomEnd.getOccupants().contains(testAdventurer), "Adventurer.moveRooms() failed, Adventurer should be an occupant of roomEnd.");
     }
 
-    @Test
-    public void stepTest() {
-        Room roomStart = new Room();
-        Room roomEnd = new Room();
-        roomStart.addRoomConnection(roomEnd);
-
-        Adventurer testAdventurer = new Adventurer("Bob", 5, roomStart);
-        testAdventurer.step();
-
-        assertEquals(roomEnd, testAdventurer.getCurrentRoom(), "Adventurer.moveRooms() failed, Adventurer should be in roomEnd.");
-        assertTrue(roomStart.getOccupants().isEmpty(), "Adventurer.moveRooms() failed, Adventurer should not be an occupant of roomStart.");
-        assertTrue(roomEnd.getOccupants().contains(testAdventurer), "Adventurer.moveRooms() failed, Adventurer should be an occupant of roomEnd.");
-    }
 }
