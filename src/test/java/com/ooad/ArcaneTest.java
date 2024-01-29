@@ -1,12 +1,12 @@
 package com.ooad;
 
-import org.junit.Before;
-import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ArcaneTest {
 
