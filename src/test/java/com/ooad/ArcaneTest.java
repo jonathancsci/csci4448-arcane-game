@@ -63,7 +63,7 @@ public class ArcaneTest {
     public void printTest() {
         String[] expected = {"ARCANE MAZE: turn 1","  Northwest","  Northeast","  Southwest","  Southeast"};
         Arcane arcane = new Arcane();
-        arcane.runGame(1);
+        arcane.runGame();
         String[] printedLines = outContent.toString().split("\n");
         System.out.println(printedLines);
         for (int i = 0; i < expected.length; i++) {

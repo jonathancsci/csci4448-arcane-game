@@ -45,4 +45,11 @@ public class CreatureTest {
         assertTrue(room.getOccupants().contains(testCreature));
     }
 
+    @Test
+    public void toStringTest() {
+        Room room = new Room();
+        Creature testCreature = new Creature("Ogre", 5, room);
+        assertEquals("Creature Ogre(health: 5)",testCreature.toString());
+    }
+
 }

@@ -17,10 +17,6 @@ public class Room {
         return this.occupants;
     }
 
-    public void addRoomConnection(Room room) {
-        connectedRooms.add(room);
-    }
-
     public void addOccupant(Entity entity) {
         occupants.add(entity);
     }
@@ -28,6 +24,11 @@ public class Room {
     public void removeOccupant(Entity entity) {
         occupants.remove(entity);
     }
+
+    public void addRoomConnection(Room room) {
+        connectedRooms.add(room);
+    }
+
 
     public ArrayList<Room> getConnectedRooms() {
         return (ArrayList)connectedRooms.clone();

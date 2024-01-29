@@ -52,4 +52,10 @@ public class AdventurerTest {
         assertTrue(roomEnd.getOccupants().contains(testAdventurer), "Adventurer.moveRooms() failed, Adventurer should be an occupant of roomEnd.");
     }
 
+    @Test
+    public void toStringTest() {
+        Room room = new Room();
+        Adventurer testAdventurer = new Adventurer("Bob", 5, room);
+        assertEquals("Adventurer Bob(health: 5)",testAdventurer.toString());
+    }
 }

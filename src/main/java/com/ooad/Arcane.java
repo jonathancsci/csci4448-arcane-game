@@ -3,6 +3,7 @@ package com.ooad;
 import java.util.Random;
 
 public class Arcane {
+    private static Arcane arcane;
     private Room[] maze;
     private int mazeWidth;
     private int mazeHeight;
@@ -10,7 +11,6 @@ public class Arcane {
     private boolean gameNotOver = true;
     private String endMessage = "";
     private Random randomNumberGenerator = new Random();
-    private static Arcane arcane;
 
     public static void main(String [] args) {
         arcane = new Arcane();
@@ -24,11 +24,7 @@ public class Arcane {
     }
 
     public void runGame() {
-        runGame(100);
-    }
-
-    public void runGame(int turnLimit) {
-        while(gameNotOver && turnCounter < turnLimit) {
+        while(gameNotOver) {
             turn();
             System.out.println(this);
             turnCounter++;

@@ -2,10 +2,7 @@ package com.ooad;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EntityTest {
     @Test
@@ -40,9 +37,21 @@ public class EntityTest {
     }
 
     @Test
-    public void stepTest() {
+    public void takeDamageTest() {
         Room room = new Room();
         Entity testEntity = new Entity("Bob", 5, room);
-        assertThrows(UnsupportedOperationException.class, testEntity::step);
+        testEntity.takeDamage();
+        assertEquals(4, testEntity.getHealth());
+    }
+
+    @Test
+    public void isDead() {
+        Room room = new Room();
+        Entity testEntity = new Entity("Bob", 5, room);
+        assertFalse(testEntity.isDead());
+        testEntity.setHealth(0);
+        assertTrue(testEntity.isDead());
+        testEntity.setHealth(-1);
+        assertTrue(testEntity.isDead());
     }
 }
