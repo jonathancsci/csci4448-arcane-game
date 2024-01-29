@@ -1,13 +1,10 @@
 package com.ooad;
 
-// There are issues with imports here, these two don't work for me
-import org.junit.Before;
-import org.junit.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArcaneTest {
@@ -15,12 +12,12 @@ public class ArcaneTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    @Before
+    @BeforeEach
     public void setUpStream() {
         System.setOut(new PrintStream(outContent));
     }
 
-    @Before
+    @BeforeEach
     public void resetStream() {
         System.setOut(originalOut);
     }
