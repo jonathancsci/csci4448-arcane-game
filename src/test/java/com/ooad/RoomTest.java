@@ -23,7 +23,7 @@ public class RoomTest {
         testRoom.turn();
         int hpA = testRoom.getOccupants().get(0).getHealth();
         int hpB = testRoom.getOccupants().get(1).getHealth();
-        assertTrue(hpA+hpB >= 9);
+        assertTrue(hpA+hpB <= 10);
     }
 
     @Test

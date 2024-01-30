@@ -40,7 +40,7 @@ public class EntityTest {
     public void takeDamageTest() {
         Room room = new Room();
         Entity testEntity = new Entity("Bob", 5, room);
-        testEntity.takeDamage();
+        testEntity.takeDamage(1);
         assertEquals(4, testEntity.getHealth());
     }
 
