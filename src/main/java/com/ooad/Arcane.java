@@ -3,7 +3,7 @@ package com.ooad;
 import java.util.Random;
 
 public class Arcane {
-    public static Arcane arcane;
+    private static Arcane arcane;
     private Room[] maze;
     private int mazeWidth;
     private int mazeHeight;
@@ -21,9 +21,10 @@ public class Arcane {
         mazeWidth = 2;
         mazeHeight = 2;
         instantiateRooms();
+        Arcane.arcane = this;
     }
 
-    public void runGame() {
+    private void runGame() {
         while(gameNotOver) {
             turn();
             System.out.println(this);

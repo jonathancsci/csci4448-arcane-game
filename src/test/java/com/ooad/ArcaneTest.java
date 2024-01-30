@@ -34,9 +34,7 @@ public class ArcaneTest {
     @Test
     public void runGameTest() {
         String[] expected = {"    Adventurer Tim(health: 4) is here","    Creature Cobblebeast(health: 4) is here"};
-        Arcane arcane = new Arcane();
-        Arcane.arcane = arcane;
-        arcane.runGame();
+        Arcane.main(new String[0]);
         String[] printedLines = outContent.toString().split("\n");
         boolean timHurt = Arrays.asList(printedLines).contains(expected[0]);
         boolean monsterHurt = Arrays.asList(printedLines).contains(expected[1]);
