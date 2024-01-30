@@ -53,7 +53,7 @@ public class ArcaneTest {
 
     @Test
     public void endGameTest() {
-        String[] expected = {"Tim was defeated!\r","Cobblebeast was defeated!\r"};
+        String[] expected = {"Tim was defeated!","Cobblebeast was defeated!"};
         String[] expected2 = {"    Adventurer Tim(health: 0) is here","    Creature Cobblebeast(health: 0) is here"};
         Arcane.main(new String[0]);
         String[] printedLines = outContent.toString().split("\n");
