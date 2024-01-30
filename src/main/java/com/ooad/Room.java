@@ -29,9 +29,11 @@ public class Room {
         int rollA = combatantA.rollDice();
         int rollB = combatantB.rollDice();
         if(rollA > rollB) {
-            combatantB.takeDamage();
+            Integer damageForCombatantB = rollA - rollB;
+            combatantB.takeDamage(damageForCombatantB);
         } else if(rollB > rollA) {
-            combatantA.takeDamage();
+            Integer damageForCombatantA = rollB - rollA;
+            combatantA.takeDamage(damageForCombatantA);
         }
     }
 

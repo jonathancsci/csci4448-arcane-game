@@ -53,8 +53,9 @@ public class Entity {
         return randomNumberGenerator.nextInt(6) + 1;
     }
 
-    public void takeDamage() {
-        this.health -= 1;
+    public void takeDamage(Integer damage) {
+        this.health -= damage;
+        this.health = Math.max(0, this.health);
         if(isDead()) {
             Arcane.endGame(this.name+" was defeated!");
         }
