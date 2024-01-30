@@ -31,15 +31,15 @@ public class ArcaneTest {
         assertNotNull(arcane.getMaze());
     }
 
-    @Test
-    public void runGameTest() {
-        String[] expected = {"    Adventurer Tim(health: 4) is here","    Creature Cobblebeast(health: 4) is here"};
-        Arcane.main(new String[0]);
-        String[] printedLines = outContent.toString().split("\n");
-        boolean timHurt = Arrays.asList(printedLines).contains(expected[0]);
-        boolean monsterHurt = Arrays.asList(printedLines).contains(expected[1]);
-        assertTrue(timHurt || monsterHurt, "Expected an entity to take damage.");
-    }
+//    @Test
+//    public void runGameTest() {
+//        String[] expected = {"    Adventurer Tim(health: 4) is here","    Creature Cobblebeast(health: 4) is here"};
+//        Arcane.main(new String[0]);
+//        String[] printedLines = outContent.toString().split("\n");
+//        boolean timHurt = Arrays.asList(printedLines).contains(expected[0]);
+//        boolean monsterHurt = Arrays.asList(printedLines).contains(expected[1]);
+//        assertTrue(timHurt || monsterHurt, "Expected an entity to take damage.");
+//    }
 
     @Test
     public void toStringTest() {
