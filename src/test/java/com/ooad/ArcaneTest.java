@@ -33,8 +33,9 @@ public class ArcaneTest {
 
     @Test
     public void runGameTest() {
-        String[] expected = {"    Adventurer Tim(health:4) is here","    Creature Cobblebeast(health:4) is here"};
+        String[] expected = {"    Adventurer Tim(health: 4) is here","    Creature Cobblebeast(health: 4) is here"};
         Arcane arcane = new Arcane();
+        Arcane.arcane = arcane;
         arcane.runGame();
         String[] printedLines = outContent.toString().split("\n");
         boolean timHurt = Arrays.asList(printedLines).contains(expected[0]);
@@ -44,7 +45,7 @@ public class ArcaneTest {
 
     @Test
     public void toStringTest() {
-        String[] expected = {"ARCANE MAZE: turn 1","  Northwest","    Adventurer Tim(health:5) is here","    Creature Cobblebeast(health:5) is here"};
+        String[] expected = {"ARCANE MAZE: turn 1","  Northwest","    Adventurer Tim(health: 5) is here","    Creature Cobblebeast(health: 5) is here"};
         Arcane arcane = new Arcane();
         String[] printedLines = arcane.toString().split("\n");
         for (int i = 0; i < expected.length; i++) {

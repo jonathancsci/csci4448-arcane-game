@@ -3,7 +3,7 @@ package com.ooad;
 import java.util.Random;
 
 public class Arcane {
-    private static Arcane arcane;
+    public static Arcane arcane;
     private Room[] maze;
     private int mazeWidth;
     private int mazeHeight;
