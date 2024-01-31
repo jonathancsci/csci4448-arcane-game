@@ -18,14 +18,14 @@ public class Room {
         if(adventurer != null) {
             Creature creature = (Creature)getEntityOfClass("Creature");
             if(creature != null) {
-                Combat(adventurer, creature);
+                combat(adventurer, creature);
             } else {
                 adventurer.moveRooms();
             }
         }
     }
 
-    private void Combat(Entity combatantA, Entity combatantB) {
+    public void combat(Entity combatantA, Entity combatantB) {
         int rollA = combatantA.rollDice();
         int rollB = combatantB.rollDice();
         if(rollA > rollB) {

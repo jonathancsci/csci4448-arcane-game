@@ -14,7 +14,8 @@ classDiagram
         - Arcane
         - maze
         - mazeWidth
-        - MazeHeight
+        - mazeHeight
+        - adventurers
         - turnCounter
         - gameNotOver
         - endMessage
