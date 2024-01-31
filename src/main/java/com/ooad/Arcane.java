@@ -25,6 +25,8 @@ public class Arcane {
     }
 
     private void runGame() {
+        System.out.println(this);
+        turnCounter++;
         while(gameNotOver) {
             turn();
             System.out.println(this);
