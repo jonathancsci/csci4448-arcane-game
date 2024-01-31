@@ -1,5 +1,6 @@
 package com.ooad;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Arcane {
@@ -7,6 +8,7 @@ public class Arcane {
     private Room[] maze;
     private int mazeWidth;
     private int mazeHeight;
+    private ArrayList<Adventurer> adventurers = new ArrayList<>();
     private int turnCounter = 0;
     private boolean gameNotOver = true;
     private String endMessage = "";
@@ -36,8 +38,8 @@ public class Arcane {
     }
 
     private void turn() {
-        for(int i=0; i<maze.length; i++) {
-            maze[i].turn();
+        for(Adventurer adventurer : adventurers) {
+            adventurer.getCurrentRoom().turn();
         }
     }
 
@@ -52,7 +54,7 @@ public class Arcane {
         createRooms();
         setRoomNames();
         autofillRoomConnections();
-        new Adventurer("Tim",5,maze[randomNumberGenerator.nextInt(mazeSize)]);
+        adventurers.add(new Adventurer("Tim",5,maze[randomNumberGenerator.nextInt(mazeSize)]));
         new Creature("Cobblebeast",5,maze[randomNumberGenerator.nextInt(mazeSize)]);
     }
 
