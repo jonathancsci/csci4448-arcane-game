@@ -15,6 +15,7 @@ public class ArcaneTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
+    //Print stream testing set-up: https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
     @BeforeEach
     public void setUpStream() {
         System.setOut(new PrintStream(outContent));
