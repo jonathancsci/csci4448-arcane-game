@@ -21,16 +21,16 @@ classDiagram
         - randomNumberGenerator
         + main(args)
         + Arcane()
+        + getRoom(x, y)
+        + getMaze()
+        - setRoomNames()
         - runGame()
         - turn()
         + endGame(endMessage)
-        - instantiateRooms()
         - createRooms()
-        - setRoomNames()
-        - autofillRoomConnections()
+        - instantiateRooms()
         - connectRoom(x, y)
-        + getRoom(x, y)
-        + getMaze()
+        - autofillRoomConnections()
         + toString()
     }
     class Room {
@@ -38,16 +38,16 @@ classDiagram
         - ArrayList<Entity> occupants
         - String name
         + Room()
-        + turn()
-        - Combat(combatantA, combatantB)
         + getEntityOfClass(classname)
         + getOccupants()
-        + addOccupant(entity)
-        + removeOccupant(entity)
-        + addRoomConnection(room)
         + getConnectedRooms()
         + getName()
         + setName(name)
+        + addRoomConnection(room)
+        + addOccupant(entity)
+        + removeOccupant(entity)
+        - Combat(combatantA, combatantB)
+        + turn()
         + toString()
     }
     class Entity {
@@ -60,20 +60,21 @@ classDiagram
         + getHealth()
         + getCurrentRoom()
         + getRandomNumberGenerator()
-        + setName()
-        + setHealth()
-        + set setCurrentRoom()
+        + setName(newName)
+        + setHealth(newHealth)
+        + setCurrentRoom(newRoom)
         + rollDice()
-        + step()
+        + takeDamage(damage)
+        + isDead()
     }
     class Adventurer {
         + Adventurer(name, health, currentRoom)
         + moveRooms()
-        + step()
+        + toString()
     }
     class Creature {
         + Creature(name, health, currentRoom)
-        + step()
+        + toString()
     }
     Entity <|-- Creature
     Entity <|-- Adventurer
