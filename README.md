@@ -11,25 +11,43 @@ Comments / Descriptions:
 ```mermaid
 classDiagram
     class Arcane {
+        - Arcane
         - maze
-        + main()
+        - mazeWidth
+        - MazeHeight
+        - turnCounter
+        - gameNotOver
+        - endMessage
+        - randomNumberGenerator
+        + main(args)
         + Arcane()
-        + runGame()
-        + step()
+        - runGame()
+        - turn()
+        + endGame(endMessage)
+        - instantiateRooms()
+        - createRooms()
+        - setRoomNames()
+        - autofillRoomConnections()
+        - connectRoom(x, y)
+        + getRoom(x, y)
+        + getMaze()
+        + toString()
     }
     class Room {
         - ArrayList<Room> connectedRooms
         - ArrayList<Entity> occupants
         - String name
         + Room()
+        + turn()
+        - Combat(combatantA, combatantB)
+        + getEntityOfClass(classname)
         + getOccupants()
-        + addRoomConnection()
-        + addOccupant()
-        + removeOccupant()
+        + addOccupant(entity)
+        + removeOccupant(entity)
+        + addRoomConnection(room)
         + getConnectedRooms()
         + getName()
-        + setName()
-        + step()
+        + setName(name)
         + toString()
     }
     class Entity {
