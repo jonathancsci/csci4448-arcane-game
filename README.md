@@ -87,3 +87,65 @@ classDiagram
     Entity <|-- Creature
     Entity <|-- Adventurer
 ```
+
+Output (note: our testing flushes the console between runs, so you only get this output from the main method):
+
+ARCANE MAZE: turn 1
+Northwest
+Northeast
+Southwest
+Adventurer Tim(health: 5) is here
+Creature Cobblebeast(health: 5) is here
+Southeast
+
+ARCANE MAZE: turn 2
+Northwest
+Northeast
+Southwest
+Adventurer Tim(health: 5) is here
+Creature Cobblebeast(health: 5) is here
+Southeast
+
+ARCANE MAZE: turn 3
+Northwest
+Northeast
+Southwest
+Adventurer Tim(health: 5) is here
+Creature Cobblebeast(health: 2) is here
+Southeast
+
+ARCANE MAZE: turn 4
+Northwest
+Northeast
+Southwest
+Adventurer Tim(health: 2) is here
+Creature Cobblebeast(health: 2) is here
+Southeast
+
+ARCANE MAZE: turn 5
+Northwest
+Northeast
+Southwest
+Adventurer Tim(health: 2) is here
+Creature Cobblebeast(health: 2) is here
+Southeast
+
+ARCANE MAZE: turn 6
+Northwest
+Northeast
+Southwest
+Adventurer Tim(health: 1) is here
+Creature Cobblebeast(health: 2) is here
+Southeast
+
+ARCANE MAZE: turn 7
+Northwest
+Northeast
+Southwest
+Adventurer Tim(health: 0) is here
+Creature Cobblebeast(health: 2) is here
+Southeast
+
+Tim was defeated!
+
+Process finished with exit code 0
