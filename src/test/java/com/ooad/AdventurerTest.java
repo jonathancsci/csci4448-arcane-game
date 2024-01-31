@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdventurerTest {
     @Test
@@ -50,6 +51,13 @@ public class AdventurerTest {
         assertEquals(roomEnd, testAdventurer.getCurrentRoom(), "Adventurer.moveRooms() failed, Adventurer should be in roomEnd.");
         assertTrue(roomStart.getOccupants().isEmpty(), "Adventurer.moveRooms() failed, Adventurer should not be an occupant of roomStart.");
         assertTrue(roomEnd.getOccupants().contains(testAdventurer), "Adventurer.moveRooms() failed, Adventurer should be an occupant of roomEnd.");
+    }
+
+    @Test
+    public void moveRoomsFailureTest() {
+        Room room = new Room();
+        Adventurer testAdventurer = new Adventurer("Bob", 5, room);
+        assertThrows(IllegalStateException.class, testAdventurer::moveRooms);
     }
 
     @Test
