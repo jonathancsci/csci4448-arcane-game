@@ -5,45 +5,34 @@ import java.util.ArrayList;
 public class Room {
     private ArrayList<Room> connectedRooms;
     private ArrayList<Entity> occupants;
+    private ArrayList<Food> loot;
     private String name;
 
     public Room() {
         connectedRooms = new ArrayList<Room>();
         occupants = new ArrayList<Entity>();
+        loot = new ArrayList<Food>();
         name = "None";
     }
 
-    public void turn() {
-        Adventurer adventurer = (Adventurer)getEntityOfClass("Adventurer");
-        if(adventurer != null) {
-            Creature creature = (Creature)getEntityOfClass("Creature");
-            if(creature != null) {
-                combat(adventurer, creature);
-            } else {
-                adventurer.moveRooms();
-            }
-        }
-    }
-
-    public void combat(Entity combatantA, Entity combatantB) {
-        int rollA = combatantA.rollDice();
-        int rollB = combatantB.rollDice();
-        if(rollA > rollB) {
-            Integer damageForCombatantB = rollA - rollB;
-            combatantB.takeDamage(damageForCombatantB);
-        } else if(rollB > rollA) {
-            Integer damageForCombatantA = rollB - rollA;
-            combatantA.takeDamage(damageForCombatantA);
-        }
-    }
-
-    public Entity getEntityOfClass(String classname) {
+    public Creature getHealthiestCreature() {
+        //TODO: sort by health before iterating
         for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("com.ooad."+classname)) {
-                return occupants.get(i);
+            if(occupants.get(i).getClass().getName().equals("com.ooad.Creature")) {
+                return (Creature)occupants.get(i);
             }
         }
         return null;
+    }
+
+    public boolean isThereFood() {
+        return loot.isEmpty();
+    }
+
+    public Food takeFood() {
+        Food takenFood = loot.get(0);
+        loot.remove(takenFood);
+        return takenFood;
     }
 
     public ArrayList<Entity> getOccupants() {

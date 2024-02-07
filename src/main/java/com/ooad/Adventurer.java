@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Adventurer extends Entity {
+    boolean hasTakenTurn = false;
     public Adventurer(String name, Integer health, Room currentRoom) {
         super(name, health, currentRoom);
         currentRoom.addOccupant(this);
