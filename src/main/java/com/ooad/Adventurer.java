@@ -29,6 +29,10 @@ public class Adventurer extends Entity {
         newRoom.addOccupant(this);
     }
 
+    public void eatFood(Food food) {
+        this.setHealth(this.getHealth() + food.getHealthRestored());
+    }
+
     public String toString() {
         return "Adventurer "+this.getName()+"(health: "+this.getHealth()+")";
     }

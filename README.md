@@ -76,6 +76,11 @@ classDiagram
         + Creature(name, health, currentRoom)
         + toString()
     }
+    class Food {
+        + Food(name, healthRestored)
+        - name
+        - healthRestored
+    }
     Entity <|-- Creature
     Entity <|-- Adventurer
 ```
