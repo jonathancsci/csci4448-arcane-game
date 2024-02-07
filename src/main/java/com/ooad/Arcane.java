@@ -39,7 +39,27 @@ public class Arcane {
 
     private void turn() {
         for(Adventurer adventurer : adventurers) {
-            adventurer.getCurrentRoom().turn();
+            Room currentRoom = adventurer.getCurrentRoom();
+            Creature creature = currentRoom.getHealthiestCreature();
+            if(creature != null) {
+                combat(adventurer, creature);
+            } else if (currentRoom.isThereFood()) {
+                adventurer.eatFood(currentRoom.takeFood());
+            } else {
+                    adventurer.moveRooms();
+            }
+        }
+    }
+
+    public void combat(Entity combatantA, Entity combatantB) {
+        int rollA = combatantA.rollDice();
+        int rollB = combatantB.rollDice();
+        if(rollA > rollB) {
+            Integer damageForCombatantB = rollA - rollB;
+            combatantB.takeDamage(damageForCombatantB);
+        } else if(rollB > rollA) {
+            Integer damageForCombatantA = rollB - rollA;
+            combatantA.takeDamage(damageForCombatantA);
         }
     }
 
