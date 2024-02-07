@@ -29,16 +29,17 @@ classDiagram
         - randomNumberGenerator
         + main(args)
         + Arcane()
-        + getRoom(x, y)
-        + getMaze()
-        - setRoomNames()
         - runGame()
         - turn()
+        + combat(combatantA, combatantB)
         + endGame(endMessage)
-        - createRooms()
         - instantiateRooms()
-        - connectRoom(x, y)
+        - createRooms()
+        - setRoomNames()
         - autofillRoomConnections()
+        - connectRoom(x, y)
+        + getRoom(x, y)
+        + getMaze()
         + toString()
     }
     class Room {
@@ -46,16 +47,17 @@ classDiagram
         - ArrayList<Entity> occupants
         - String name
         + Room()
+        + getHealthiestCreature()
         + getEntityOfClass(classname)
+        + isThereFood()
+        + takeFood()
         + getOccupants()
+        + addOccupant(entity)
+        + removeOccupant(entity)
+        + addRoomConnection(room)
         + getConnectedRooms()
         + getName()
         + setName(name)
-        + addRoomConnection(room)
-        + addOccupant(entity)
-        + removeOccupant(entity)
-        - Combat(combatantA, combatantB)
-        + turn()
         + toString()
     }
     class Entity {
@@ -78,6 +80,7 @@ classDiagram
     class Adventurer {
         + Adventurer(name, health, currentRoom)
         + moveRooms()
+        + eatFood(food)
         + toString()
     }
     class Creature {
@@ -85,9 +88,10 @@ classDiagram
         + toString()
     }
     class Food {
-        + Food(name, healthRestored)
         - name
         - healthRestored
+        + Food(name, healthRestored)
+        + getHealthRestored()
     }
     Entity <|-- Creature
     Entity <|-- Adventurer
