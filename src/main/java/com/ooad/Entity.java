@@ -2,7 +2,7 @@ package com.ooad;
 
 import java.util.Random;
 
-public class Entity {
+public class Entity implements Comparable<Entity> {
     // Attributes
     private String name;
     private Integer health;
@@ -16,6 +16,11 @@ public class Entity {
         this.health = health;
         this.currentRoom = currentRoom;
         this.randomNumberGenerator = new Random();
+    }
+
+    @Override
+    public int compareTo(Entity other) {
+        return other.getHealth().compareTo(this.getHealth());
     }
 
     // Getters

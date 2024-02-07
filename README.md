@@ -66,6 +66,7 @@ classDiagram
         - currentRoom
         - randomNumberGenerator
         + Entity(name, health, currentRoom)
+        + compareTo(other)
         + getName()
         + getHealth()
         + getCurrentRoom()
