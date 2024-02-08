@@ -1,6 +1,7 @@
 package com.ooad;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Room {
     private ArrayList<Room> connectedRooms;
@@ -16,10 +17,20 @@ public class Room {
     }
 
     public Creature getHealthiestCreature() {
-        //TODO: sort by health before iterating
+        Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
             if(occupants.get(i).getClass().getName().equals("com.ooad.Creature")) {
                 return (Creature)occupants.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Adventurer getHealthiestAdventurer() {
+        Collections.sort(this.occupants);
+        for (int i = 0; i < occupants.size(); i++) {
+            if(occupants.get(i).getClass().getName().equals("com.ooad.Adventurer")) {
+                return (Adventurer)occupants.get(i);
             }
         }
         return null;
