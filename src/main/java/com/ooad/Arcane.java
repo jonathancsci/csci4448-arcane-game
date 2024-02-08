@@ -2,6 +2,7 @@ package com.ooad;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Collections;
 
 public class Arcane {
     private static Arcane arcane;
@@ -38,12 +39,15 @@ public class Arcane {
     }
 
     private void turn() {
+        Collections.sort(adventurers);
         for(Adventurer adventurer : adventurers) {
             Room currentRoom = adventurer.getCurrentRoom();
             Creature creature = currentRoom.getHealthiestCreature();
-            if(creature != null) {
+            if((creature != null) &&
+                    (currentRoom.getHealthiestAdventurer() == adventurer)) {
                 combat(adventurer, creature);
-            } else if (currentRoom.isThereFood()) {
+            } else if ((creature != null) &&
+                    (currentRoom.isThereFood())) {
                 adventurer.eatFood(currentRoom.takeFood());
             } else {
                     adventurer.moveRooms();
