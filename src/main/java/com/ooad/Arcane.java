@@ -61,7 +61,7 @@ public class Arcane {
         if(rollA > rollB) {
             Integer damageForCombatantB = rollA - rollB;
             combatantB.takeDamage(damageForCombatantB);
-        } else if(rollB > rollA) {
+        } else if (rollB > rollA) {
             Integer damageForCombatantA = rollB - rollA;
             combatantA.takeDamage(damageForCombatantA);
         }
