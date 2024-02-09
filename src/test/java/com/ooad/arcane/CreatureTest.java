@@ -1,5 +1,7 @@
-package com.ooad;
+package com.ooad.arcane;
 
+import com.ooad.arcane.Creature;
+import com.ooad.arcane.Room;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
