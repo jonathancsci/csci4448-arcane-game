@@ -1,4 +1,4 @@
-package com.ooad;
+package com.ooad.arcane;
 
 public class Creature extends Entity {
     public Creature(String name, Integer health, Room currentRoom) {

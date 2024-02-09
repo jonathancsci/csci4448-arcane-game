@@ -1,4 +1,4 @@
-package com.ooad;
+package com.ooad.arcane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

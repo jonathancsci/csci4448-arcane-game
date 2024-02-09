@@ -1,4 +1,4 @@
-package com.ooad;
+package com.ooad.arcane;
 
 import java.util.Random;
 

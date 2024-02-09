@@ -1,4 +1,4 @@
-package com.ooad;
+package com.ooad.arcane;
 
 public class Food {
     private String name;
