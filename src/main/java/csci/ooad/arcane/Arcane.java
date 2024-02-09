@@ -32,14 +32,14 @@ public class Arcane {
     }
 
     private void runGame() {
-        System.out.println(this);
+        logger.info(this.toString());
         turnCounter++;
         while(gameNotOver) {
             turn();
-            System.out.println(this);
+            logger.info(this.toString());
             turnCounter++;
         }
-        System.out.println(endMessage);
+        logger.info(endMessage);
     }
 
     private void turn() {
