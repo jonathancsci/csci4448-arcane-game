@@ -1,4 +1,4 @@
-package com.ooad.arcane;
+package csci.ooad.arcane;
 
 import java.util.ArrayList;
 import java.util.Collections;
