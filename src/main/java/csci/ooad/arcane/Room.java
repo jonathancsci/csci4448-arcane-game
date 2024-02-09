@@ -19,7 +19,7 @@ public class Room {
     public Creature getHealthiestCreature() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("com.ooad.arcane.Creature")) {
+            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Creature")) {
                 return (Creature)occupants.get(i);
             }
         }
@@ -29,7 +29,7 @@ public class Room {
     public Adventurer getHealthiestAdventurer() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("com.ooad.arcane.Adventurer")) {
+            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Adventurer")) {
                 return (Adventurer)occupants.get(i);
             }
         }
