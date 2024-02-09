@@ -1,12 +1,10 @@
-package com.ooad.arcane;
+package csci.ooad.arcane;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.ooad.arcane.Arcane;
-import com.ooad.arcane.Room;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
