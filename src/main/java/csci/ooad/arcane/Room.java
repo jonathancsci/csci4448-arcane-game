@@ -40,6 +40,10 @@ public class Room {
         return loot.isEmpty();
     }
 
+    public void addFood(Food food) {
+        loot.add(food);
+    }
+
     public Food takeFood() {
         Food takenFood = loot.get(0);
         loot.remove(takenFood);
