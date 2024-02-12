@@ -171,14 +171,14 @@ public class Arcane {
 
     private void generateCreatures(int number) {
         for (int i = 0; i < number; i++) {
-            creatures.add(new Creature("Cobblebeast",3,maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]));
+            creatures.add(new Creature(maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]));
         }
 
     }
 
     private void generateFood(int number) {
         for (int i = 0; i < number; i++) {
-            maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addFood(new Food("Carrot",1));
+            maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addFood(new Food(1));
         }
     }
 
