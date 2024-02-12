@@ -20,11 +20,11 @@ public class Entity implements Comparable<Entity> {
         this.randomNumberGenerator = new Random();
     }
 
-    public Entity(Integer health, Room currentRoom) {
-        this.name = name;
+    public Entity(String[] nameOptions, Integer health, Room currentRoom) {
         this.health = health;
         this.currentRoom = currentRoom;
         this.randomNumberGenerator = new Random();
+        this.name = nameOptions[randomNumberGenerator.nextInt(nameOptions.length)];
     }
 
     @Override
