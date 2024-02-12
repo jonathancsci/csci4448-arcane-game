@@ -29,6 +29,8 @@ public class ArcaneTest {
     @Test
     public void constructorTest() {
         Arcane arcane = new Arcane();
+        // create rooms and entities food
+        //  arcane.rungame(pass in here)
         assertNotNull(arcane.getMaze());
     }
 

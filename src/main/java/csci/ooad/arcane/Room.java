@@ -56,6 +56,7 @@ public class Room {
 
     public void addOccupant(Entity entity) {
         occupants.add(entity);
+        entity.setCurrentRoom(this);
     }
 
     public void removeOccupant(Entity entity) {

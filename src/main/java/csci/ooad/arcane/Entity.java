@@ -17,16 +17,14 @@ public class Entity implements Comparable<Entity> {
     private static String[] possibleNames;
 
     // Constructor
-    public Entity(String name, Integer health, Room currentRoom) {
+    public Entity(String name, Integer health) {
         this.name = name;
         this.health = health;
-        this.currentRoom = currentRoom;
         this.randomNumberGenerator = new Random();
     }
 
-    public Entity(String[] nameOptions, Integer health, Room currentRoom) {
+    public Entity(String[] nameOptions, Integer health) {
         this.health = health;
-        this.currentRoom = currentRoom;
         this.randomNumberGenerator = new Random();
         this.name = nameOptions[randomNumberGenerator.nextInt(nameOptions.length)];
     }
