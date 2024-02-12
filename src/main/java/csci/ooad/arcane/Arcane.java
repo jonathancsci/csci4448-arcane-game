@@ -103,12 +103,12 @@ public class Arcane {
     private void autofillRoomConnections() {
         for(int x = 0; x < mazeWidth; x++) {
             for(int y = 0; y < mazeHeight; y++) {
-                connectRoom(x,y);
+                connectAdjacentRooms(x,y);
             }
         }
     }
 
-    private void connectRoom(int x, int y) {
+    private void connectAdjacentRooms(int x, int y) {
         Room currentRoom = getRoom(x,y);
         Room[] adjacentRooms = {getRoom(x-1,y),getRoom(x+1,y),getRoom(x,y-1),getRoom(x,y+1)};
         for(int i=0; i < adjacentRooms.length; i++) {
