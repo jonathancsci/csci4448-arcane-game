@@ -10,14 +10,12 @@ public class Adventurer extends Entity {
     private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     boolean hasTakenTurn = false;
     static String[] possibleNames = {"Bill","Sheri","Tim","Dave","Ashley","Zoe","Carl","Jack"};
-    public Adventurer(String name, Integer health, Room currentRoom) {
-        super(name, health, currentRoom);
-        currentRoom.addOccupant(this);
+    public Adventurer(String name, Integer health) {
+        super(name, health);
     }
 
-    public Adventurer(Room currentRoom) {
-        super(possibleNames, 5, currentRoom);
-        currentRoom.addOccupant(this);
+    public Adventurer() {
+        super(possibleNames, 5);
     }
 
     public void moveRooms() {
