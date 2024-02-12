@@ -13,13 +13,12 @@ public class Room {
         connectedRooms = new ArrayList<Room>();
         occupants = new ArrayList<Entity>();
         loot = new ArrayList<Food>();
-        name = "None";
     }
 
     public Creature getHealthiestCreature() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Creature")) {
+            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Creature") && !occupants.get(i).isDead()) {
                 return (Creature)occupants.get(i);
             }
         }
@@ -29,7 +28,7 @@ public class Room {
     public Adventurer getHealthiestAdventurer() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Adventurer")) {
+            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Adventurer") && !occupants.get(i).isDead()) {
                 return (Adventurer)occupants.get(i);
             }
         }
@@ -37,11 +36,12 @@ public class Room {
     }
 
     public boolean isThereFood() {
-        return loot.isEmpty();
+        return !loot.isEmpty();
     }
 
     public void addFood(Food food) {
         loot.add(food);
+        System.out.println(loot);
     }
 
     public Food takeFood() {
@@ -84,6 +84,11 @@ public class Room {
         for(int i=0; i<occupants.size(); i++) {
             status += "    "+occupants.get(i)+" is here\n";
         }
+        status += "    loot:";
+        for(int i=0; i<loot.size(); i++) {
+            status += " "+loot.get(i);
+        }
+        status += "\n";
         return status;
     }
 }

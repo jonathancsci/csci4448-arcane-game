@@ -15,4 +15,8 @@ public class Food {
     public Integer getHealthRestored() {
         return this.healthRestored;
     }
+
+    public String toString() {
+        return this.name;
+    }
 }
