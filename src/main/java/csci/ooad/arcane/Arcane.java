@@ -126,10 +126,22 @@ public class Arcane {
     }
 
     private void setRoomNames() {
-        //gross hard-coded names because these are definitely gonna get changed later when we have more than 4 rooms
-        String[] roomNames = {"Northwest", "North", "Northeast", "West", "Center", "East", "Southwest", "South", "Southeast"};
         for(int i=0; i<maze.length; i++) {
-            maze[i].setName(roomNames[i%roomNames.length]);
+            String name = "";
+            if (i < mazeWidth) {
+                name = "North";
+            } else if (i >= mazeHeight*(mazeWidth-1)) {
+                name = "South";
+            }
+            if (i%mazeWidth == 0) {
+                name += "East";
+            } else if (i%mazeWidth == mazeWidth-1) {
+                name += "West";
+            }
+            if(name.equals("")) {
+                name = "Center";
+            }
+            maze[i].setName(name);
         }
     }
 
