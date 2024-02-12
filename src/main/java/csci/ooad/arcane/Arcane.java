@@ -177,19 +177,51 @@ public class Arcane {
 
     private void generateAdventurers(int number) {
         for (int i = 0; i < number; i++) {
-            adventurers.add(new Adventurer(maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]));
+            addAdventurer(new Adventurer());
+        }
+    }
+
+    private void addAdventurer(Adventurer adventurer) {
+        adventurers.add(adventurer);
+        maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addOccupant(adventurer);
+    }
+
+    private void addAdventurer(Adventurer[] adventurers) {
+        for(Adventurer a : adventurers) {
+            addAdventurer(a);
         }
     }
 
     private void generateCreatures(int number) {
         for (int i = 0; i < number; i++) {
-            creatures.add(new Creature(maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]));
+            addCreature(new Creature());
+        }
+    }
+
+    private void addCreature(Creature creature) {
+        creatures.add(creature);
+        maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addOccupant(creature);
+    }
+
+    private void addCreature(Creature[] creatures) {
+        for(Creature c : creatures) {
+            addCreature(c);
         }
     }
 
     private void generateFood(int number) {
         for (int i = 0; i < number; i++) {
-            maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addFood(new Food(1));
+            addFood(new Food(1));
+        }
+    }
+
+    private void addFood(Food food) {
+        maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addFood(food);
+    }
+
+    private void addFood(Food[] food) {
+        for(Food f : food) {
+            addFood(f);
         }
     }
 

@@ -11,7 +11,7 @@ public class AdventurerTest {
     @Test
     public void gettersTest() {
         Room room = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob", 5, room);
+        Adventurer testAdventurer = new Adventurer("Bob", 5);
         assertEquals("Bob", testAdventurer.getName(), "Error in Adventurer.getName()");
         assertEquals(5, testAdventurer.getHealth(), "Error in Adventurer.getHealth()");
         assertNotNull(testAdventurer.getCurrentRoom(), "Error in Adventurer.getCurrentRoom()");
@@ -21,7 +21,7 @@ public class AdventurerTest {
     public void settersTest() {
         Room room1 = new Room();
         Room room2 = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob", 5, room1);
+        Adventurer testAdventurer = new Adventurer("Bob", 5);
         testAdventurer.setName("Bill");
         testAdventurer.setHealth(3);
         testAdventurer.setCurrentRoom(room2);
@@ -34,7 +34,7 @@ public class AdventurerTest {
     @Test
     public void diceRollTest() {
         Room room = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob", 5, room);
+        Adventurer testAdventurer = new Adventurer("Bob", 5);
         Integer diceRollResult = testAdventurer.rollDice();
         assertTrue(diceRollResult >= 1 && diceRollResult <= 6, "Error in Adventurer.rollDice");
     }
@@ -45,7 +45,7 @@ public class AdventurerTest {
         Room roomEnd = new Room();
         roomStart.addRoomConnection(roomEnd);
 
-        Adventurer testAdventurer = new Adventurer("Bob", 5, roomStart);
+        Adventurer testAdventurer = new Adventurer("Bob", 5);
         testAdventurer.moveRooms();
 
         assertEquals(roomEnd, testAdventurer.getCurrentRoom(), "Adventurer.moveRooms() failed, Adventurer should be in roomEnd.");
@@ -56,14 +56,14 @@ public class AdventurerTest {
     @Test
     public void moveRoomsFailureTest() {
         Room room = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob", 5, room);
+        Adventurer testAdventurer = new Adventurer("Bob", 5);
         assertThrows(IllegalStateException.class, testAdventurer::moveRooms);
     }
 
     @Test
     public void toStringTest() {
         Room room = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob", 5, room);
+        Adventurer testAdventurer = new Adventurer("Bob", 5);
         assertEquals("Adventurer Bob(health: 5)",testAdventurer.toString());
     }
 }

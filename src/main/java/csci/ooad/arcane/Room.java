@@ -41,7 +41,6 @@ public class Room {
 
     public void addFood(Food food) {
         loot.add(food);
-        System.out.println(loot);
     }
 
     public Food takeFood() {

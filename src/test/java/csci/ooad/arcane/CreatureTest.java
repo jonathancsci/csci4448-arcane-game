@@ -10,7 +10,7 @@ public class CreatureTest {
     @Test
     public void gettersTest() {
         Room room = new Room();
-        Creature testCreature = new Creature("Ogre", 5, room);
+        Creature testCreature = new Creature("Ogre", 5);
         assertEquals("Ogre", testCreature.getName(), "Error in Creature.getName()");
         assertEquals(5, testCreature.getHealth(), "Error in Creature.getHealth()");
         assertNotNull(testCreature.getCurrentRoom(), "Error in Creature.getCurrentRoom()");
@@ -20,7 +20,7 @@ public class CreatureTest {
     public void settersTest() {
         Room room1 = new Room();
         Room room2 = new Room();
-        Creature testCreature = new Creature("Ogre", 5, room1);
+        Creature testCreature = new Creature("Ogre", 5);
         testCreature.setName("Giant");
         testCreature.setHealth(3);
         testCreature.setCurrentRoom(room2);
@@ -33,7 +33,7 @@ public class CreatureTest {
     @Test
     public void rollDiceTest() {
         Room room = new Room();
-        Creature testCreature = new Creature("Ogre", 5, room);
+        Creature testCreature = new Creature("Ogre", 5);
         Integer diceRollResult = testCreature.rollDice();
         assertTrue(diceRollResult >= 1 && diceRollResult <= 6, "Error in Creature.rollDice");
     }
@@ -41,14 +41,14 @@ public class CreatureTest {
     @Test
     public void testIsOccupantOfCurrentRoom() {
         Room room = new Room();
-        Creature testCreature = new Creature("Ogre", 5, room);
+        Creature testCreature = new Creature("Ogre", 5);
         assertTrue(room.getOccupants().contains(testCreature));
     }
 
     @Test
     public void toStringTest() {
         Room room = new Room();
-        Creature testCreature = new Creature("Ogre", 5, room);
+        Creature testCreature = new Creature("Ogre", 5);
         assertEquals("Creature Ogre(health: 5)",testCreature.toString());
     }
 

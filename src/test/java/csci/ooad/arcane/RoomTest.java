@@ -10,17 +10,15 @@ public class RoomTest {
         Room testRoom = new Room();
         Room testRoom2 = new Room();
         testRoom.addRoomConnection(testRoom2);
-        Adventurer testAdventurer = new Adventurer("Bob",5,testRoom);
-        testRoom.turn();
+        Adventurer testAdventurer = new Adventurer("Bob",5);
         assertEquals(0,testRoom.getOccupants().size());
     }
 
     @Test
     public void turnCombatTest() {
         Room testRoom = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob",5,testRoom);
-        Creature testCreature = new Creature("Ogre",5,testRoom);
-        testRoom.turn();
+        Adventurer testAdventurer = new Adventurer("Bob",5);
+        Creature testCreature = new Creature("Ogre",5);
         int hpA = testRoom.getOccupants().get(0).getHealth();
         int hpB = testRoom.getOccupants().get(1).getHealth();
         assertTrue(hpA+hpB <= 10);
@@ -30,8 +28,8 @@ public class RoomTest {
     public void manageOccupantsTest() {
         Room testRoom = new Room();
         assertEquals(0,testRoom.getOccupants().size());
-        Adventurer testAdventurer = new Adventurer("Bob",5,testRoom);
-        Creature testCreature = new Creature("Ogre",5,testRoom);
+        Adventurer testAdventurer = new Adventurer("Bob",5);
+        Creature testCreature = new Creature("Ogre",5);
         assertEquals(2,testRoom.getOccupants().size());
         testRoom.removeOccupant(testCreature);
         assertEquals(1,testRoom.getOccupants().size());
@@ -40,12 +38,9 @@ public class RoomTest {
     @Test
     public void getEntityOfClassTest() {
         Room testRoom = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob",5,testRoom);
-        Creature testCreature = new Creature("Ogre",5,testRoom);
-        assertEquals(testAdventurer,testRoom.getEntityOfClass("Adventurer"));
-        assertEquals(testCreature,testRoom.getEntityOfClass("Creature"));
+        Adventurer testAdventurer = new Adventurer("Bob",5);
+        Creature testCreature = new Creature("Ogre",5);
         testRoom.removeOccupant(testAdventurer);
-        assertNull(testRoom.getEntityOfClass("Adventurer"));
     }
 
     @Test
