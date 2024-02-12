@@ -1,8 +1,12 @@
 package csci.ooad.arcane;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Random;
 
 public class Entity implements Comparable<Entity> {
+    private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     // Attributes
     private String name;
     private Integer health;

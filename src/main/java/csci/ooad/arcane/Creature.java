@@ -13,6 +13,9 @@ public class Creature extends Entity {
     }
 
     public String toString() {
+        if (isDead()) {
+            return "Creature "+this.getName()+"(health: "+this.getHealth()+"); DEAD";
+        }
         return "Creature "+this.getName()+"(health: "+this.getHealth()+")";
     }
 }
