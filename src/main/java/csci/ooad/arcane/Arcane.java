@@ -185,7 +185,6 @@ public class Arcane {
         for (int i = 0; i < number; i++) {
             creatures.add(new Creature(maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]));
         }
-
     }
 
     private void generateFood(int number) {
