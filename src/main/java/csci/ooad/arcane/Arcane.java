@@ -9,18 +9,18 @@ import java.util.Collections;
 
 public class Arcane {
     private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
-    private static Arcane arcane;
     private Room[] maze;
     private int mazeWidth;
     private int mazeHeight;
     private ArrayList<Adventurer> adventurers = new ArrayList<>();
+    private ArrayList<Creature> creatures = new ArrayList<>();
     private int turnCounter = 0;
     private boolean gameNotOver = true;
     private String endMessage = "";
     private Random randomNumberGenerator = new Random();
 
     public static void main(String [] args) {
-        arcane = new Arcane();
+        Arcane arcane = new Arcane();
         arcane.runGame();
     }
 
@@ -28,14 +28,12 @@ public class Arcane {
         mazeWidth = 3;
         mazeHeight = 3;
         instantiateRooms(2,2,10);
-        Arcane.arcane = this;
     }
 
     public Arcane(int mazeWidth, int mazeHeight) {
         this.mazeWidth = mazeWidth;
         this.mazeHeight = mazeHeight;
         instantiateRooms(2,2,10);
-        Arcane.arcane = this;
     }
 
     private void runGame() {
@@ -45,6 +43,7 @@ public class Arcane {
             turn();
             logger.info(this.toString());
             turnCounter++;
+            checkGameOver();
         }
         logger.info(endMessage);
     }
@@ -57,16 +56,18 @@ public class Arcane {
             if((creature != null) &&
                     (currentRoom.getHealthiestAdventurer() == adventurer)) {
                 combat(adventurer, creature);
-            } else if ((creature != null) &&
+            } else if ((creature == null) &&
                     (currentRoom.isThereFood())) {
-                adventurer.eatFood(currentRoom.takeFood());
+                Food food = currentRoom.takeFood();
+                logger.info(adventurer.getName()+" has eaten a "+food.getName());
+                adventurer.eatFood(food);
             } else {
                     adventurer.moveRooms();
             }
         }
     }
 
-    public void combat(Entity combatantA, Entity combatantB) {
+    public void combat(Adventurer combatantA, Creature combatantB) {
         int rollA = combatantA.rollDice();
         int rollB = combatantB.rollDice();
         if(rollA > rollB) {
@@ -78,9 +79,33 @@ public class Arcane {
         }
     }
 
-    public static void endGame(String endMessage) {
-        arcane.gameNotOver = false;
-        arcane.endMessage = endMessage;
+    public void checkGameOver() {
+        if(checkAllCreaturesDead()) {
+            gameNotOver = false;
+            endMessage = "The Adventurers have triumphed!";
+        }
+        if(checkAllAdventurersDead()) {
+            gameNotOver = false;
+            endMessage = "The Adventurers have died horribly!";
+        }
+    }
+
+    public boolean checkAllCreaturesDead() {
+        for (int i = 0; i < creatures.size(); i++) {
+            if(!creatures.get(i).isDead()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkAllAdventurersDead() {
+        for (int i = 0; i < adventurers.size(); i++) {
+            if(!adventurers.get(i).isDead()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void instantiateRooms(int adventurerNum, int creatureNum, int foodNum) {
@@ -102,7 +127,7 @@ public class Arcane {
 
     private void setRoomNames() {
         //gross hard-coded names because these are definitely gonna get changed later when we have more than 4 rooms
-        String[] roomNames = {"Northwest", "Northeast", "Southwest", "Southeast"};
+        String[] roomNames = {"Northwest", "North", "Northeast", "West", "Center", "East", "Southwest", "South", "Southeast"};
         for(int i=0; i<maze.length; i++) {
             maze[i].setName(roomNames[i%roomNames.length]);
         }
@@ -134,7 +159,7 @@ public class Arcane {
 
     private void generateCreatures(int number) {
         for (int i = 0; i < number; i++) {
-            new Creature("Cobblebeast",3,maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]);
+            creatures.add(new Creature("Cobblebeast",3,maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]));
         }
 
     }

@@ -10,8 +10,17 @@ public class Entity implements Comparable<Entity> {
 
     private Random randomNumberGenerator;
 
+    private static String[] possibleNames;
+
     // Constructor
     public Entity(String name, Integer health, Room currentRoom) {
+        this.name = name;
+        this.health = health;
+        this.currentRoom = currentRoom;
+        this.randomNumberGenerator = new Random();
+    }
+
+    public Entity(Integer health, Room currentRoom) {
         this.name = name;
         this.health = health;
         this.currentRoom = currentRoom;
@@ -61,9 +70,6 @@ public class Entity implements Comparable<Entity> {
     public void takeDamage(Integer damage) {
         this.health -= damage;
         this.health = Math.max(0, this.health);
-        if(isDead()) {
-            Arcane.endGame(this.name+" was defeated!");
-        }
     }
 
     public boolean isDead() {
