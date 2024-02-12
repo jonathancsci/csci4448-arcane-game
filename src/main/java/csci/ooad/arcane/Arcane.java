@@ -51,6 +51,9 @@ public class Arcane {
     private void turn() {
         Collections.sort(adventurers);
         for(Adventurer adventurer : adventurers) {
+            if (adventurer.isDead()) {
+                continue;
+            }
             Room currentRoom = adventurer.getCurrentRoom();
             Creature creature = currentRoom.getHealthiestCreature();
             if((creature != null) &&
@@ -59,7 +62,7 @@ public class Arcane {
             } else if ((creature == null) &&
                     (currentRoom.isThereFood())) {
                 Food food = currentRoom.takeFood();
-                logger.info(adventurer.getName()+" has eaten a "+food.getName());
+                logger.info(adventurer+" just ate a "+food.getName() + "\n");
                 adventurer.eatFood(food);
             } else {
                     adventurer.moveRooms();
@@ -70,12 +73,21 @@ public class Arcane {
     public void combat(Adventurer combatantA, Creature combatantB) {
         int rollA = combatantA.rollDice();
         int rollB = combatantB.rollDice();
+        logger.info(combatantA + " fought " + combatantB+ "\n");
         if(rollA > rollB) {
             Integer damageForCombatantB = rollA - rollB;
             combatantB.takeDamage(damageForCombatantB);
+            if (combatantB.isDead()) {
+                logger.info(combatantB + " was killed\n");
+            }
+            logger.info(combatantB + " lost to " + combatantA+ "\n");
         } else if (rollB > rollA) {
             Integer damageForCombatantA = rollB - rollA;
             combatantA.takeDamage(damageForCombatantA);
+            if (combatantB.isDead()) {
+                logger.info(combatantA + " was killed\n");
+            }
+            logger.info(combatantA + " lost to " + combatantB+ "\n");
         }
     }
 
