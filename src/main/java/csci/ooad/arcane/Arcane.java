@@ -146,11 +146,7 @@ public class Arcane {
     }
 
     public void fullMazePrep(Room[] rooms, int mazeWidth, int mazeHeight, Adventurer[] adventurers, Creature[] creatures, Food[] food) {
-        setMaze(rooms);
-        setMazeWidth(mazeWidth);
-        setMazeHeight(mazeHeight);
-        setRoomNames();
-        autofillRoomConnections();
+        mazeRoomPrep(rooms,mazeWidth,mazeHeight);
         addAdventurer(adventurers);
         addCreature(creatures);
         addFood(food);
