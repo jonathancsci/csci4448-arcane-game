@@ -5,8 +5,14 @@ import java.util.Random;
 
 public class Adventurer extends Entity {
     boolean hasTakenTurn = false;
+    static String[] possibleNames = {"Bill","Sheri","Tim","Dave","Ashley"};
     public Adventurer(String name, Integer health, Room currentRoom) {
         super(name, health, currentRoom);
+        currentRoom.addOccupant(this);
+    }
+
+    public Adventurer(Room currentRoom) {
+        super(possibleNames[0], 5, currentRoom);
         currentRoom.addOccupant(this);
     }
 

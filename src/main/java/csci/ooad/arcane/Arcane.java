@@ -25,9 +25,16 @@ public class Arcane {
     }
 
     public Arcane() {
-        mazeWidth = 2;
-        mazeHeight = 2;
-        instantiateRooms();
+        mazeWidth = 3;
+        mazeHeight = 3;
+        instantiateRooms(2,2,10);
+        Arcane.arcane = this;
+    }
+
+    public Arcane(int mazeWidth, int mazeHeight) {
+        this.mazeWidth = mazeWidth;
+        this.mazeHeight = mazeHeight;
+        instantiateRooms(2,2,10);
         Arcane.arcane = this;
     }
 
@@ -76,14 +83,15 @@ public class Arcane {
         arcane.endMessage = endMessage;
     }
 
-    private void instantiateRooms() {
+    private void instantiateRooms(int adventurerNum, int creatureNum, int foodNum) {
         int mazeSize = mazeHeight*mazeWidth;
         maze = new Room[mazeSize];
         createRooms();
         setRoomNames();
         autofillRoomConnections();
-        adventurers.add(new Adventurer("Tim",5,maze[randomNumberGenerator.nextInt(mazeSize)]));
-        new Creature("Cobblebeast",5,maze[randomNumberGenerator.nextInt(mazeSize)]);
+        generateAdventurers(adventurerNum);
+        generateCreatures(creatureNum);
+        generateFood(foodNum);
     }
 
     private void createRooms() {
@@ -115,6 +123,25 @@ public class Arcane {
             if(adjacentRooms[i] != null) {
                 currentRoom.addRoomConnection(adjacentRooms[i]);
             }
+        }
+    }
+
+    private void generateAdventurers(int number) {
+        for (int i = 0; i < number; i++) {
+            adventurers.add(new Adventurer(maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]));
+        }
+    }
+
+    private void generateCreatures(int number) {
+        for (int i = 0; i < number; i++) {
+            new Creature("Cobblebeast",3,maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)]);
+        }
+
+    }
+
+    private void generateFood(int number) {
+        for (int i = 0; i < number; i++) {
+            maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addFood(new Food("Carrot",1));
         }
     }
 

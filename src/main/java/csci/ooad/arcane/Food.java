@@ -3,7 +3,7 @@ package csci.ooad.arcane;
 public class Food {
     private String name;
     private Integer healthRestored;
-    public void Food(String name, Integer healthRestored) {
+    public Food(String name, Integer healthRestored) {
         this.name = name;
         this.healthRestored = healthRestored;
     }
