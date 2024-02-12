@@ -19,18 +19,18 @@ public class Arcane {
     private String endMessage = "";
     private Random randomNumberGenerator = new Random();
 
-    public static void main(String [] args) {
+    public static void main(String [] args) { //TODO: MARKED FOR DEATH
         Arcane arcane = new Arcane();
         arcane.runGame();
     }
 
-    public Arcane() {
+    public Arcane() {  //TODO: MARKED FOR DEATH
         mazeWidth = 3;
         mazeHeight = 3;
         instantiateRooms(2,2,10);
     }
 
-    public Arcane(int mazeWidth, int mazeHeight) {
+    public Arcane(int mazeWidth, int mazeHeight) {  //TODO: MARKED FOR DEATH
         this.mazeWidth = mazeWidth;
         this.mazeHeight = mazeHeight;
         instantiateRooms(2,2,10);
@@ -120,7 +120,7 @@ public class Arcane {
         return true;
     }
 
-    private void instantiateRooms(int adventurerNum, int creatureNum, int foodNum) {
+    private void instantiateRooms(int adventurerNum, int creatureNum, int foodNum) { //TODO: MARKED FOR DEATH
         int mazeSize = mazeHeight*mazeWidth;
         maze = new Room[mazeSize];
         createRooms();
@@ -131,13 +131,44 @@ public class Arcane {
         generateFood(foodNum);
     }
 
-    private void createRooms() {
+    private void createRooms() { //TODO: MARKED FOR DEATH
         for(int i = 0; i<maze.length; i++) {
             maze[i] = new Room();
         }
     }
 
-    private void setRoomNames() {
+    public void mazeRoomPrep(Room[] rooms, int mazeWidth, int mazeHeight) {
+        setMaze(rooms);
+        setMazeWidth(mazeWidth);
+        setMazeHeight(mazeHeight);
+        setRoomNames();
+        autofillRoomConnections();
+    }
+
+    public void fullMazePrep(Room[] rooms, int mazeWidth, int mazeHeight, Adventurer[] adventurers, Creature[] creatures, Food[] food) {
+        setMaze(rooms);
+        setMazeWidth(mazeWidth);
+        setMazeHeight(mazeHeight);
+        setRoomNames();
+        autofillRoomConnections();
+        addAdventurer(adventurers);
+        addCreature(creatures);
+        addFood(food);
+    }
+
+    public void setMaze(Room[] rooms) {
+        maze = rooms;
+    }
+
+    public void setMazeWidth(int mazeWidth) {
+        this.mazeWidth = mazeWidth;
+    }
+
+    public void setMazeHeight(int mazeHeight) {
+        this.mazeHeight = mazeHeight;
+    }
+
+    public void setRoomNames() {
         for(int i=0; i<maze.length; i++) {
             String name = "";
             if (i < mazeWidth) {
@@ -157,7 +188,7 @@ public class Arcane {
         }
     }
 
-    private void autofillRoomConnections() {
+    public void autofillRoomConnections() {
         for(int x = 0; x < mazeWidth; x++) {
             for(int y = 0; y < mazeHeight; y++) {
                 connectAdjacentRooms(x,y);
@@ -165,7 +196,7 @@ public class Arcane {
         }
     }
 
-    private void connectAdjacentRooms(int x, int y) {
+    public void connectAdjacentRooms(int x, int y) {
         Room currentRoom = getRoom(x,y);
         Room[] adjacentRooms = {getRoom(x-1,y),getRoom(x+1,y),getRoom(x,y-1),getRoom(x,y+1)};
         for(int i=0; i < adjacentRooms.length; i++) {
