@@ -36,7 +36,6 @@ public class Adventurer extends Entity {
         logger.info(this.toString() + " moved from " + currentRoom.getName() + " to " + newRoom.getName() + "\n");
 
         currentRoom.removeOccupant(this);
-        this.setCurrentRoom(newRoom);
         newRoom.addOccupant(this);
     }
 
