@@ -10,7 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CreatureTest {
     @Test
     public void testDefaultConstructor() {
-        String[] possibleNames = {"Cobblebeast","Dimcreeper","Ooze","Unruly Armor","Cavern Crab","Snapdragon","Wyvern"};
+        String[] possibleNames = {
+                "Cobblebeast", "Dimcreeper", "Ooze", "Unruly Armor",
+                "Cavern Crab", "Snapdragon", "Wyvern"
+        };
         Creature testCreature = new Creature();
         String creatureName = testCreature.getName();
         Boolean isNameValid = Arrays.asList(possibleNames).contains(creatureName);
