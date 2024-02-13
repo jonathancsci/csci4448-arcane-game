@@ -20,7 +20,7 @@ public class CreatureTest {
     @Test
     public void toStringTest() {
         Creature testCreature = new Creature("Ogre", 5);
-        assertEquals("Creature Ogre(health: 5)",testCreature.toString());
+        assertEquals("Creature Ogre(health: 5)", testCreature.toString());
         testCreature.setHealth(0);
         assertEquals("Creature Ogre(health: 0); DEAD", testCreature.toString());
     }
