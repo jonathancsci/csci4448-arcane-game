@@ -2,6 +2,8 @@ package csci.ooad.arcane;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,43 +11,24 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdventurerTest {
     @Test
-    public void gettersTest() {
-        Room room = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob", 5);
-        assertEquals("Bob", testAdventurer.getName(), "Error in Adventurer.getName()");
-        assertEquals(5, testAdventurer.getHealth(), "Error in Adventurer.getHealth()");
-        assertNotNull(testAdventurer.getCurrentRoom(), "Error in Adventurer.getCurrentRoom()");
-    }
-
-    @Test
-    public void settersTest() {
-        Room room1 = new Room();
-        Room room2 = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob", 5);
-        testAdventurer.setName("Bill");
-        testAdventurer.setHealth(3);
-        testAdventurer.setCurrentRoom(room2);
-
-        assertEquals("Bill", testAdventurer.getName(), "Error in Adventurer.setName()");
-        assertEquals(3, testAdventurer.getHealth(), "Error in Adventurer.setHealth()");
-        assertEquals(room2, testAdventurer.getCurrentRoom(), "Error in Adventurer.setCurrentRoom");
-    }
-
-    @Test
-    public void diceRollTest() {
-        Room room = new Room();
-        Adventurer testAdventurer = new Adventurer("Bob", 5);
-        Integer diceRollResult = testAdventurer.rollDice();
-        assertTrue(diceRollResult >= 1 && diceRollResult <= 6, "Error in Adventurer.rollDice");
+    public void testDefaultConstructor() {
+        String[] possibleNames = {"Bill","Sheri","Tim","Dave","Ashley","Zoe","Carl","Jack"};
+        Adventurer testAdventurer = new Adventurer();
+        String adventurerName = testAdventurer.getName();
+        Boolean isNameValid = Arrays.asList(possibleNames).contains(adventurerName);
+        assertTrue(isNameValid, "Adventurer should have one of the predefined names");
     }
 
     @Test
     public void moveRoomsTest() {
         Room roomStart = new Room();
+        roomStart.setName("roomStart");
         Room roomEnd = new Room();
+        roomEnd.setName("roomEnd");
         roomStart.addRoomConnection(roomEnd);
 
         Adventurer testAdventurer = new Adventurer("Bob", 5);
+        roomStart.addOccupant(testAdventurer);
         testAdventurer.moveRooms();
 
         assertEquals(roomEnd, testAdventurer.getCurrentRoom(), "Adventurer.moveRooms() failed, Adventurer should be in roomEnd.");
@@ -57,13 +40,23 @@ public class AdventurerTest {
     public void moveRoomsFailureTest() {
         Room room = new Room();
         Adventurer testAdventurer = new Adventurer("Bob", 5);
+        room.addOccupant(testAdventurer);
         assertThrows(IllegalStateException.class, testAdventurer::moveRooms);
     }
 
     @Test
+    public void eatFoodTest() {
+        Food food = new Food("Cookie", 1);
+        Adventurer adventurer = new Adventurer("Bob", 5);
+        adventurer.eatFood(food);
+        assertEquals(6, adventurer.getHealth(), "Adventurer failed to eat food.");
+    }
+
+    @Test
     public void toStringTest() {
-        Room room = new Room();
         Adventurer testAdventurer = new Adventurer("Bob", 5);
-        assertEquals("Adventurer Bob(health: 5)",testAdventurer.toString());
+        assertEquals("Adventurer Bob(health: 5)", testAdventurer.toString());
+        testAdventurer.setHealth(0);
+        assertEquals("Adventurer Bob(health: 0); DEAD", testAdventurer.toString());
     }
 }
