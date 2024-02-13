@@ -26,23 +26,44 @@ public class ArcaneTest {
         System.setOut(originalOut);
     }
 
-    @Test
-    public void constructorTest() {
+
+    public Arcane setUp(int width, int height, int advNum, int creNum, int foodNum) {
         Arcane arcane = new Arcane();
-        // create rooms and entities food
-        //  arcane.rungame(pass in here)
-        assertNotNull(arcane.getMaze());
+        Room[] rooms = new Room[width*height];
+        for(int i=0; i<rooms.length; i++) {
+            rooms[i] = new Room();
+        }
+        Adventurer[] adventurers = new Adventurer[advNum];
+        for(int i=0; i<adventurers.length; i++) {
+            adventurers[i] = new Adventurer();
+        }
+        Creature[] creatures = new Creature[creNum];
+        for(int i=0; i<creatures.length; i++) {
+            creatures[i] = new Creature();
+        }
+        Food[] food = new Food[foodNum];
+        for(int i=0; i<food.length; i++) {
+            food[i] = new Food();
+        }
+        return arcane;
     }
 
-//    @Test
-//    public void runGameTest() {
-//        String[] expected = {"    Adventurer Tim(health: 4) is here","    Creature Cobblebeast(health: 4) is here"};
-//        Arcane.main(new String[0]);
-//        String[] printedLines = outContent.toString().split("\n");
-//        boolean timHurt = Arrays.asList(printedLines).contains(expected[0]);
-//        boolean monsterHurt = Arrays.asList(printedLines).contains(expected[1]);
-//        assertTrue(timHurt || monsterHurt, "Expected an entity to take damage.");
-//    }
+    public Arcane setUpNineRoomGame() {
+        return setUp(3,3,2,2,10);
+    }
+
+    public Arcane setUpFourRoomGame() {
+        return setUp(2,2,1,1,4);
+    }
+
+    @Test
+    public void runGameTest() {
+
+    }
+
+    @Test
+    public void turnTest() {
+    }
 
     @Test
     public void toStringTest() {
