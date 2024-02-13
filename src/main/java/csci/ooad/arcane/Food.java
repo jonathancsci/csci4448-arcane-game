@@ -3,7 +3,7 @@ package csci.ooad.arcane;
 import java.util.Random;
 
 public class Food {
-    static String[] possibleNames = {"Carrot","Apple","Burger","Soup","Cheese Wheel","Steak","Cake","Ice Cream","Spaghetti"};
+    static String[] possibleNames = {"Carrot","Apple","Burger","Soup","Cheese","Steak","Cake","Ice-Cream","Spaghetti"};
     private String name;
     private Integer healthRestored;
     public Food(String name, Integer healthRestored) {
