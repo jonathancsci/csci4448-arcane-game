@@ -5,14 +5,15 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdventurerTest {
     @Test
     public void testDefaultConstructor() {
-        String[] possibleNames = {"Bill","Sheri","Tim","Dave","Ashley","Zoe","Carl","Jack"};
+        String[] possibleNames = {
+                "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
+        };
         Adventurer testAdventurer = new Adventurer();
         String adventurerName = testAdventurer.getName();
         Boolean isNameValid = Arrays.asList(possibleNames).contains(adventurerName);
