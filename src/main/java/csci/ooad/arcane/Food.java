@@ -12,10 +12,10 @@ public class Food {
         this.healthRestored = healthRestored;
     }
 
-    public Food(Integer healthRestored) {
+    public Food() {
         Random randomNumberGenerator = new Random();
         this.name = possibleNames[randomNumberGenerator.nextInt(possibleNames.length)];
-        this.healthRestored = healthRestored;
+        this.healthRestored = 1;
     }
 
     public String getName() {
