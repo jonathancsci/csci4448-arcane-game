@@ -9,7 +9,9 @@ import java.util.Random;
 public class Adventurer extends Entity {
     private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     boolean hasTakenTurn = false;
-    static String[] possibleNames = {"Bill","Sheri","Tim","Dave","Ashley","Zoe","Carl","Jack"};
+    static String[] possibleNames = {
+            "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
+    };
     public Adventurer(String name, Integer health) {
         super(name, health);
     }
@@ -36,7 +38,6 @@ public class Adventurer extends Entity {
         logger.info(this.toString() + " moved from " + currentRoom.getName() + " to " + newRoom.getName() + "\n");
 
         currentRoom.removeOccupant(this);
-        this.setCurrentRoom(newRoom);
         newRoom.addOccupant(this);
     }
 

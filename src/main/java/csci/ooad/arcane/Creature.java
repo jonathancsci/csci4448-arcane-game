@@ -1,7 +1,10 @@
 package csci.ooad.arcane;
 
 public class Creature extends Entity {
-    static String[] possibleNames = {"Cobblebeast","Dimcreeper","Ooze","Unruly Armor","Cavern Crab","Snapdragon","Wyvern"};
+    static String[] possibleNames = {
+            "Cobblebeast", "Dimcreeper", "Ooze", "Unruly Armor",
+            "Cavern Crab", "Snapdragon", "Wyvern"
+    };
     public Creature(String name, Integer health) {
         super(name, health);
     }
