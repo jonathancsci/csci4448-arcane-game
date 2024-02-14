@@ -18,19 +18,8 @@ public class Arcane {
     private String endMessage = "";
     private Random randomNumberGenerator = new Random();
 
-    public static void main(String [] args) { //TODO: MARKED FOR DEATH
-        Arcane arcane = new Arcane();
-        arcane.runGame();
-    }
-
     public Arcane() {
 
-    }
-
-    public Arcane(int mazeWidth, int mazeHeight) {  //TODO: MARKED FOR DEATH
-        this.mazeWidth = mazeWidth;
-        this.mazeHeight = mazeHeight;
-        instantiateRooms(2,2,10);
     }
 
     public void runGame() {
@@ -117,23 +106,6 @@ public class Arcane {
         return true;
     }
 
-    private void instantiateRooms(int adventurerNum, int creatureNum, int foodNum) { //TODO: MARKED FOR DEATH
-        int mazeSize = mazeHeight*mazeWidth;
-        maze = new Room[mazeSize];
-        createRooms();
-        setRoomNames();
-        autofillRoomConnections();
-        generateAdventurers(adventurerNum);
-        generateCreatures(creatureNum);
-        generateFood(foodNum);
-    }
-
-    private void createRooms() { //TODO: MARKED FOR DEATH
-        for(int i = 0; i<maze.length; i++) {
-            maze[i] = new Room();
-        }
-    }
-
     public void mazeRoomPrep(Room[] rooms, int mazeWidth, int mazeHeight) {
         setMaze(rooms);
         setMazeWidth(mazeWidth);
@@ -199,12 +171,6 @@ public class Arcane {
         }
     }
 
-    private void generateAdventurers(int number) { //TODO: MARKED FOR DEATH
-        for (int i = 0; i < number; i++) {
-            addAdventurer(new Adventurer());
-        }
-    }
-
     public void addAdventurer(Adventurer adventurer) {
         adventurers.add(adventurer);
         getRandomRoom().addOccupant(adventurer);
@@ -221,12 +187,6 @@ public class Arcane {
         }
     }
 
-    private void generateCreatures(int number) { //TODO: MARKED FOR DEATH
-        for (int i = 0; i < number; i++) {
-            addCreature(new Creature());
-        }
-    }
-
     public void addCreature(Creature creature) {
         creatures.add(creature);
         getRandomRoom().addOccupant(creature);
@@ -240,12 +200,6 @@ public class Arcane {
     public void addCreature(Creature[] creatures) {
         for(Creature c : creatures) {
             addCreature(c);
-        }
-    }
-
-    private void generateFood(int number) { //TODO: MARKED FOR DEATH
-        for (int i = 0; i < number; i++) {
-            addFood(new Food());
         }
     }
 
