@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Random;
 
 public class Entity implements Comparable<Entity> {
+    //Entity implements the Comparable interface and is inherited by Adventurer and Creature
     private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     // Attributes
     private String name;
