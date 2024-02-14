@@ -15,7 +15,6 @@ public class Arcane {
     private ArrayList<Adventurer> adventurers = new ArrayList<>();
     private ArrayList<Creature> creatures = new ArrayList<>();
     private int turnCounter = 0;
-    private boolean gameNotOver = true;
     private String endMessage = "";
     private Random randomNumberGenerator = new Random();
 
@@ -24,10 +23,8 @@ public class Arcane {
         arcane.runGame();
     }
 
-    public Arcane() {  //TODO: MARKED FOR DEATH
-        mazeWidth = 3;
-        mazeHeight = 3;
-        instantiateRooms(2,2,10);
+    public Arcane() {
+
     }
 
     public Arcane(int mazeWidth, int mazeHeight) {  //TODO: MARKED FOR DEATH
@@ -36,19 +33,18 @@ public class Arcane {
         instantiateRooms(2,2,10);
     }
 
-    private void runGame() {
+    public void runGame() {
         logger.info(this.toString());
         turnCounter++;
-        while(gameNotOver) {
+        while(!isGameOver()) {
             turn();
             logger.info(this.toString());
             turnCounter++;
-            checkGameOver();
         }
         logger.info(endMessage);
     }
 
-    private void turn() {
+    public void turn() {
         Collections.sort(adventurers);
         for(Adventurer adventurer : adventurers) {
             if (adventurer.isDead()) {
@@ -91,18 +87,19 @@ public class Arcane {
         }
     }
 
-    public void checkGameOver() {
+    public boolean isGameOver() {
         if(checkAllCreaturesDead()) {
-            gameNotOver = false;
             endMessage = "The Adventurers have triumphed!";
+            return true;
         }
         if(checkAllAdventurersDead()) {
-            gameNotOver = false;
             endMessage = "The Adventurers have died horribly!";
+            return true;
         }
+        return false;
     }
 
-    public boolean checkAllCreaturesDead() {
+    private boolean checkAllCreaturesDead() {
         for (int i = 0; i < creatures.size(); i++) {
             if(!creatures.get(i).isDead()) {
                 return false;
@@ -111,7 +108,7 @@ public class Arcane {
         return true;
     }
 
-    public boolean checkAllAdventurersDead() {
+    private boolean checkAllAdventurersDead() {
         for (int i = 0; i < adventurers.size(); i++) {
             if(!adventurers.get(i).isDead()) {
                 return false;
@@ -173,9 +170,9 @@ public class Arcane {
                 name = "South";
             }
             if (i%mazeWidth == 0) {
-                name += "East";
-            } else if (i%mazeWidth == mazeWidth-1) {
                 name += "West";
+            } else if (i%mazeWidth == mazeWidth-1) {
+                name += "East";
             }
             if(name.equals("")) {
                 name = "Center";
@@ -202,51 +199,65 @@ public class Arcane {
         }
     }
 
-    private void generateAdventurers(int number) {
+    private void generateAdventurers(int number) { //TODO: MARKED FOR DEATH
         for (int i = 0; i < number; i++) {
             addAdventurer(new Adventurer());
         }
     }
 
-    private void addAdventurer(Adventurer adventurer) {
+    public void addAdventurer(Adventurer adventurer) {
         adventurers.add(adventurer);
-        maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addOccupant(adventurer);
+        getRandomRoom().addOccupant(adventurer);
     }
 
-    private void addAdventurer(Adventurer[] adventurers) {
+    public void addAdventurer(Adventurer adventurer, Room room) {
+        adventurers.add(adventurer);
+        room.addOccupant(adventurer);
+    }
+
+    public void addAdventurer(Adventurer[] adventurers) {
         for(Adventurer a : adventurers) {
             addAdventurer(a);
         }
     }
 
-    private void generateCreatures(int number) {
+    private void generateCreatures(int number) { //TODO: MARKED FOR DEATH
         for (int i = 0; i < number; i++) {
             addCreature(new Creature());
         }
     }
 
-    private void addCreature(Creature creature) {
+    public void addCreature(Creature creature) {
         creatures.add(creature);
-        maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addOccupant(creature);
+        getRandomRoom().addOccupant(creature);
     }
 
-    private void addCreature(Creature[] creatures) {
+    public void addCreature(Creature creature, Room room) {
+        creatures.add(creature);
+        room.addOccupant(creature);
+    }
+
+    public void addCreature(Creature[] creatures) {
         for(Creature c : creatures) {
             addCreature(c);
         }
     }
 
-    private void generateFood(int number) {
+    private void generateFood(int number) { //TODO: MARKED FOR DEATH
         for (int i = 0; i < number; i++) {
-            addFood(new Food(1));
+            addFood(new Food());
         }
     }
 
-    private void addFood(Food food) {
-        maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)].addFood(food);
+    public void addFood(Food food) {
+        getRandomRoom().addFood(food);
     }
 
-    private void addFood(Food[] food) {
+    public void addFood(Food food, Room room) {
+        room.addFood(food);
+    }
+
+    public void addFood(Food[] food) {
         for(Food f : food) {
             addFood(f);
         }
@@ -260,8 +271,8 @@ public class Arcane {
         }
     }
 
-    public Room[] getMaze () {
-        return maze;
+    public Room getRandomRoom() {
+        return maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)];
     }
 
     public String toString() {
