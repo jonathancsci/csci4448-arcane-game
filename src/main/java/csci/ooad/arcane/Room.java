@@ -9,12 +9,14 @@ public class Room {
     private ArrayList<Food> loot;
     private String name;
 
+    //note: we moved turn and combat logic into Arcane to increase cohesion, rooms now only store and convey data about what is in a given location
     public Room() {
         connectedRooms = new ArrayList<Room>();
         occupants = new ArrayList<Entity>();
         loot = new ArrayList<Food>();
     }
 
+    //Room does not provide its list of occupants, and instead only provides the healthiest occupant, the bare minimum knowledge required elsewhere in the system
     public Creature getHealthiestCreature() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {

@@ -49,6 +49,7 @@ public class Arcane {
                 Food food = currentRoom.takeFood();
                 logger.info(adventurer+" just ate a "+food.getName() + "\n");
                 adventurer.eatFood(food);
+                //dependency injection: the food is passed into the adventurer
             } else {
                     adventurer.moveRooms();
             }
@@ -171,6 +172,8 @@ public class Arcane {
         }
     }
 
+    //For our example of polymorphism, the addAdventurer method is overloaded to allow for a multitude of adventurers to be added, or for the room to be specified in testing
+    //Kind of, I, Gavin, think of polymorphism as a bit of an umbrella term, a better example is in the toStrings
     public void addAdventurer(Adventurer adventurer) {
         adventurers.add(adventurer);
         getRandomRoom().addOccupant(adventurer);
@@ -229,6 +232,7 @@ public class Arcane {
         return maze[randomNumberGenerator.nextInt(mazeHeight*mazeWidth)];
     }
 
+    //the toString is a more conventional form of polymorphism where all of these objects are behaving differently when called, but being treated the same by the callee
     public String toString() {
         String status = "ARCANE MAZE: turn "+(turnCounter+1)+"\n";
         for(int i=0; i<maze.length; i++) {
