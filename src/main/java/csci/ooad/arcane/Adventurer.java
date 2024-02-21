@@ -20,6 +20,22 @@ public class Adventurer extends Entity {
         super(possibleNames, 5);
     }
 
+    public void turn(Room currentRoom) {
+        Creature creature = currentRoom.getHealthiestCreature();
+        if((creature != null) &&
+                (currentRoom.getHealthiestAdventurer() == this)) {
+            combat(creature);
+        } else if ((creature == null) &&
+                (currentRoom.isThereFood())) {
+            Food food = currentRoom.takeFood();
+            Arcane.logger.info(this+" just ate a "+food.getName() + "\n");
+            eatFood(food);
+            //dependency injection: the food is passed into the adventurer
+        } else {
+            moveRooms();
+        }
+    }
+
     public void moveRooms() {
         Room currentRoom = this.getCurrentRoom();
         ArrayList<Room> connectedRooms = currentRoom.getConnectedRooms();
