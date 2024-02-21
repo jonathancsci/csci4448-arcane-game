@@ -12,15 +12,15 @@ public class Adventurer extends Entity {
     static String[] possibleNames = {
             "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
     };
-    public Adventurer(String name, Integer health) {
+    public Adventurer(String name, double health) {
         super(name, health);
     }
 
     public Adventurer() {
-        super(possibleNames, 5);
+        super(possibleNames, 5.0);
     }
-    public Adventurer(String[] possibleNames, Integer health) {
-        super(possibleNames, 5);
+    public Adventurer(String[] possibleNames, double health) {
+        super(possibleNames, health);
     }
 
     public void turn(Room currentRoom) {
