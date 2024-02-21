@@ -1,8 +1,13 @@
-package com.ooad;
+package csci.ooad.arcane;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
-public class Entity {
+public class Entity implements Comparable<Entity> {
+    //Entity implements the Comparable interface and is inherited by Adventurer and Creature
+    private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     // Attributes
     private String name;
     private Integer health;
@@ -10,12 +15,24 @@ public class Entity {
 
     private Random randomNumberGenerator;
 
+    private static String[] possibleNames;
+
     // Constructor
-    public Entity(String name, Integer health, Room currentRoom) {
+    public Entity(String name, Integer health) {
         this.name = name;
         this.health = health;
-        this.currentRoom = currentRoom;
         this.randomNumberGenerator = new Random();
+    }
+
+    public Entity(String[] nameOptions, Integer health) {
+        this.health = health;
+        this.randomNumberGenerator = new Random();
+        this.name = nameOptions[randomNumberGenerator.nextInt(nameOptions.length)];
+    }
+
+    @Override
+    public int compareTo(Entity other) {
+        return other.getHealth().compareTo(this.getHealth());
     }
 
     // Getters
@@ -56,9 +73,6 @@ public class Entity {
     public void takeDamage(Integer damage) {
         this.health -= damage;
         this.health = Math.max(0, this.health);
-        if(isDead()) {
-            Arcane.endGame(this.name+" was defeated!");
-        }
     }
 
     public boolean isDead() {
