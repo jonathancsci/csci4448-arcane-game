@@ -3,6 +3,7 @@ package csci.ooad.arcane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.Random;
 
 public class Entity implements Comparable<Entity> {
@@ -66,6 +67,31 @@ public class Entity implements Comparable<Entity> {
     }
 
     // Methods
+    public void turn(Room currentRoom) {
+
+    }
+
+    public void combat(Entity foe) {
+        int rollA = rollDice();
+        int rollB = foe.rollDice();
+        Arcane.logger.info(this + " fought " + foe+ "\n");
+        if(rollA > rollB) {
+            Integer damageForCombatantB = rollA - rollB;
+            foe.takeDamage(damageForCombatantB);
+            if (foe.isDead()) {
+                Arcane.logger.info(foe + " was killed\n");
+            }
+            Arcane.logger.info(foe + " lost to " + this+ "\n");
+        } else if (rollB > rollA) {
+            Integer damageForCombatantA = rollB - rollA;
+            takeDamage(damageForCombatantA);
+            if (isDead()) {
+                Arcane.logger.info(this + " was killed\n");
+            }
+            Arcane.logger.info(this + " lost to " + foe+ "\n");
+        }
+    }
+
     public Integer rollDice() {
         return randomNumberGenerator.nextInt(6) + 1;
     }

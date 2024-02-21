@@ -63,42 +63,17 @@ public class Maze {
             if (adventurer.isDead()) {
                 continue;
             }
-            Room currentRoom = adventurer.getCurrentRoom();
-            Creature creature = currentRoom.getHealthiestCreature();
-            if((creature != null) &&
-                    (currentRoom.getHealthiestAdventurer() == adventurer)) {
-                combat(adventurer, creature);
-            } else if ((creature == null) &&
-                    (currentRoom.isThereFood())) {
-                Food food = currentRoom.takeFood();
-                Arcane.logger.info(adventurer+" just ate a "+food.getName() + "\n");
-                adventurer.eatFood(food);
-                //dependency injection: the food is passed into the adventurer
-            } else {
-                adventurer.moveRooms();
-            }
+            adventurer.turn(getEntityRoom(adventurer));
         }
     }
 
-    public void combat(Adventurer combatantA, Creature combatantB) {
-        int rollA = combatantA.rollDice();
-        int rollB = combatantB.rollDice();
-        Arcane.logger.info(combatantA + " fought " + combatantB+ "\n");
-        if(rollA > rollB) {
-            Integer damageForCombatantB = rollA - rollB;
-            combatantB.takeDamage(damageForCombatantB);
-            if (combatantB.isDead()) {
-                Arcane.logger.info(combatantB + " was killed\n");
+    public Room getEntityRoom(Entity entity) {
+        for (Room room : rooms) {
+            if(room.getOccupants().contains(entity)) {
+                return room;
             }
-            Arcane.logger.info(combatantB + " lost to " + combatantA+ "\n");
-        } else if (rollB > rollA) {
-            Integer damageForCombatantA = rollB - rollA;
-            combatantA.takeDamage(damageForCombatantA);
-            if (combatantB.isDead()) {
-                Arcane.logger.info(combatantA + " was killed\n");
-            }
-            Arcane.logger.info(combatantA + " lost to " + combatantB+ "\n");
         }
+        return null;
     }
 
     public boolean checkAllCreaturesDead() {
