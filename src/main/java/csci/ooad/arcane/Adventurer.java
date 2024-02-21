@@ -33,7 +33,6 @@ public class Adventurer extends Entity {
             Food food = currentRoom.takeFood();
             Arcane.logger.info(this+" just ate a "+food.getName() + "\n");
             eatFood(food);
-            //dependency injection: the food is passed into the adventurer
         } else {
             moveRooms();
         }
