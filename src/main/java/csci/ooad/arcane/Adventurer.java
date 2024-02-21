@@ -19,6 +19,9 @@ public class Adventurer extends Entity {
     public Adventurer() {
         super(possibleNames, 5);
     }
+    public Adventurer(String[] possibleNames, Integer health) {
+        super(possibleNames, 5);
+    }
 
     public void turn(Room currentRoom) {
         Creature creature = currentRoom.getHealthiestCreature();
