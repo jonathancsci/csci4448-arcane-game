@@ -65,7 +65,9 @@ public class Room {
     }
 
     public void addRoomConnection(Room room) {
-        connectedRooms.add(room);
+        if(!connectedRooms.contains(room)) {
+            connectedRooms.add(room);
+        }
     }
 
 

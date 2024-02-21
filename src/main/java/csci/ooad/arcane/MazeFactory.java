@@ -4,9 +4,59 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MazeFactory {
+    private Room[] rooms;
+    private Adventurer[] adventurers;
+    private Creature[] creatures;
+    private Food[] foods;
 
-    public void setGridRoomNames(Maze maze, int mazeWidth, int mazeHeight) {
-        for(int i=0; i<maze.getSize(); i++) {
+    public Maze buildFourRoomGrid() {
+        return buildGrid(2, 2, 1, 1, 5);
+    }
+
+    public Maze buildNineRoomGrid() {
+        return buildGrid(3, 3, 2,2,10);
+    }
+
+    public Maze buildGrid(int mazeWidth, int mazeHeight, int advNum, int creaNum, int foodNum) {
+        rooms = createRooms(mazeWidth*mazeHeight);
+        setGridRoomNames(mazeWidth,mazeHeight);
+        gridInterconnect(mazeWidth);
+        adventurers = generateAdventurers(advNum);
+        creatures = generateCreatures(creaNum);
+        foods = generateFood(foodNum);
+        return build();
+    }
+
+    public Maze buildMaze(int roomNum, int adventurerNum, int creatureNum, int foodNum) {
+        rooms = createRooms(roomNum);
+        fullyInterconnect();
+        adventurers = generateAdventurers(adventurerNum);
+        creatures = generateCreatures(creatureNum);
+        foods = generateFood(foodNum);
+        return build();
+    }
+
+    private Room[] createRooms(int num) {
+        Room[] rooms = new Room[num];
+        for (int i = 0; i < num; i++) {
+            rooms[i] = new Room();
+            rooms[i].setName("Room "+i);
+        }
+        return rooms;
+    }
+
+    private void fullyInterconnect() {
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms.length; j++) {
+                if(i != j) {
+                    rooms[i].addRoomConnection(rooms[j]);
+                }
+            }
+        }
+    }
+
+    public void setGridRoomNames(int mazeWidth, int mazeHeight) {
+        for(int i=0; i<rooms.length; i++) {
             String name = "";
             if (i < mazeWidth) {
                 name = "North";
@@ -18,61 +68,29 @@ public class MazeFactory {
             } else if (i%mazeWidth == mazeWidth-1) {
                 name += "East";
             }
-            if(name.equals("")) {
+            if(name.isEmpty()) {
                 name = "Center";
             }
-            maze.getRoom(i).setName(name);
+            rooms[i].setName(name);
         }
     }
 
-    public void autofillGridConnections(Maze maze, int mazeWidth, int mazeHeight) {
-        for(int x = 0; x < mazeWidth; x++) {
-            for(int y = 0; y < mazeHeight; y++) {
-                connectAdjacentRooms(maze,x,y,mazeWidth);
-            }
+    public void gridInterconnect(int mazeWidth) {
+        for (int i = 1; i < rooms.length; i++) {
+            connectRooms(i, i+1);
+            connectRooms(i, i-1);
+            connectRooms(i,i+mazeWidth);
+            connectRooms(i,i-mazeWidth);
         }
     }
 
-    public void connectAdjacentRooms(Maze maze, int x, int y, int mazeWidth) {
-        Room currentRoom = roomAtCoords(maze, x, y, mazeWidth);
-        Room[] adjacentRooms = {roomAtCoords(maze, x - 1, y, mazeWidth), roomAtCoords(maze, x + 1, y, mazeWidth), roomAtCoords(maze, x, y - 1, mazeWidth), roomAtCoords(maze, x, y + 1, mazeWidth)};
-        for (int i = 0; i < adjacentRooms.length; i++) {
-            if (adjacentRooms[i] != null) {
-                currentRoom.addRoomConnection(adjacentRooms[i]);
-            }
+    public void connectRooms(int roomA, int roomB) {
+        if(roomA < 0 || roomA >= rooms.length || roomB < 0 || roomB >= rooms.length) {
+
+        } else {
+            rooms[roomA].addRoomConnection(rooms[roomB]);
+            rooms[roomB].addRoomConnection(rooms[roomA]);
         }
-    }
-
-    public Room roomAtCoords(Maze maze, int x, int y, int mazeWidth) {
-        return maze.getRoom(mazeWidth*y+x);
-    }
-
-    public Maze gridRoomPrep(int mazeWidth, int mazeHeight) {
-        Maze maze = new Maze();
-        Room[] rooms = new Room[mazeWidth*mazeHeight];
-        for (int i = 0; i < rooms.length; i++) {
-            rooms[i] = new Room();
-        }
-        maze.setRooms(rooms);
-        setGridRoomNames(maze,mazeWidth,mazeHeight);
-        autofillGridConnections(maze,mazeWidth,mazeHeight);
-        return maze;
-    }
-
-    public Maze gridMazePrep(int mazeWidth, int mazeHeight, int advNum, int creaNum, int foodNum) {
-        Maze maze = gridRoomPrep(mazeWidth,mazeHeight);
-        maze.addAdventurer(generateAdventurers(advNum));
-        maze.addCreature(generateCreatures(creaNum));
-        maze.addFood(generateFood(foodNum));
-        return maze;
-    }
-
-    public Maze fourRoomGrid() {
-        return gridMazePrep(2, 2, 1, 1, 5);
-    }
-
-    public Maze nineRoomGrid() {
-        return gridMazePrep(3, 3, 2,2,10);
     }
 
     public Adventurer[] generateAdventurers(int num) {
@@ -99,9 +117,18 @@ public class MazeFactory {
         return foods;
     }
 
-
-    //For our example of polymorphism, the addAdventurer method is overloaded to allow for a multitude of adventurers to be added, or for the room to be specified in testing
-    //Kind of, I, Gavin, think of polymorphism as a bit of an umbrella term, a better example is in the toStrings
-
-
+    public Maze build() {
+        Maze maze = new Maze();
+        maze.setRooms(rooms);
+        for(Adventurer adventurer : adventurers) {
+            maze.addAdventurer(adventurer, maze.getRandomRoom());
+        }
+        for(Creature creature : creatures) {
+            maze.addCreature(creature, maze.getRandomRoom());
+        }
+        for(Food food : foods) {
+            maze.addFood(food, maze.getRandomRoom());
+        }
+        return maze;
+    }
 }

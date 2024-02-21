@@ -43,25 +43,9 @@ public class Maze {
         return status;
     }
 
-    public void addAdventurer(Adventurer adventurer) {
-        adventurers.add(adventurer);
-        getRandomRoom().addOccupant(adventurer);
-    }
-
     public void addAdventurer(Adventurer adventurer, Room room) {
         adventurers.add(adventurer);
         room.addOccupant(adventurer);
-    }
-
-    public void addAdventurer(Adventurer[] adventurers) {
-        for(Adventurer a : adventurers) {
-            addAdventurer(a);
-        }
-    }
-
-    public void addCreature(Creature creature) {
-        creatures.add(creature);
-        getRandomRoom().addOccupant(creature);
     }
 
     public void addCreature(Creature creature, Room room) {
@@ -69,24 +53,8 @@ public class Maze {
         room.addOccupant(creature);
     }
 
-    public void addCreature(Creature[] creatures) {
-        for(Creature c : creatures) {
-            addCreature(c);
-        }
-    }
-
-    public void addFood(Food food) {
-        getRandomRoom().addFood(food);
-    }
-
     public void addFood(Food food, Room room) {
         room.addFood(food);
-    }
-
-    public void addFood(Food[] food) {
-        for(Food f : food) {
-            addFood(f);
-        }
     }
 
     public void turn() {

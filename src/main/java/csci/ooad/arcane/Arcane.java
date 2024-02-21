@@ -15,7 +15,7 @@ public class Arcane {
     private Random randomNumberGenerator = new Random();
 
     public static void main(String[] args) {
-        Maze maze = new MazeFactory().fourRoomGrid();
+        Maze maze = new MazeFactory().buildFourRoomGrid();
         Arcane arcane = new Arcane(maze);
         arcane.runGame();
     }
