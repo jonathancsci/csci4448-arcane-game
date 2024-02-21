@@ -6,7 +6,7 @@ public class Knight extends Adventurer {
     };
 
     public Knight() {
-        super(possibleNames, 8);
+        super(possibleNames, 8.0);
     }
 
     @Override

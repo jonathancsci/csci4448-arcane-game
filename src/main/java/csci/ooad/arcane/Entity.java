@@ -11,7 +11,7 @@ public class Entity implements Comparable<Entity> {
     private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     // Attributes
     private String name;
-    private Integer health;
+    private double health;
     private Room currentRoom;
 
     private Random randomNumberGenerator;
@@ -19,13 +19,13 @@ public class Entity implements Comparable<Entity> {
     private static String[] possibleNames;
 
     // Constructor
-    public Entity(String name, Integer health) {
+    public Entity(String name, double health) {
         this.name = name;
         this.health = health;
         this.randomNumberGenerator = new Random();
     }
 
-    public Entity(String[] nameOptions, Integer health) {
+    public Entity(String[] nameOptions, double health) {
         this.health = health;
         this.randomNumberGenerator = new Random();
         this.name = nameOptions[randomNumberGenerator.nextInt(nameOptions.length)];
@@ -33,7 +33,7 @@ public class Entity implements Comparable<Entity> {
 
     @Override
     public int compareTo(Entity other) {
-        return other.getHealth().compareTo(this.getHealth());
+        return ((Double)other.getHealth()).compareTo(this.getHealth());
     }
 
     // Getters
@@ -41,7 +41,7 @@ public class Entity implements Comparable<Entity> {
         return this.name;
     }
 
-    public Integer getHealth() {
+    public double getHealth() {
         return this.health;
     }
 
@@ -58,7 +58,7 @@ public class Entity implements Comparable<Entity> {
         this.name = newName;
     }
 
-    public void setHealth(Integer newHealth) {
+    public void setHealth(double newHealth) {
         this.health = newHealth;
     }
 
@@ -96,7 +96,7 @@ public class Entity implements Comparable<Entity> {
         return randomNumberGenerator.nextInt(6) + 1;
     }
 
-    public void takeDamage(Integer damage) {
+    public void takeDamage(double damage) {
         this.health -= damage;
         this.health = Math.max(0, this.health);
     }

@@ -5,7 +5,7 @@ public class Creature extends Entity {
             "Cobblebeast", "Dimcreeper", "Ooze", "Unruly Armor",
             "Cavern Crab", "Snapdragon", "Wyvern"
     };
-    public Creature(String name, Integer health) {
+    public Creature(String name, double health) {
         super(name, health);
     }
 
