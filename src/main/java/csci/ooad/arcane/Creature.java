@@ -12,6 +12,9 @@ public class Creature extends Entity {
     public Creature() {
         super(possibleNames, 3);
     }
+    public Creature(String[] possibleNames, double health) {
+        super(possibleNames, health);
+    }
 
     public String toString() {
         if (isDead()) {

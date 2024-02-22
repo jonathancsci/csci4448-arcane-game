@@ -12,7 +12,10 @@ public class Knight extends Adventurer {
     @Override
     public void turn(Room currentRoom) {
         Creature creature = currentRoom.getHealthiestCreature();
-        if(creature != null) {
+        Demon demon = currentRoom.getHealthiestDemon();
+        if (demon != null) {
+            combat(demon);
+        } else if(creature != null) {
             combat(creature);
         } else if ((creature == null) &&
                 (currentRoom.isThereFood())) {

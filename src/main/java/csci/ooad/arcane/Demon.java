@@ -1,4 +1,7 @@
 package csci.ooad.arcane;
 
-public class Demon {
+public class Demon extends Creature {
+    public Demon() {
+        super(possibleNames, 15);
+    }
 }
