@@ -8,7 +8,10 @@ public class Coward extends Adventurer {
     @Override
     public void turn(Room currentRoom) {
         Creature creature = currentRoom.getHealthiestCreature();
-        if(creature != null) {
+        Demon demon = currentRoom.getHealthiestDemon();
+        if (demon != null) {
+            combat(demon);
+        } else if(creature != null) {
             this.takeDamage(0.5);
             moveRooms();
         } else if ((creature == null) &&
