@@ -45,7 +45,7 @@ public class MazeFactory {
             rooms = new Room[num];
             for (int i = 0; i < num; i++) {
                 rooms[i] = new Room();
-                rooms[i].setName("Room "+i);
+                rooms[i].setName("Room "+(i+1));
             }
             return this;
         }
