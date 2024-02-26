@@ -19,4 +19,17 @@ public class AdventurerFactory {
         String name = names[random.nextInt(names.length)];
         return new Adventurer(name, health);
     }
+
+    public static Coward createCoward(String name, double health) {
+        return new Coward(name, health);
+    }
+
+    public static Glutton createGlutton(String name, double health) {
+        return new Glutton(name, health);
+    }
+
+    public static Knight createKnight(String name, double health) {
+        return new Knight(name, health);
+    }
+
 }
