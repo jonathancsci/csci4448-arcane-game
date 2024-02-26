@@ -12,12 +12,33 @@ public class Adventurer extends Entity {
     static String[] possibleNames = {
             "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
     };
-    public Adventurer(String name, Integer health) {
+    public Adventurer(String name, double health) {
         super(name, health);
     }
 
     public Adventurer() {
-        super(possibleNames, 5);
+        super(possibleNames, 5.0);
+    }
+    public Adventurer(String[] possibleNames, double health) {
+        super(possibleNames, health);
+    }
+
+    public void turn(Room currentRoom) {
+        Creature creature = currentRoom.getHealthiestCreature();
+        Demon demon = currentRoom.getHealthiestDemon();
+        if(demon != null) {
+            combat(demon);
+        } else if((creature != null) &&
+                (currentRoom.getHealthiestAdventurer() == this)) {
+            combat(creature);
+        } else if ((creature == null) &&
+                (currentRoom.isThereFood())) {
+            Food food = currentRoom.takeFood();
+            Arcane.logger.info(this+" just ate a "+food.getName() + "\n");
+            eatFood(food);
+        } else {
+            moveRooms();
+        }
     }
 
     public void moveRooms() {
