@@ -3,6 +3,7 @@ package csci.ooad.arcane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.Random;
 
 public class Entity implements Comparable<Entity> {
@@ -10,7 +11,7 @@ public class Entity implements Comparable<Entity> {
     private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     // Attributes
     private String name;
-    private Integer health;
+    private double health;
     private Room currentRoom;
 
     private Random randomNumberGenerator;
@@ -18,13 +19,13 @@ public class Entity implements Comparable<Entity> {
     private static String[] possibleNames;
 
     // Constructor
-    public Entity(String name, Integer health) {
+    public Entity(String name, double health) {
         this.name = name;
         this.health = health;
         this.randomNumberGenerator = new Random();
     }
 
-    public Entity(String[] nameOptions, Integer health) {
+    public Entity(String[] nameOptions, double health) {
         this.health = health;
         this.randomNumberGenerator = new Random();
         this.name = nameOptions[randomNumberGenerator.nextInt(nameOptions.length)];
@@ -32,7 +33,7 @@ public class Entity implements Comparable<Entity> {
 
     @Override
     public int compareTo(Entity other) {
-        return other.getHealth().compareTo(this.getHealth());
+        return ((Double)other.getHealth()).compareTo(this.getHealth());
     }
 
     // Getters
@@ -40,7 +41,7 @@ public class Entity implements Comparable<Entity> {
         return this.name;
     }
 
-    public Integer getHealth() {
+    public double getHealth() {
         return this.health;
     }
 
@@ -57,7 +58,7 @@ public class Entity implements Comparable<Entity> {
         this.name = newName;
     }
 
-    public void setHealth(Integer newHealth) {
+    public void setHealth(double newHealth) {
         this.health = newHealth;
     }
 
@@ -66,11 +67,36 @@ public class Entity implements Comparable<Entity> {
     }
 
     // Methods
+    public void turn(Room currentRoom) {
+
+    }
+
+    public void combat(Entity foe) {
+        int rollA = rollDice();
+        int rollB = foe.rollDice();
+        Arcane.logger.info(this + " fought " + foe+ "\n");
+        if(rollA > rollB) {
+            Integer damageForCombatantB = rollA - rollB;
+            foe.takeDamage(damageForCombatantB);
+            if (foe.isDead()) {
+                Arcane.logger.info(foe + " was killed\n");
+            }
+            Arcane.logger.info(foe + " lost to " + this+ "\n");
+        } else if (rollB > rollA) {
+            Integer damageForCombatantA = rollB - rollA;
+            takeDamage(damageForCombatantA);
+            if (isDead()) {
+                Arcane.logger.info(this + " was killed\n");
+            }
+            Arcane.logger.info(this + " lost to " + foe+ "\n");
+        }
+    }
+
     public Integer rollDice() {
         return randomNumberGenerator.nextInt(6) + 1;
     }
 
-    public void takeDamage(Integer damage) {
+    public void takeDamage(double damage) {
         this.health -= damage;
         this.health = Math.max(0, this.health);
     }

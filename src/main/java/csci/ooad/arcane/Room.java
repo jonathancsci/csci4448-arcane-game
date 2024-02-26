@@ -27,6 +27,16 @@ public class Room {
         return null;
     }
 
+    public Demon getHealthiestDemon() {
+        Collections.sort(this.occupants);
+        for (int i = 0; i < occupants.size(); i++) {
+            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Demon") && !occupants.get(i).isDead()) {
+                return (Demon) occupants.get(i);
+            }
+        }
+        return null;
+    }
+
     public Adventurer getHealthiestAdventurer() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
@@ -65,7 +75,9 @@ public class Room {
     }
 
     public void addRoomConnection(Room room) {
-        connectedRooms.add(room);
+        if(!connectedRooms.contains(room)) {
+            connectedRooms.add(room);
+        }
     }
 
 
