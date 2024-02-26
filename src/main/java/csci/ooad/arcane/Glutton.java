@@ -1,8 +1,13 @@
 package csci.ooad.arcane;
 
 public class Glutton extends Adventurer{
+
     public Glutton() {
         super(possibleNames, 3);
+    }
+
+    public Glutton(String name, double health) {
+        super(name, health);
     }
 
     @Override
