@@ -29,27 +29,9 @@ public class ArcaneTest {
 
 
     public Arcane setUp(int width, int height, int advNum, int creNum, int foodNum) {
-        Arcane arcane = new Arcane();
-        Room[] rooms = new Room[width*height];
-        for(int i=0; i<rooms.length; i++) {
-            rooms[i] = new Room();
-        }
-        Adventurer[] adventurers = new Adventurer[advNum];
-        for(int i=0; i<adventurers.length; i++) {
-            adventurers[i] = new Adventurer();
-        }
-        Creature[] creatures = new Creature[creNum];
-        for(int i=0; i<creatures.length; i++) {
-            creatures[i] = new Creature();
-        }
-        Food[] food = new Food[foodNum];
-        for(int i=0; i<food.length; i++) {
-            food[i] = new Food();
-        }
-        arcane.fullMazePrep(rooms,width,height,adventurers,creatures,food);
-        return arcane;
+        return new Arcane(new MazeFactory().createGrid(width,height,advNum,creNum,foodNum));
     }
-
+/*
     public Arcane setUpNineRoomGame() {
         return setUp(3,3,2,2,10);
     }
@@ -187,4 +169,5 @@ public class ArcaneTest {
         assertTrue(E.getConnectedRooms().contains(W) && E.getConnectedRooms().contains(SE) && E.getConnectedRooms().contains(NE));
         assertFalse(NW.getConnectedRooms().contains(E));
     }
+ */
 }

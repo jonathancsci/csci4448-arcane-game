@@ -14,12 +14,6 @@ public class Arcane {
     private String endMessage = "";
     private Random randomNumberGenerator = new Random();
 
-    public static void main(String[] args) {
-        Maze maze = new MazeFactory().buildFourRoomGrid();
-        Arcane arcane = new Arcane(maze);
-        arcane.runGame();
-    }
-
     public Arcane(Maze maze) {
         this.maze = maze;
     }
