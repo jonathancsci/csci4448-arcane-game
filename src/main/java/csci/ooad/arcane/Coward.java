@@ -1,8 +1,13 @@
 package csci.ooad.arcane;
 
 public class Coward extends Adventurer {
+
     public Coward() {
         super(possibleNames, 5);
+    }
+
+    public Coward(String name, double health) {
+        super(name, health);
     }
 
     @Override
