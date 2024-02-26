@@ -19,4 +19,8 @@ public class CreatureFactory {
         return new Creature(name, health);
     }
 
+    public static Demon createDemon(String name, double health) {
+        return new Demon(name, health);
+    }
+
 }
