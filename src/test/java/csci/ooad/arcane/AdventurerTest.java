@@ -10,18 +10,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdventurerTest {
     @Test
-    public void testDefaultConstructor() {
+    public void testConstructor() {
         String[] possibleNames = {
                 "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
         };
+        // Default Constructor
         Adventurer testAdventurer = new Adventurer();
         String adventurerName = testAdventurer.getName();
         Boolean isNameValid = Arrays.asList(possibleNames).contains(adventurerName);
         assertTrue(isNameValid, "Adventurer should have one of the predefined names");
 
+        // Name Options Constructor
         Adventurer testAdventurer2 = new Adventurer(possibleNames, 5);
-        String adventurerName2 = testAdventurer.getName();
-        Boolean isNameValid2 = Arrays.asList(possibleNames).contains(adventurerName);
+        String adventurerName2 = testAdventurer2.getName();
+        Boolean isNameValid2 = Arrays.asList(possibleNames).contains(adventurerName2);
         assertTrue(isNameValid2, "Adventurer should have one of the predefined names");
     }
 
