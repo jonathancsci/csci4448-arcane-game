@@ -27,7 +27,7 @@ public class GluttonTest {
 
     @Test
     public void testTurn() {
-        Creature creature = new Creature();
+        Creature creature = new Creature("Snapdragon", 10);
         Demon demon = new Demon();
         Glutton glutton = new Glutton("Tim", 50);
         Room room = new Room();
@@ -61,9 +61,7 @@ public class GluttonTest {
         Boolean didGluttonFight = prevHealth >= afterHealth;
         assertTrue(didGluttonFight, "Glutton should fight if there is no food and a creature");
 
-        if (room.getHealthiestCreature() != null) {
-            room.removeOccupant(creature);
-        }
+        room.removeOccupant(creature);
 
         // Glutton moves rooms
         Room prevRoom = glutton.getCurrentRoom();

@@ -27,7 +27,7 @@ public class CowardTest {
 
     @Test
     public void testTurn() {
-        Creature creature = new Creature();
+        Creature creature = new Creature("Snapdragon", 10);
         Demon demon = new Demon();
         Coward coward = new Coward("Tim", 50);
         Room room = new Room();
