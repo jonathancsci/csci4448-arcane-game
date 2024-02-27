@@ -47,10 +47,10 @@ public class Room {
                 return (Coward)occupants.get(i);
             }
             if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Glutton") && !occupants.get(i).isDead()) {
-                return (Coward)occupants.get(i);
+                return (Glutton)occupants.get(i);
             }
             if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Knight") && !occupants.get(i).isDead()) {
-                return (Coward)occupants.get(i);
+                return (Knight)occupants.get(i);
             }
         }
         return null;
