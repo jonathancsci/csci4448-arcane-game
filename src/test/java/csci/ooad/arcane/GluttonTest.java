@@ -41,6 +41,7 @@ public class GluttonTest {
         room.addRoomConnection(connectedRoom);
         connectedRoom.addRoomConnection(room);
 
+        // Glutton fights demon
         room.getHealthiestAdventurer().turn(room);
         Boolean didGluttonAndDemonFight = room.getHealthiestDemon().getHealth() <= 15 ||
                 room.getHealthiestAdventurer().getHealth() <= 50;
@@ -48,10 +49,12 @@ public class GluttonTest {
 
         room.removeOccupant(demon);
 
+        // Glutton eats food event with Creature in the same room
         room.getHealthiestAdventurer().turn(room);
         Boolean isThereNoFood = !room.isThereFood();
         assertTrue(isThereNoFood, "Glutton should eat food even if there is a Creature in the same room");
 
+        // Glutton fights creature when there is no food
         double prevHealth = glutton.getHealth();
         room.getHealthiestAdventurer().turn(room);
         double afterHealth = glutton.getHealth();
@@ -62,6 +65,7 @@ public class GluttonTest {
             room.removeOccupant(creature);
         }
 
+        // Glutton moves rooms
         Room prevRoom = glutton.getCurrentRoom();
         glutton.turn(room);
         Room afterRoom = glutton.getCurrentRoom();
