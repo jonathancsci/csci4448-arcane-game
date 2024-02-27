@@ -1,6 +1,9 @@
 package csci.ooad.arcane;
 
 import org.junit.jupiter.api.Test;
+
+import javax.swing.tree.RowMapper;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomTest {
@@ -79,10 +82,24 @@ public class RoomTest {
     }
 
     @Test
+    public void getHealthiestDemonTest() {
+        Room roomWithDemon = new Room();
+        Demon demon = new Demon();
+        roomWithDemon.addOccupant(demon);
+        Demon healthiestDemon = roomWithDemon.getHealthiestDemon();
+        assertEquals(healthiestDemon.getHealth(), 15, "Healthiest demon should have 15 health.");
+
+        Room roomWithoutDemon = new Room();
+        Demon shouldBeNull = roomWithoutDemon.getHealthiestDemon();
+        assertNull(shouldBeNull, "There should be no demon in a room without a demon");
+    }
+
+    @Test
     public void toStringTest() {
         Room room = new Room();
         room.setName("Southwest");
         room.addOccupant(new Adventurer());
+        room.addFood(new Food());
         assertTrue(room.toString().contains("Southwest"));
         assertTrue(room.toString().contains("Adventurer"));
         assertTrue(room.toString().contains("5"));
