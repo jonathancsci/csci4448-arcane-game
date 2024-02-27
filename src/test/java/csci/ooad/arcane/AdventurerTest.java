@@ -87,10 +87,10 @@ public class AdventurerTest {
         if (room.getHealthiestAdventurer() == null) {
             room.addOccupant(new Adventurer());
         }
-        room.getHealthiestAdventurer().setHealth(5);
+        room.getHealthiestAdventurer().setHealth(8);
 
         adventurer.turn(room);
-        Boolean didAdventurerAndCreatureFight = (room.getHealthiestAdventurer() == null || room.getHealthiestCreature().getHealth() <= 3) ||
+        Boolean didAdventurerAndCreatureFight = (room.getHealthiestCreature() == null || room.getHealthiestCreature().getHealth() <= 3) ||
                 (room.getHealthiestAdventurer() == null || room.getHealthiestAdventurer().getHealth() <= 5);
         assertTrue(didAdventurerAndCreatureFight, "Adventurer and Creature should fight when in the same room");
 
@@ -98,6 +98,7 @@ public class AdventurerTest {
         if (room.getHealthiestCreature() != null) {
             room.removeOccupant(creature);
         }
+
         double prevHealth = adventurer.getHealth();
         adventurer.turn(room);
         double afterHealth = adventurer.getHealth();
