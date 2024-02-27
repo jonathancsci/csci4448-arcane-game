@@ -18,6 +18,14 @@ public class Maze {
         this.rooms = rooms;
     }
 
+    public void setAdventurers(ArrayList<Adventurer> adventurers) {
+        this.adventurers = adventurers;
+    }
+    public void setCreatures(ArrayList<Creature> creatures) {
+        this.creatures = creatures;
+    }
+
+
     public Room getRoom(int num) {
         Arcane.logger.debug(""+num);
         if (num < 0 || num >= rooms.length) {

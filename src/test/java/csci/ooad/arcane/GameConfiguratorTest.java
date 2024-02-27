@@ -14,5 +14,6 @@ public class GameConfiguratorTest {
                 "--numberOfRooms", "5",
         };
         GameConfigurator.main(args);
+        //assertTrue(Arcane.getInstance().isGameOver(),"The game should end");
     }
 }

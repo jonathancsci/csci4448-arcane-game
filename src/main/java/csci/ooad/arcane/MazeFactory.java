@@ -3,18 +3,21 @@ package csci.ooad.arcane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MazeFactory {
 
-    public Maze buildFourRoomGrid() {
+    public static Maze buildFourRoomGrid() {
         return createGrid(2, 2, 1, 1, 5);
     }
 
-    public Maze buildNineRoomGrid() {
+    public static Maze buildNineRoomGrid() {
         return createGrid(3, 3, 2,2,10);
     }
 
 
-    public Maze createGrid(int mazeWidth, int mazeHeight, int adventurerNum, int creatureNum, int foodNum) {
+    public static Maze createGrid(int mazeWidth, int mazeHeight, int adventurerNum, int creatureNum, int foodNum) {
         return new MazeBuilder()
                 .createRooms(mazeWidth*mazeHeight)
                 .setGridRoomNames(mazeWidth,mazeHeight)
@@ -25,7 +28,7 @@ public class MazeFactory {
                 .build();
     }
 
-    public Maze createMaze(int roomNum, int adventurerNum, int creatureNum, int foodNum) {
+    public static Maze createMaze(int roomNum, int adventurerNum, int creatureNum, int foodNum) {
         return new MazeBuilder()
                 .createRooms(roomNum)
                 .createFullRoomConnections()
@@ -37,9 +40,9 @@ public class MazeFactory {
 
     public static class MazeBuilder {
         private Room[] rooms;
-        private Adventurer[] adventurers;
-        private Creature[] creatures;
-        private Food[] foods;
+        private ArrayList<Adventurer> adventurers = new ArrayList<Adventurer>();
+        private ArrayList<Creature> creatures = new ArrayList<Creature>();
+        private static final Random random = new Random();
 
         private MazeBuilder createRooms(int num) {
             rooms = new Room[num];
@@ -101,41 +104,54 @@ public class MazeFactory {
         }
 
         public MazeBuilder generateAdventurers(int num) {
-            adventurers = new Adventurer[num];
             for (int i = 0; i < num; i++) {
-                adventurers[i] = new Adventurer();
+                adventurers.add(AdventurerFactory.createAdventurer());
+                randomRoom().addOccupant(adventurers.get(i));
             }
             return this;
         }
 
         public MazeBuilder generateCreatures(int num) {
-            creatures = new Creature[num];
             for (int i = 0; i < num; i++) {
-                creatures[i] = new Creature();
+                creatures.add(CreatureFactory.createCreature());
+                randomRoom().addOccupant(creatures.get(i));
             }
             return this;
         }
 
         public MazeBuilder generateFood(int num) {
-            foods = new Food[num];
             for (int i = 0; i < num; i++) {
-                foods[i] = new Food();
+                randomRoom().addFood(FoodFactory.createFood());
             }
+            return this;
+        }
+
+        private Room randomRoom() {
+            return rooms[random.nextInt()];
+        }
+
+        public MazeBuilder addAdventurer(Adventurer adventurer,int roomNum) {
+            adventurers.add(adventurer);
+            rooms[roomNum].addOccupant(adventurer);
+            return this;
+        }
+
+        public MazeBuilder addCreature(Creature creature,int roomNum) {
+            creatures.add(creature);
+            rooms[roomNum].addOccupant(creature);
+            return this;
+        }
+
+        public MazeBuilder addFood(Food food,int roomNum) {
+            rooms[roomNum].addFood(food);
             return this;
         }
 
         public Maze build() {
             Maze maze = new Maze();
             maze.setRooms(rooms);
-            for(Adventurer adventurer : adventurers) {
-                maze.addAdventurer(adventurer, maze.getRandomRoom());
-            }
-            for(Creature creature : creatures) {
-                maze.addCreature(creature, maze.getRandomRoom());
-            }
-            for(Food food : foods) {
-                maze.addFood(food, maze.getRandomRoom());
-            }
+            maze.setAdventurers(adventurers);
+            maze.setCreatures(creatures);
             return maze;
         }
     }
