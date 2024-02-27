@@ -43,6 +43,15 @@ public class Room {
             if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Adventurer") && !occupants.get(i).isDead()) {
                 return (Adventurer)occupants.get(i);
             }
+            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Coward") && !occupants.get(i).isDead()) {
+                return (Coward)occupants.get(i);
+            }
+            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Glutton") && !occupants.get(i).isDead()) {
+                return (Coward)occupants.get(i);
+            }
+            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Knight") && !occupants.get(i).isDead()) {
+                return (Coward)occupants.get(i);
+            }
         }
         return null;
     }
