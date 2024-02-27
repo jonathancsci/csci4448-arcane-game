@@ -61,7 +61,7 @@ public class CowardTest {
         assertTrue(didCowardRun, "Coward should run if there is no demon.");
         assertTrue(didCowardLoseHealth, "Coward should lose health when running away");
 
-        // Coward eats food
+        // Coward eats food in connected room
         double prevHealth2 = coward.getHealth();
         coward.turn(connectedRoom);
         double afterHealth2 = coward.getHealth();
