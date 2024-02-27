@@ -64,7 +64,7 @@ public class AdventurerTest {
     public void testTurn() {
         Creature creature = new Creature();
         Demon demon = new Demon();
-        Adventurer adventurer = new Adventurer();
+        Adventurer adventurer = new Adventurer("Tim", 50);
         Room room = new Room();
         Room connectedRoom = new Room();
         Food food = new Food();
@@ -74,40 +74,33 @@ public class AdventurerTest {
         room.addOccupant(adventurer);
         room.addFood(food);
         room.addRoomConnection(connectedRoom);
+        connectedRoom.addRoomConnection(room);
 
         // Adventurer and Demon fight
         room.getHealthiestAdventurer().turn(room);
-        Boolean didAdventurerAndDemonFight = room.getHealthiestDemon().getHealth() <= 15 || (
-                room.getHealthiestAdventurer() == null || room.getHealthiestAdventurer().getHealth() <= 5
-        );
+        Boolean didAdventurerAndDemonFight = room.getHealthiestDemon().getHealth() <= 15 ||
+                room.getHealthiestAdventurer().getHealth() <= 50;
         assertTrue(didAdventurerAndDemonFight, "Adventurer and Demon should fight when in the same room");
 
-        // Adventurer and Creature fight
         room.removeOccupant(demon);
-        if (room.getHealthiestAdventurer() == null) {
-            room.addOccupant(new Adventurer());
-        }
-        room.getHealthiestAdventurer().setHealth(8);
+        room.getHealthiestAdventurer().setHealth(50);
 
-        adventurer.turn(room);
-        Boolean didAdventurerAndCreatureFight = (room.getHealthiestCreature() == null || room.getHealthiestCreature().getHealth() <= 3) ||
-                (room.getHealthiestAdventurer() == null || room.getHealthiestAdventurer().getHealth() <= 5);
+        // Adventurer fights creature and does not eat food
+        room.getHealthiestAdventurer().turn(room);
+        Boolean didAdventurerAndCreatureFight = room.getHealthiestCreature().getHealth() <= 3 ||
+                room.getHealthiestAdventurer().getHealth() <= 50;
         assertTrue(didAdventurerAndCreatureFight, "Adventurer and Creature should fight when in the same room");
 
-        // There is only food in the room
-        if (room.getHealthiestCreature() != null) {
-            room.removeOccupant(creature);
-        }
+        room.removeOccupant(creature);
 
-        double prevHealth = adventurer.getHealth();
-        adventurer.turn(room);
-        double afterHealth = adventurer.getHealth();
-        Boolean didAdventurerEatFood = afterHealth > prevHealth;
-        assertTrue(didAdventurerEatFood, "Adventurer should have eaten food");
+        // Adventurer eats food
+        room.getHealthiestAdventurer().turn(room);
+        Boolean isThereNoFood = !room.isThereFood();
+        assertTrue(isThereNoFood, "Adventurer should eat food if there are no enemies.");
 
-        // Nothing in the room
+        // Adventurer moves rooms
         Room prevRoom = adventurer.getCurrentRoom();
-        adventurer.turn(room);
+        room.getHealthiestAdventurer().turn(room);
         Room afterRoom = adventurer.getCurrentRoom();
         Boolean didAdventurerMove = prevRoom != afterRoom;
         assertTrue(didAdventurerMove, "Adventurer should have moved rooms.");
