@@ -27,7 +27,7 @@ public class KnightTest {
 
     @Test
     public void testTurn() {
-        Creature creature = new Creature();
+        Creature creature = new Creature("Snapdragon", 10);
         Demon demon = new Demon();
         Knight knight = new Knight("Sir Tim", 50);
         Room room = new Room();
