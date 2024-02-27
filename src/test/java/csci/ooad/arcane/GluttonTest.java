@@ -34,6 +34,7 @@ public class GluttonTest {
         Room connectedRoom = new Room();
         Food food = new Food();
 
+        // Create room with demon, creature, glutton, food and a connectedRoom which is empty
         room.addOccupant(creature);
         room.addOccupant(demon);
         room.addOccupant(glutton);

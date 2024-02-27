@@ -34,6 +34,7 @@ public class CowardTest {
         Room connectedRoom = new Room();
         Food food = new Food();
 
+        // Create room with demon, creature, coward and a connectedRoom which contains food
         room.addOccupant(creature);
         room.addOccupant(demon);
         room.addOccupant(coward);

@@ -34,6 +34,7 @@ public class KnightTest {
         Room connectedRoom = new Room();
         Food food = new Food();
 
+        // Create room with demon, creature, knight, food and a connectedRoom which is empty
         room.addOccupant(creature);
         room.addOccupant(demon);
         room.addOccupant(knight);
