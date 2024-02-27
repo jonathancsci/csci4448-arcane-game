@@ -69,6 +69,7 @@ public class AdventurerTest {
         Room connectedRoom = new Room();
         Food food = new Food();
 
+        // Create room with demon, creature, adventurer, food and a connectedRoom which is empty
         room.addOccupant(creature);
         room.addOccupant(demon);
         room.addOccupant(adventurer);
