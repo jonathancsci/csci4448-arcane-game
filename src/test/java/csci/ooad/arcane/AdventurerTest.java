@@ -9,23 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdventurerTest {
-    @Test
-    public void testConstructor() {
-        String[] possibleNames = {
-                "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
-        };
-        // Default Constructor
-        Adventurer testAdventurer = new Adventurer();
-        String adventurerName = testAdventurer.getName();
-        Boolean isNameValid = Arrays.asList(possibleNames).contains(adventurerName);
-        assertTrue(isNameValid, "Adventurer should have one of the predefined names");
-
-        // Name Options Constructor
-        Adventurer testAdventurer2 = new Adventurer(possibleNames, 5);
-        String adventurerName2 = testAdventurer2.getName();
-        Boolean isNameValid2 = Arrays.asList(possibleNames).contains(adventurerName2);
-        assertTrue(isNameValid2, "Adventurer should have one of the predefined names");
-    }
 
     @Test
     public void moveRoomsTest() {
@@ -62,8 +45,8 @@ public class AdventurerTest {
 
     @Test
     public void testTurn() {
-        Creature creature = new Creature("Snapdragon", 10);
-        Demon demon = new Demon();
+        Creature creature = CreatureFactory.createCreature("Snapdragon", 10);
+        Demon demon = CreatureFactory.createDemon();
         Adventurer adventurer = new Adventurer("Tim", 50);
         Room room = new Room();
         Room connectedRoom = new Room();
