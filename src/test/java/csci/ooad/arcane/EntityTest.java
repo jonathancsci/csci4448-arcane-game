@@ -71,6 +71,8 @@ public class EntityTest {
         Entity testEntity = new Entity("Bob", 5);
         testEntity.takeDamage(1);
         assertEquals(4, testEntity.getHealth());
+        testEntity.takeDamage(.5);
+        assertEquals(3.5, testEntity.getHealth());
     }
 
     @Test
@@ -81,5 +83,29 @@ public class EntityTest {
         assertTrue(testEntity.isDead());
         testEntity.setHealth(-1);
         assertTrue(testEntity.isDead());
+    }
+
+    @Test
+    public void combatTest() {
+        //set-up
+        Entity fighter = new Adventurer("Bill",100);
+        Entity foe = new Creature("Ogre",100);
+        //run and assert
+        fighter.combat(foe);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        assertTrue(fighter.getHealth()<100 || foe.getHealth()<100,"After 6 combats, someone should take damage");
+        assertFalse(fighter.isDead() || foe.isDead(),"After 6 combats, neither 100 hp combatant should die");
+        foe.setHealth(1);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        fighter.combat(foe);
+        assertTrue(foe.isDead(),"After 6 combats, 1 hp foe should die");
     }
 }

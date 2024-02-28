@@ -41,10 +41,6 @@ public class Arcane {
         return false;
     }
 
-    public void setMaze(Maze maze) {
-        this.maze = maze;
-    }
-
     //the toString is a more conventional form of polymorphism where all of these objects are behaving differently when called, but being treated the same by the callee
     public String toString() {
         String status = "ARCANE MAZE: turn "+(turnCounter+1)+"\n";
