@@ -21,14 +21,14 @@ public class ArcaneTest {
 
     @Test
     public void runBigGridGameTest() {
-        Arcane arcane = new Arcane(MazeFactory.buildNineRoomGrid());
+        Arcane arcane = new Arcane(MazeFactory.createNineRoomGrid());
         arcane.runGame();
         assertTrue(arcane.isGameOver(),"The game should end");
     }
 
     @Test
     public void runSmallGridGameTest() {
-        Arcane arcane = new Arcane(MazeFactory.buildFourRoomGrid());
+        Arcane arcane = new Arcane(MazeFactory.createFourRoomGrid());
         arcane.runGame();
         assertTrue(arcane.isGameOver(),"The game should end");
     }
@@ -59,7 +59,7 @@ public class ArcaneTest {
     @Test
     public void toStringTest() {
         String[] expected = {"ARCANE MAZE: turn 1"};
-        Arcane arcane = new Arcane(MazeFactory.buildFourRoomGrid());
+        Arcane arcane = new Arcane(MazeFactory.createFourRoomGrid());
         String[] printedLines = arcane.toString().split("\n");
         for (int i = 0; i < expected.length; i++) {
             assertTrue(Arrays.asList(printedLines).contains(expected[i]), "The first turn of the game did not print what was expected.");
