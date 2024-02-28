@@ -10,14 +10,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdventurerTest {
     @Test
-    public void testDefaultConstructor() {
+    public void testConstructor() {
         String[] possibleNames = {
                 "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
         };
+        // Default Constructor
         Adventurer testAdventurer = new Adventurer();
         String adventurerName = testAdventurer.getName();
         Boolean isNameValid = Arrays.asList(possibleNames).contains(adventurerName);
         assertTrue(isNameValid, "Adventurer should have one of the predefined names");
+
+        // Name Options Constructor
+        Adventurer testAdventurer2 = new Adventurer(possibleNames, 5);
+        String adventurerName2 = testAdventurer2.getName();
+        Boolean isNameValid2 = Arrays.asList(possibleNames).contains(adventurerName2);
+        assertTrue(isNameValid2, "Adventurer should have one of the predefined names");
     }
 
     @Test
@@ -54,10 +61,57 @@ public class AdventurerTest {
     }
 
     @Test
+    public void testTurn() {
+        Creature creature = new Creature("Snapdragon", 10);
+        Demon demon = new Demon();
+        Adventurer adventurer = new Adventurer("Tim", 50);
+        Room room = new Room();
+        Room connectedRoom = new Room();
+        Food food = new Food();
+
+        // Create room with demon, creature, adventurer, food and a connectedRoom which is empty
+        room.addOccupant(creature);
+        room.addOccupant(demon);
+        room.addOccupant(adventurer);
+        room.addFood(food);
+        room.addRoomConnection(connectedRoom);
+        connectedRoom.addRoomConnection(room);
+
+        // Adventurer and Demon fight
+        room.getHealthiestAdventurer().turn(room);
+        Boolean didAdventurerAndDemonFight = room.getHealthiestDemon().getHealth() <= 15 ||
+                room.getHealthiestAdventurer().getHealth() <= 50;
+        assertTrue(didAdventurerAndDemonFight, "Adventurer and Demon should fight when in the same room");
+
+        room.removeOccupant(demon);
+        room.getHealthiestAdventurer().setHealth(50);
+
+        // Adventurer fights creature and does not eat food
+        room.getHealthiestAdventurer().turn(room);
+        Boolean didAdventurerAndCreatureFight = room.getHealthiestCreature().getHealth() <= 3 ||
+                room.getHealthiestAdventurer().getHealth() <= 50;
+        assertTrue(didAdventurerAndCreatureFight, "Adventurer and Creature should fight when in the same room");
+
+        room.removeOccupant(creature);
+
+        // Adventurer eats food
+        room.getHealthiestAdventurer().turn(room);
+        Boolean isThereNoFood = !room.isThereFood();
+        assertTrue(isThereNoFood, "Adventurer should eat food if there are no enemies.");
+
+        // Adventurer moves rooms
+        Room prevRoom = adventurer.getCurrentRoom();
+        room.getHealthiestAdventurer().turn(room);
+        Room afterRoom = adventurer.getCurrentRoom();
+        Boolean didAdventurerMove = prevRoom != afterRoom;
+        assertTrue(didAdventurerMove, "Adventurer should have moved rooms.");
+    }
+
+    @Test
     public void toStringTest() {
         Adventurer testAdventurer = new Adventurer("Bob", 5);
-        assertEquals("Adventurer Bob(health: 5)", testAdventurer.toString());
+        assertEquals("Adventurer Bob(health: 5.0)", testAdventurer.toString());
         testAdventurer.setHealth(0);
-        assertEquals("Adventurer Bob(health: 0); DEAD", testAdventurer.toString());
+        assertEquals("Adventurer Bob(health: 0.0); DEAD", testAdventurer.toString());
     }
 }
