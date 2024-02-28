@@ -84,7 +84,7 @@ public class RoomTest {
     @Test
     public void getHealthiestDemonTest() {
         Room roomWithDemon = new Room();
-        Demon demon = new Demon();
+        Demon demon = CreatureFactory.createDemon();
         roomWithDemon.addOccupant(demon);
         Demon healthiestDemon = roomWithDemon.getHealthiestDemon();
         assertEquals(healthiestDemon.getHealth(), 15, "Healthiest demon should have 15 health.");
@@ -98,8 +98,8 @@ public class RoomTest {
     public void toStringTest() {
         Room room = new Room();
         room.setName("Southwest");
-        room.addOccupant(new Adventurer());
-        room.addFood(new Food());
+        room.addOccupant(AdventurerFactory.createAdventurer());
+        room.addFood(FoodFactory.createFood());
         assertTrue(room.toString().contains("Southwest"));
         assertTrue(room.toString().contains("Adventurer"));
         assertTrue(room.toString().contains("5"));

@@ -8,19 +8,8 @@ import java.util.Random;
 
 public class Adventurer extends Entity {
     private static final Logger logger = LoggerFactory.getLogger(Arcane.class);
-    boolean hasTakenTurn = false;
-    static String[] possibleNames = {
-            "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
-    };
     public Adventurer(String name, double health) {
         super(name, health);
-    }
-
-    public Adventurer() {
-        super(possibleNames, 5.0);
-    }
-    public Adventurer(String[] possibleNames, double health) {
-        super(possibleNames, health);
     }
 
     public void turn(Room currentRoom) {

@@ -1,15 +1,6 @@
 package csci.ooad.arcane;
 
 public class Knight extends Adventurer {
-
-    static String[] possibleNames = {
-            "Sir Bill", "Sir Tim", "Sir Dave"
-    };
-
-    public Knight() {
-        super(possibleNames, 8.0);
-    }
-
     public Knight(String name, double health) {
         super(name, health);
     }

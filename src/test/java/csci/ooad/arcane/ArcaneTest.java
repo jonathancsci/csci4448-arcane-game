@@ -35,9 +35,9 @@ public class ArcaneTest {
 
     @Test
     public void isGameOverTest() {
-        Adventurer adventurer = new Adventurer();
-        Creature creature1 = new Creature();
-        Creature creature2 = new Creature();
+        Adventurer adventurer = AdventurerFactory.createAdventurer();
+        Creature creature1 = CreatureFactory.createCreature();
+        Creature creature2 = CreatureFactory.createCreature();
         Maze maze = new MazeFactory.MazeBuilder()
                 .createRooms(6)
                 .addAdventurer(adventurer)
