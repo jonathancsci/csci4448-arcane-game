@@ -12,90 +12,129 @@ When the game is started, a 4 room maze is created, with both an Adventurer and 
 
 Screenshots:
 ![coverageScreenshot.png](coverageScreenshot.png)
-![testCallStackScreenshot.png](testCallStackScreenshot.png)
 
 UML Diagram:
 ```mermaid
 classDiagram
-    class Arcane {
-        - Arcane
-        - maze
-        - mazeWidth
-        - mazeHeight
-        - adventurers
-        - turnCounter
-        - gameNotOver
-        - endMessage
-        - randomNumberGenerator
-        + main(args)
-        + Arcane()
-        - runGame()
-        - turn()
-        + combat(combatantA, combatantB)
-        + endGame(endMessage)
-        - instantiateRooms()
-        - createRooms()
-        - setRoomNames()
-        - autofillRoomConnections()
-        - connectRoom(x, y)
-        + getRoom(x, y)
-        + getMaze()
-        + toString()
-    }
-    class Room {
-        - ArrayList<Room> connectedRooms
-        - ArrayList<Entity> occupants
-        - String name
-        + Room()
-        + getHealthiestCreature()
-        + getEntityOfClass(classname)
-        + isThereFood()
-        + takeFood()
-        + getOccupants()
-        + addOccupant(entity)
-        + removeOccupant(entity)
-        + addRoomConnection(room)
-        + getConnectedRooms()
-        + getName()
-        + setName(name)
-        + toString()
-    }
-    class Entity {
-        - String name
-        - Integer health
-        - currentRoom
-        - randomNumberGenerator
-        + Entity(name, health, currentRoom)
-        + compareTo(other)
-        + getName()
-        + getHealth()
-        + getCurrentRoom()
-        + getRandomNumberGenerator()
-        + setName(newName)
-        + setHealth(newHealth)
-        + setCurrentRoom(newRoom)
-        + rollDice()
-        + takeDamage(damage)
-        + isDead()
-    }
     class Adventurer {
-        + Adventurer(name, health, currentRoom)
-        + moveRooms()
-        + eatFood(food)
-        + toString()
+        - private static final Logger logger
+        + public Adventurer(String name, double health)
+        + public void turn(Room currentRoom)
+        + public void moveRooms()
+        + public void eatFood(Food food)
+        + public String toString()
+    }
+    class Arcane {
+        - public static final Logger logger
+        - private Maze maze
+        - private int turnCounter
+        - private String endMessage
+        - private Random randomNumberGenerator
+        + public Arcane(Maze maze)
+        + public void runGame()
+        + public boolean isGameOver()
+        + public String toString()
+    }
+    class Coward {
+        + public Coward(String name, double health)
+        + public void turn(Room currentRoom)
     }
     class Creature {
-        + Creature(name, health, currentRoom)
-        + toString()
+        + public Creature(String name, double health)
+        + public String toString()
+    }
+    class Demon {
+        +  public Demon(String name, double health)
+    }
+    class Entity {
+        - private static final Logger logger
+        - private String name
+        - private double health
+        - private Room currentRoom
+        - private Random randomNumberGenerator
+        - private static String[] possibleNames
+        + public Entity(String name, double health)
+        + public Entity(String[] nameOptions, double health)
+        + public int compareTo(Entity other)
+        + public String getName()
+        + public double getHealth()
+        + public Room getCurrentRoom()
+        + public Random getRandomNumberGenerator()
+        + public void setName(String newName)
+        + public void setHealth(double newHealth)
+        + public void setCurrentRoom(Room newRoom)
+        + public void turn(Room currentRoom)
+        + public void combat(Entity foe)
+        + public Integer rollDice()
+        + public void takeDamage(double damage)
+        + public boolean isDead()
     }
     class Food {
-        - name
-        - healthRestored
-        + Food(name, healthRestored)
-        + getHealthRestored()
+        - static String[] possibleNames
+        - private String name
+        - private Integer healthRestored
+        + public Food(String name, Integer healthRestored)
+        + public Food()
+        + public String getName()
+        + public Integer getHealthRestored()
+        + public String toString()
+    }
+    class GameConfigurator {
+        - private static final MazeFactory mazeFactory
+        + public static void main(String [] args)
+    }
+    class Glutton {
+        + public Glutton(String name, double health)
+        + public void turn(Room currentRoom)
+    }
+    class Knight {
+        + public Knight(String name, double health)
+        + public void turn(Room currentRoom)
+    }
+    class Maze {
+        - private Random randomNumberGenerator
+        - private Room[] rooms
+        - private ArrayList<Adventurer> adventurers
+        - private ArrayList<Creature> creatures
+        + public Maze()
+        + public void setRooms(Room[] rooms)
+        + public void setAdventurers(ArrayList<Adventurer> adventurers)
+        + public void setCreatures(ArrayList<Creature> creatures)
+        + public Room getRoom(int num)
+        + public int getSize()
+        + public String toString()
+        + public void turn()
+        + public Room getEntityRoom(Entity entity)
+        + public boolean checkAllCreaturesDead()
+        + public boolean checkAllAdventurersDead()
+    }
+    class Room {
+        - private ArrayList<Room> connectedRooms
+        - private ArrayList<Entity> occupants
+        - private ArrayList<Food> loot
+        - private String name
+        + public Room()
+        + public Creature getHealthiestCreature()
+        + public Demon getHealthiestDemon()
+        + public Adventurer getHealthiestAdventurer()
+        + public boolean isThereFood()
+        + public void addFood(Food food)
+        + public Food takeFood()
+        + public ArrayList<Entity> getOccupants()
+        + public void addOccupant(Entity entity)
+        + public void removeOccupant(Entity entity)
+        + public void addRoomConnection(Room room)
+        + public ArrayList<Room> getConnectedRooms()
+        + public String getName()
+        + public void setName(String name)
+        + public String toString()
     }
     Entity <|-- Creature
     Entity <|-- Adventurer
+    Adventurer <|-- Knight
+    Adventurer <|-- Coward
+    Adventurer <|-- Glutton
+    Creature <|-- Demon
 ```
 Output (note: our testing flushes the console between runs, so you only get this output from the main method):
 ### Running the Game with command line arguments from GameConfiguratorTest.java
