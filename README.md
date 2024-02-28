@@ -135,6 +135,9 @@ classDiagram
     Adventurer <|-- Coward
     Adventurer <|-- Glutton
     Creature <|-- Demon
+    Arcane *-- Maze
+    Maze *-- Room
+    Room *-- Food
 ```
 Output (note: our testing flushes the console between runs, so you only get this output from the main method):
 ### Running the Game with command line arguments from GameConfiguratorTest.java
