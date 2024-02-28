@@ -105,7 +105,7 @@ public class MazeFactory {
 
         public MazeBuilder generateAdventurers(int num) {
             for (int i = 0; i < num; i++) {
-                adventurers.add(AdventurerFactory.createAdventurer());
+                adventurers.add(AdventurerFactory.createRandomAdventurer());
                 randomRoom().addOccupant(adventurers.get(i));
             }
             return this;
