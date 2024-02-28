@@ -35,7 +35,7 @@ public class AdventurerFactory {
     }
 
     public static Coward createCoward() {
-        String name = knightNames[random.nextInt(knightNames.length)];
+        String name = cowardNames[random.nextInt(cowardNames.length)];
         return new Coward(name, 5);
     }
 
@@ -45,7 +45,7 @@ public class AdventurerFactory {
     }
 
     public static Knight createKnight() {
-        String name = cowardNames[random.nextInt(cowardNames.length)];
+        String name = knightNames[random.nextInt(knightNames.length)];
         return new Knight(name, 8);
     }
 
