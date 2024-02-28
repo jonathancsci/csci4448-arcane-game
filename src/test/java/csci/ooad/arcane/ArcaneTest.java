@@ -42,9 +42,9 @@ public class ArcaneTest {
                 .createRooms(6)
                 .addAdventurer(adventurer)
                 .addCreature(creature1)
-                .addCreature(creature2).build();
+                .addCreature(creature2)
+                .build();
         Arcane arcane = new Arcane(maze);
-        assertTrue(arcane.isGameOver(),"Game should be over with no adventurers or creatures");
         assertFalse(arcane.isGameOver(),"Game should not be over when entities are added");
         adventurer.setHealth(0);
         assertTrue(arcane.isGameOver(),"Game should end when all adventurers are dead");
