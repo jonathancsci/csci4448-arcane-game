@@ -20,7 +20,7 @@ public class Room {
     public Creature getHealthiestCreature() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Creature") && !occupants.get(i).isDead()) {
+            if(occupants.get(i) instanceof Creature && !occupants.get(i).isDead()) {
                 return (Creature)occupants.get(i);
             }
         }
@@ -30,7 +30,7 @@ public class Room {
     public Demon getHealthiestDemon() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Demon") && !occupants.get(i).isDead()) {
+            if(occupants.get(i) instanceof Demon && !occupants.get(i).isDead()) {
                 return (Demon) occupants.get(i);
             }
         }
@@ -40,17 +40,8 @@ public class Room {
     public Adventurer getHealthiestAdventurer() {
         Collections.sort(this.occupants);
         for (int i = 0; i < occupants.size(); i++) {
-            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Adventurer") && !occupants.get(i).isDead()) {
+            if(occupants.get(i) instanceof Adventurer && !occupants.get(i).isDead()) {
                 return (Adventurer)occupants.get(i);
-            }
-            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Coward") && !occupants.get(i).isDead()) {
-                return (Coward)occupants.get(i);
-            }
-            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Glutton") && !occupants.get(i).isDead()) {
-                return (Glutton)occupants.get(i);
-            }
-            if(occupants.get(i).getClass().getName().equals("csci.ooad.arcane.Knight") && !occupants.get(i).isDead()) {
-                return (Knight)occupants.get(i);
             }
         }
         return null;

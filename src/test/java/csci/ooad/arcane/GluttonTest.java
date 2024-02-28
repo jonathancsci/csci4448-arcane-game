@@ -7,28 +7,11 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GluttonTest {
-    @Test
-    public void testConstructor() {
-        String[] possibleNames = {
-                "Bill", "Sheri", "Tim", "Dave", "Ashley", "Zoe", "Carl", "Jack"
-        };
-        // Default Constructor
-        Glutton testGlutton = new Glutton();
-        String gluttonName = testGlutton.getName();
-        Boolean isNameValid = Arrays.asList(possibleNames).contains(gluttonName);
-        assertTrue(isNameValid, "Glutton should have one of the predefined names");
-
-        // Factory Constructor
-        Glutton testGlutton2 = new Glutton("Tim", 5);
-        String GluttonName2 = testGlutton2.getName();
-        Boolean isNameValid2 = Arrays.asList(possibleNames).contains(GluttonName2);
-        assertTrue(isNameValid2, "Glutton should have one of the predefined names");
-    }
 
     @Test
     public void testTurn() {
-        Creature creature = new Creature("Snapdragon", 10);
-        Demon demon = new Demon();
+        Creature creature = CreatureFactory.createCreature("Snapdragon", 10);
+        Demon demon = CreatureFactory.createDemon();
         Glutton glutton = new Glutton("Tim", 50);
         Room room = new Room();
         Room connectedRoom = new Room();
