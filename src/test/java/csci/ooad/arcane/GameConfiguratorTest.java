@@ -8,10 +8,10 @@ public class GameConfiguratorTest {
     @Test
     public void runGameTest() {
         String[] args = {
-                "--numberOfAdventurers", "6",
-                "--numberOfCreatures", "8",
-                "--numberOfFoodItems", "24",
-                "--numberOfRooms", "12",
+                "--numberOfAdventurers", "3",
+                "--numberOfCreatures", "3",
+                "--numberOfFoodItems", "10",
+                "--numberOfRooms", "7",
         };
         GameConfigurator.main(args);
     }

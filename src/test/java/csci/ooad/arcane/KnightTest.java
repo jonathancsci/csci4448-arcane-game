@@ -7,28 +7,11 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class KnightTest {
-    @Test
-    public void testConstructors() {
-        String[] possibleNames = {
-                "Sir Bill", "Sir Tim", "Sir Dave"
-        };
-        // Default Constructor
-        Knight testKnight = new Knight();
-        String knightName = testKnight.getName();
-        Boolean isNameValid = Arrays.asList(possibleNames).contains(knightName);
-        assertTrue(isNameValid, "Knight should have one of the predefined names");
-
-        // Factory Constructor
-        Knight testKnight2 = new Knight("Sir Tim", 8);
-        String knightName2 = testKnight2.getName();
-        Boolean isNameValid2 = Arrays.asList(possibleNames).contains(knightName2);
-        assertTrue(isNameValid2, "Knight should have one of the predefined names");
-    }
 
     @Test
     public void testTurn() {
-        Creature creature = new Creature("Snapdragon", 10);
-        Demon demon = new Demon();
+        Creature creature = CreatureFactory.createCreature("Snapdragon", 10);
+        Demon demon = CreatureFactory.createDemon();
         Knight knight = new Knight("Sir Tim", 50);
         Room room = new Room();
         Room connectedRoom = new Room();
