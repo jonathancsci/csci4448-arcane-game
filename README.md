@@ -1,4 +1,4 @@
-# Homework2 ARCANE-SetUp
+# ARCANE
 
 Team Members:
 
