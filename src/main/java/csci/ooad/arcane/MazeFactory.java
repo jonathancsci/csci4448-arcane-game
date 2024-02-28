@@ -44,7 +44,7 @@ public class MazeFactory {
         private ArrayList<Creature> creatures = new ArrayList<Creature>();
         private static final Random random = new Random();
 
-        private MazeBuilder createRooms(int num) {
+        public MazeBuilder createRooms(int num) {
             rooms = new Room[num];
             for (int i = 0; i < num; i++) {
                 rooms[i] = new Room();
@@ -53,7 +53,7 @@ public class MazeFactory {
             return this;
         }
 
-        private MazeBuilder createFullRoomConnections() {
+        public MazeBuilder createFullRoomConnections() {
             for (int i = 0; i < rooms.length; i++) {
                 for (int j = 0; j < rooms.length; j++) {
                     if(i != j) {
@@ -126,8 +126,8 @@ public class MazeFactory {
             return this;
         }
 
-        private Room randomRoom() {
-            return rooms[random.nextInt()];
+        public Room randomRoom() {
+            return rooms[random.nextInt(rooms.length)];
         }
 
         public MazeBuilder addAdventurer(Adventurer adventurer,int roomNum) {
@@ -144,6 +144,23 @@ public class MazeFactory {
 
         public MazeBuilder addFood(Food food,int roomNum) {
             rooms[roomNum].addFood(food);
+            return this;
+        }
+
+        public MazeBuilder addAdventurer(Adventurer adventurer) {
+            adventurers.add(adventurer);
+            randomRoom().addOccupant(adventurer);
+            return this;
+        }
+
+        public MazeBuilder addCreature(Creature creature) {
+            creatures.add(creature);
+            randomRoom().addOccupant(creature);
+            return this;
+        }
+
+        public MazeBuilder addFood(Food food) {
+            randomRoom().addFood(food);
             return this;
         }
 

@@ -39,30 +39,12 @@ public class Maze {
         return rooms.length;
     }
 
-    public Room getRandomRoom() {
-        return rooms[randomNumberGenerator.nextInt(rooms.length)];
-    }
-
     public String toString() {
         String status = "";
         for(int i=0; i<rooms.length; i++) {
             status += rooms[i];
         }
         return status;
-    }
-
-    public void addAdventurer(Adventurer adventurer, Room room) {
-        adventurers.add(adventurer);
-        room.addOccupant(adventurer);
-    }
-
-    public void addCreature(Creature creature, Room room) {
-        creatures.add(creature);
-        room.addOccupant(creature);
-    }
-
-    public void addFood(Food food, Room room) {
-        room.addFood(food);
     }
 
     public void turn() {
