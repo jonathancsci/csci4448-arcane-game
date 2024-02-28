@@ -143,7 +143,6 @@ classDiagram
     Maze o-- Adventurer
     Maze o-- Creature
     Room o-- Entity
-    
 ```
 Output (note: our testing flushes the console between runs, so you only get this output from the main method):
 ### Running the Game with command line arguments from GameConfiguratorTest.java
