@@ -98,956 +98,591 @@ classDiagram
     Entity <|-- Adventurer
 ```
 Output (note: our testing flushes the console between runs, so you only get this output from the main method):
-### Run 1 (3x3 maze)
+### Running the Game with command line arguments from GameConfiguratorTest.java
 ```
 ARCANE MAZE: turn 1
-NorthWest
-loot: Apple Apple
-North
-Adventurer Sheri(health: 5) is here
-loot: Apple
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-Adventurer Zoe(health: 5) is here
-loot: Apple Soup Burger
-SouthWest
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 5) just ate a Apple
-Adventurer Zoe(health: 5) just ate a Apple
+  Room 1
+    Creature Unruly Armor(health: 3.0) is here
+    loot:
+  Room 2
+    Adventurer Bill(health: 5.0) is here
+    Creature Snapdragon(health: 3.0) is here
+    loot: Carrot
+  Room 3
+    loot: Ice-Cream
+  Room 4
+    loot: Soup
+  Room 5
+    Adventurer Bob(health: 5.0) is here
+    loot:
+Adventurer Bill(health: 5.0) fought Creature Snapdragon(health: 3.0)
+Adventurer Bob(health: 5.0) moved from Room 5 to Room 1
 ARCANE MAZE: turn 2
-NorthWest
-loot: Apple Apple
-North
-Adventurer Sheri(health: 6) is here
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-Adventurer Zoe(health: 6) is here
-loot: Soup Burger
-SouthWest
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 6) moved from North to NorthWest
-Adventurer Zoe(health: 6) just ate a Soup
+  Room 1
+    Creature Unruly Armor(health: 3.0) is here
+    Adventurer Bob(health: 5.0) is here
+    loot:
+  Room 2
+    Adventurer Bill(health: 5.0) is here
+    Creature Snapdragon(health: 3.0) is here
+    loot: Carrot
+  Room 3
+    loot: Ice-Cream
+  Room 4
+    loot: Soup
+  Room 5
+    loot:
+Adventurer Bill(health: 5.0) fought Creature Snapdragon(health: 3.0)
+Adventurer Bill(health: 3.0) lost to Creature Snapdragon(health: 3.0)
+Adventurer Bob(health: 5.0) fought Creature Unruly Armor(health: 3.0)
+Creature Unruly Armor(health: 0.0); DEAD was killed
+Creature Unruly Armor(health: 0.0); DEAD lost to Adventurer Bob(health: 5.0)
 ARCANE MAZE: turn 3
-NorthWest
-Adventurer Sheri(health: 6) is here
-loot: Apple Apple
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-Adventurer Zoe(health: 7) is here
-loot: Burger
-SouthWest
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Zoe(health: 7) just ate a Burger
-Adventurer Sheri(health: 6) just ate a Apple
+  Room 1
+    Adventurer Bob(health: 5.0) is here
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Adventurer Bill(health: 3.0) is here
+    Creature Snapdragon(health: 3.0) is here
+    loot: Carrot
+  Room 3
+    loot: Ice-Cream
+  Room 4
+    loot: Soup
+  Room 5
+    loot:
+Adventurer Bob(health: 5.0) moved from Room 1 to Room 3
+Adventurer Bill(health: 3.0) fought Creature Snapdragon(health: 3.0)
 ARCANE MAZE: turn 4
-NorthWest
-Adventurer Sheri(health: 7) is here
-loot: Apple
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-Adventurer Zoe(health: 8) is here
-loot:
-SouthWest
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Zoe(health: 8) moved from East to SouthEast
-Adventurer Sheri(health: 7) just ate a Apple
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Adventurer Bill(health: 3.0) is here
+    Creature Snapdragon(health: 3.0) is here
+    loot: Carrot
+  Room 3
+    Adventurer Bob(health: 5.0) is here
+    loot: Ice-Cream
+  Room 4
+    loot: Soup
+  Room 5
+    loot:
+Adventurer Bob(health: 5.0) just ate a Ice-Cream
+Adventurer Bill(health: 3.0) fought Creature Snapdragon(health: 3.0)
+Adventurer Bill(health: 2.0) lost to Creature Snapdragon(health: 3.0)
 ARCANE MAZE: turn 5
-NorthWest
-Adventurer Sheri(health: 8) is here
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Creature Unruly Armor(health: 3) is here
-Adventurer Zoe(health: 8) is here
-loot: Cheese
-Adventurer Zoe(health: 8) fought Creature Unruly Armor(health: 3)
-Adventurer Zoe(health: 7) lost to Creature Unruly Armor(health: 3)
-Adventurer Sheri(health: 8) moved from NorthWest to North
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Adventurer Bill(health: 2.0) is here
+    Creature Snapdragon(health: 3.0) is here
+    loot: Carrot
+  Room 3
+    Adventurer Bob(health: 6.0) is here
+    loot:
+  Room 4
+    loot: Soup
+  Room 5
+    loot:
+Adventurer Bob(health: 6.0) moved from Room 3 to Room 4
+Adventurer Bill(health: 2.0) fought Creature Snapdragon(health: 3.0)
+Creature Snapdragon(health: 2.0) lost to Adventurer Bill(health: 2.0)
 ARCANE MAZE: turn 6
-NorthWest
-loot:
-North
-Adventurer Sheri(health: 8) is here
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Adventurer Zoe(health: 7) is here
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 8) moved from North to NorthWest
-Adventurer Zoe(health: 7) fought Creature Unruly Armor(health: 3)
-Adventurer Zoe(health: 6) lost to Creature Unruly Armor(health: 3)
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Creature Snapdragon(health: 2.0) is here
+    Adventurer Bill(health: 2.0) is here
+    loot: Carrot
+  Room 3
+    loot:
+  Room 4
+    Adventurer Bob(health: 6.0) is here
+    loot: Soup
+  Room 5
+    loot:
+Adventurer Bob(health: 6.0) just ate a Soup
+Adventurer Bill(health: 2.0) fought Creature Snapdragon(health: 2.0)
+Adventurer Bill(health: 0.0); DEAD was killed
+Adventurer Bill(health: 0.0); DEAD lost to Creature Snapdragon(health: 2.0)
 ARCANE MAZE: turn 7
-NorthWest
-Adventurer Sheri(health: 8) is here
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Adventurer Zoe(health: 6) is here
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 8) moved from NorthWest to West
-Adventurer Zoe(health: 6) fought Creature Unruly Armor(health: 3)
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Creature Snapdragon(health: 2.0) is here
+    Adventurer Bill(health: 0.0); DEAD is here
+    loot: Carrot
+  Room 3
+    loot:
+  Room 4
+    Adventurer Bob(health: 7.0) is here
+    loot:
+  Room 5
+    loot:
+Adventurer Bob(health: 7.0) moved from Room 4 to Room 2
 ARCANE MAZE: turn 8
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-Adventurer Sheri(health: 8) is here
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Adventurer Zoe(health: 6) is here
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 8) moved from West to SouthWest
-Adventurer Zoe(health: 6) fought Creature Unruly Armor(health: 3)
-Adventurer Zoe(health: 3) lost to Creature Unruly Armor(health: 3)
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Creature Snapdragon(health: 2.0) is here
+    Adventurer Bill(health: 0.0); DEAD is here
+    Adventurer Bob(health: 7.0) is here
+    loot: Carrot
+  Room 3
+    loot:
+  Room 4
+    loot:
+  Room 5
+    loot:
+Adventurer Bob(health: 7.0) fought Creature Snapdragon(health: 2.0)
+Adventurer Bob(health: 4.0) lost to Creature Snapdragon(health: 2.0)
 ARCANE MAZE: turn 9
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-Adventurer Sheri(health: 8) is here
-loot: Ice-Cream
-South
-loot: Burger
-SouthEast
-Adventurer Zoe(health: 3) is here
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 8) just ate a Ice-Cream
-Adventurer Zoe(health: 3) fought Creature Unruly Armor(health: 3)
-Adventurer Zoe(health: 0); DEAD lost to Creature Unruly Armor(health: 3)
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Adventurer Bob(health: 4.0) is here
+    Creature Snapdragon(health: 2.0) is here
+    Adventurer Bill(health: 0.0); DEAD is here
+    loot: Carrot
+  Room 3
+    loot:
+  Room 4
+    loot:
+  Room 5
+    loot:
+Adventurer Bob(health: 4.0) fought Creature Snapdragon(health: 2.0)
+Adventurer Bob(health: 2.0) lost to Creature Snapdragon(health: 2.0)
 ARCANE MAZE: turn 10
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-Adventurer Sheri(health: 9) is here
-loot:
-South
-loot: Burger
-SouthEast
-Adventurer Zoe(health: 0); DEAD is here
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 9) moved from SouthWest to South
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Adventurer Bob(health: 2.0) is here
+    Creature Snapdragon(health: 2.0) is here
+    Adventurer Bill(health: 0.0); DEAD is here
+    loot: Carrot
+  Room 3
+    loot:
+  Room 4
+    loot:
+  Room 5
+    loot:
+Adventurer Bob(health: 2.0) fought Creature Snapdragon(health: 2.0)
+Creature Snapdragon(health: 1.0) lost to Adventurer Bob(health: 2.0)
 ARCANE MAZE: turn 11
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-Adventurer Sheri(health: 9) is here
-loot: Burger
-SouthEast
-Adventurer Zoe(health: 0); DEAD is here
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 9) just ate a Burger
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Adventurer Bob(health: 2.0) is here
+    Creature Snapdragon(health: 1.0) is here
+    Adventurer Bill(health: 0.0); DEAD is here
+    loot: Carrot
+  Room 3
+    loot:
+  Room 4
+    loot:
+  Room 5
+    loot:
+Adventurer Bob(health: 2.0) fought Creature Snapdragon(health: 1.0)
+Adventurer Bob(health: 0.0); DEAD was killed
+Adventurer Bob(health: 0.0); DEAD lost to Creature Snapdragon(health: 1.0)
 ARCANE MAZE: turn 12
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-Adventurer Sheri(health: 10) is here
-loot:
-SouthEast
-Adventurer Zoe(health: 0); DEAD is here
-Creature Unruly Armor(health: 3) is here
-loot: Cheese
-Adventurer Sheri(health: 10) moved from South to SouthEast
-ARCANE MAZE: turn 13
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Adventurer Zoe(health: 0); DEAD is here
-Creature Unruly Armor(health: 3) is here
-Adventurer Sheri(health: 10) is here
-loot: Cheese
-Adventurer Sheri(health: 10) fought Creature Unruly Armor(health: 3)
-Adventurer Sheri(health: 5) lost to Creature Unruly Armor(health: 3)
-ARCANE MAZE: turn 14
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Adventurer Sheri(health: 5) is here
-Creature Unruly Armor(health: 3) is here
-Adventurer Zoe(health: 0); DEAD is here
-loot: Cheese
-Adventurer Sheri(health: 5) fought Creature Unruly Armor(health: 3)
-Adventurer Sheri(health: 4) lost to Creature Unruly Armor(health: 3)
-ARCANE MAZE: turn 15
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Adventurer Sheri(health: 4) is here
-Creature Unruly Armor(health: 3) is here
-Adventurer Zoe(health: 0); DEAD is here
-loot: Cheese
-Adventurer Sheri(health: 4) fought Creature Unruly Armor(health: 3)
-Adventurer Sheri(health: 2) lost to Creature Unruly Armor(health: 3)
-ARCANE MAZE: turn 16
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Adventurer Sheri(health: 2) is here
-Creature Unruly Armor(health: 3) is here
-Adventurer Zoe(health: 0); DEAD is here
-loot: Cheese
-Adventurer Sheri(health: 2) fought Creature Unruly Armor(health: 3)
-Creature Unruly Armor(health: 2) lost to Adventurer Sheri(health: 2)
-ARCANE MAZE: turn 17
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Creature Unruly Armor(health: 2) is here
-Adventurer Sheri(health: 2) is here
-Adventurer Zoe(health: 0); DEAD is here
-loot: Cheese
-Adventurer Sheri(health: 2) fought Creature Unruly Armor(health: 2)
-ARCANE MAZE: turn 18
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Creature Unruly Armor(health: 2) is here
-Adventurer Sheri(health: 2) is here
-Adventurer Zoe(health: 0); DEAD is here
-loot: Cheese
-Adventurer Sheri(health: 2) fought Creature Unruly Armor(health: 2)
-Creature Unruly Armor(health: 1) lost to Adventurer Sheri(health: 2)
-ARCANE MAZE: turn 19
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Creature Unruly Armor(health: 1) is here
-Adventurer Sheri(health: 2) is here
-Adventurer Zoe(health: 0); DEAD is here
-loot: Cheese
-Adventurer Sheri(health: 2) fought Creature Unruly Armor(health: 1)
-Creature Unruly Armor(health: 0); DEAD was killed
-Creature Unruly Armor(health: 0); DEAD lost to Adventurer Sheri(health: 2)
-ARCANE MAZE: turn 20
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Adventurer Sheri(health: 2) is here
-Creature Unruly Armor(health: 0); DEAD is here
-Adventurer Zoe(health: 0); DEAD is here
-loot: Cheese
-Adventurer Sheri(health: 2) just ate a Cheese
-ARCANE MAZE: turn 21
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Adventurer Sheri(health: 3) is here
-Creature Unruly Armor(health: 0); DEAD is here
-Adventurer Zoe(health: 0); DEAD is here
-loot:
-Adventurer Sheri(health: 3) moved from SouthEast to South
-ARCANE MAZE: turn 22
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-Adventurer Sheri(health: 3) is here
-loot:
-SouthEast
-Creature Unruly Armor(health: 0); DEAD is here
-Adventurer Zoe(health: 0); DEAD is here
-loot:
-Adventurer Sheri(health: 3) moved from South to Center
-ARCANE MAZE: turn 23
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 3) is here
-Adventurer Sheri(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Creature Unruly Armor(health: 0); DEAD is here
-Adventurer Zoe(health: 0); DEAD is here
-loot:
-Adventurer Sheri(health: 3) fought Creature Cobblebeast(health: 3)
-Creature Cobblebeast(health: 0); DEAD was killed
-Creature Cobblebeast(health: 0); DEAD lost to Adventurer Sheri(health: 3)
-ARCANE MAZE: turn 24
-NorthWest
-loot:
-North
-loot:
-NorthEast
-loot: Steak
-West
-loot:
-Center
-Creature Cobblebeast(health: 0); DEAD is here
-Adventurer Sheri(health: 3) is here
-loot:
-East
-loot:
-SouthWest
-loot:
-South
-loot:
-SouthEast
-Creature Unruly Armor(health: 0); DEAD is here
-Adventurer Zoe(health: 0); DEAD is here
-loot:
-The Adventurers have triumphed!
+  Room 1
+    Creature Unruly Armor(health: 0.0); DEAD is here
+    loot:
+  Room 2
+    Adventurer Bob(health: 0.0); DEAD is here
+    Creature Snapdragon(health: 1.0) is here
+    Adventurer Bill(health: 0.0); DEAD is here
+    loot: Carrot
+  Room 3
+    loot:
+  Room 4
+    loot:
+  Room 5
+    loot:
+The Adventurers have died horribly!
 ```
-### Run 2 (3x3 maze)
+### Running the big grid from ArcaneTest.runBigGridGameTest()
 ```
 ARCANE MAZE: turn 1
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
-    loot: Cake Cake
-  NorthEast
-    loot: Ice-Cream Cake Burger Soup
-  West
-    loot: Cake
-  Center
-    Adventurer Carl(health: 5) is here
     loot:
-  East
+  NorthEast
+    loot: Spaghetti
+  West
+    Creature Dimcreeper(health: 3.0) is here
     loot: Burger
+  Center
+    Adventurer Gorby(health: 3.0) is here
+    loot: Burger
+  East
+    loot: Spaghetti Steak
   SouthWest
-    Adventurer Bill(health: 5) is here
-    Creature Unruly Armor(health: 3) is here
     loot:
   South
-    loot: Steak
+    Adventurer Ted(health: 5.0) is here
+    loot: Spaghetti
   SouthEast
-    Creature Ooze(health: 3) is here
+    Creature Cobblebeast(health: 3.0) is here
     loot:
-Adventurer Bill(health: 5) fought Creature Unruly Armor(health: 3)
-Adventurer Bill(health: 4) lost to Creature Unruly Armor(health: 3)
-Adventurer Carl(health: 5) moved from Center to North
+Adventurer Ted(health: 5.0) just ate a Spaghetti
+Adventurer Gorby(health: 3.0) just ate a Burger
 ARCANE MAZE: turn 2
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
-    Adventurer Carl(health: 5) is here
-    loot: Cake Cake
+    loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Creature Dimcreeper(health: 3.0) is here
+    loot: Burger
   Center
+    Adventurer Gorby(health: 4.0) is here
     loot:
   East
-    loot: Burger
+    loot: Spaghetti Steak
   SouthWest
-    Adventurer Bill(health: 4) is here
-    Creature Unruly Armor(health: 3) is here
     loot:
   South
-    loot: Steak
-  SouthEast
-    Creature Ooze(health: 3) is here
+    Adventurer Ted(health: 6.0) is here
     loot:
-Adventurer Carl(health: 5) just ate a Cake
-Adventurer Bill(health: 4) fought Creature Unruly Armor(health: 3)
-Creature Unruly Armor(health: 1) lost to Adventurer Bill(health: 4)
+  SouthEast
+    Creature Cobblebeast(health: 3.0) is here
+    loot:
+Adventurer Ted(health: 6.0) moved from South to Center
+Adventurer Gorby(health: 4.0) moved from Center to East
 ARCANE MAZE: turn 3
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
-    Adventurer Carl(health: 6) is here
-    loot: Cake
+    loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Creature Dimcreeper(health: 3.0) is here
+    loot: Burger
   Center
+    Adventurer Ted(health: 6.0) is here
     loot:
   East
-    loot: Burger
+    Adventurer Gorby(health: 4.0) is here
+    loot: Spaghetti Steak
   SouthWest
-    Adventurer Bill(health: 4) is here
-    Creature Unruly Armor(health: 1) is here
     loot:
   South
-    loot: Steak
-  SouthEast
-    Creature Ooze(health: 3) is here
     loot:
-Adventurer Carl(health: 6) just ate a Cake
-Adventurer Bill(health: 4) fought Creature Unruly Armor(health: 1)
-Adventurer Bill(health: 2) lost to Creature Unruly Armor(health: 1)
+  SouthEast
+    Creature Cobblebeast(health: 3.0) is here
+    loot:
+Adventurer Ted(health: 6.0) moved from Center to East
+Adventurer Gorby(health: 4.0) just ate a Spaghetti
 ARCANE MAZE: turn 4
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
-    Adventurer Carl(health: 7) is here
     loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Creature Dimcreeper(health: 3.0) is here
+    loot: Burger
   Center
     loot:
   East
-    loot: Burger
+    Adventurer Ted(health: 6.0) is here
+    Adventurer Gorby(health: 5.0) is here
+    loot: Steak
   SouthWest
-    Adventurer Bill(health: 2) is here
-    Creature Unruly Armor(health: 1) is here
     loot:
   South
-    loot: Steak
-  SouthEast
-    Creature Ooze(health: 3) is here
     loot:
-Adventurer Carl(health: 7) moved from North to Center
-Adventurer Bill(health: 2) fought Creature Unruly Armor(health: 1)
-Creature Unruly Armor(health: 0); DEAD was killed
-Creature Unruly Armor(health: 0); DEAD lost to Adventurer Bill(health: 2)
+  SouthEast
+    Creature Cobblebeast(health: 3.0) is here
+    loot:
+Adventurer Ted(health: 6.0) just ate a Steak
+Adventurer Gorby(health: 5.0) moved from East to SouthEast
 ARCANE MAZE: turn 5
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
     loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Creature Dimcreeper(health: 3.0) is here
+    loot: Burger
   Center
-    Adventurer Carl(health: 7) is here
     loot:
   East
-    loot: Burger
+    Adventurer Ted(health: 7.0) is here
+    loot:
   SouthWest
-    Adventurer Bill(health: 2) is here
-    Creature Unruly Armor(health: 0); DEAD is here
     loot:
   South
-    loot: Steak
-  SouthEast
-    Creature Ooze(health: 3) is here
     loot:
-Adventurer Carl(health: 7) moved from Center to East
-Adventurer Bill(health: 2) moved from SouthWest to South
+  SouthEast
+    Creature Cobblebeast(health: 3.0) is here
+    Adventurer Gorby(health: 5.0) is here
+    loot:
+Adventurer Ted(health: 7.0) moved from East to SouthWest
+Adventurer Gorby(health: 5.0) fought Creature Cobblebeast(health: 3.0)
+Adventurer Gorby(health: 4.0) lost to Creature Cobblebeast(health: 3.0)
 ARCANE MAZE: turn 6
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
     loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Creature Dimcreeper(health: 3.0) is here
+    loot: Burger
   Center
     loot:
   East
-    Adventurer Carl(health: 7) is here
-    loot: Burger
+    loot:
   SouthWest
-    Creature Unruly Armor(health: 0); DEAD is here
+    Adventurer Ted(health: 7.0) is here
     loot:
   South
-    Adventurer Bill(health: 2) is here
-    loot: Steak
-  SouthEast
-    Creature Ooze(health: 3) is here
     loot:
-Adventurer Carl(health: 7) just ate a Burger
-Adventurer Bill(health: 2) just ate a Steak
+  SouthEast
+    Adventurer Gorby(health: 4.0) is here
+    Creature Cobblebeast(health: 3.0) is here
+    loot:
+Adventurer Ted(health: 7.0) moved from SouthWest to West
+Adventurer Gorby(health: 4.0) fought Creature Cobblebeast(health: 3.0)
+Adventurer Gorby(health: 3.0) lost to Creature Cobblebeast(health: 3.0)
 ARCANE MAZE: turn 7
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
     loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Creature Dimcreeper(health: 3.0) is here
+    Adventurer Ted(health: 7.0) is here
+    loot: Burger
   Center
     loot:
   East
-    Adventurer Carl(health: 8) is here
     loot:
   SouthWest
-    Creature Unruly Armor(health: 0); DEAD is here
     loot:
   South
-    Adventurer Bill(health: 3) is here
     loot:
   SouthEast
-    Creature Ooze(health: 3) is here
+    Adventurer Gorby(health: 3.0) is here
+    Creature Cobblebeast(health: 3.0) is here
     loot:
-Adventurer Carl(health: 8) moved from East to Center
-Adventurer Bill(health: 3) moved from South to SouthEast
+Adventurer Ted(health: 7.0) fought Creature Dimcreeper(health: 3.0)
+Adventurer Gorby(health: 3.0) fought Creature Cobblebeast(health: 3.0)
+Adventurer Gorby(health: 1.0) lost to Creature Cobblebeast(health: 3.0)
 ARCANE MAZE: turn 8
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
     loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Adventurer Ted(health: 7.0) is here
+    Creature Dimcreeper(health: 3.0) is here
+    loot: Burger
   Center
-    Adventurer Carl(health: 8) is here
     loot:
   East
     loot:
   SouthWest
-    Creature Unruly Armor(health: 0); DEAD is here
     loot:
   South
     loot:
   SouthEast
-    Creature Ooze(health: 3) is here
-    Adventurer Bill(health: 3) is here
+    Adventurer Gorby(health: 1.0) is here
+    Creature Cobblebeast(health: 3.0) is here
     loot:
-Adventurer Carl(health: 8) moved from Center to South
-Adventurer Bill(health: 3) fought Creature Ooze(health: 3)
-Creature Ooze(health: 1) lost to Adventurer Bill(health: 3)
+Adventurer Ted(health: 7.0) fought Creature Dimcreeper(health: 3.0)
+Adventurer Ted(health: 5.0) lost to Creature Dimcreeper(health: 3.0)
+Adventurer Gorby(health: 1.0) fought Creature Cobblebeast(health: 3.0)
+Creature Cobblebeast(health: 0.0); DEAD was killed
+Creature Cobblebeast(health: 0.0); DEAD lost to Adventurer Gorby(health: 1.0)
 ARCANE MAZE: turn 9
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
     loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Adventurer Ted(health: 5.0) is here
+    Creature Dimcreeper(health: 3.0) is here
+    loot: Burger
   Center
     loot:
   East
     loot:
   SouthWest
-    Creature Unruly Armor(health: 0); DEAD is here
     loot:
   South
-    Adventurer Carl(health: 8) is here
     loot:
   SouthEast
-    Creature Ooze(health: 1) is here
-    Adventurer Bill(health: 3) is here
+    Creature Cobblebeast(health: 0.0); DEAD is here
+    Adventurer Gorby(health: 1.0) is here
     loot:
-Adventurer Carl(health: 8) moved from South to Center
-Adventurer Bill(health: 3) fought Creature Ooze(health: 1)
-Creature Ooze(health: 0); DEAD was killed
-Creature Ooze(health: 0); DEAD lost to Adventurer Bill(health: 3)
+Adventurer Ted(health: 5.0) fought Creature Dimcreeper(health: 3.0)
+Creature Dimcreeper(health: 1.0) lost to Adventurer Ted(health: 5.0)
+Adventurer Gorby(health: 1.0) moved from SouthEast to East
 ARCANE MAZE: turn 10
   NorthWest
-    loot: Spaghetti
+    loot: Steak Soup Carrot Burger
   North
     loot:
   NorthEast
-    loot: Ice-Cream Cake Burger Soup
+    loot: Spaghetti
   West
-    loot: Cake
+    Adventurer Ted(health: 5.0) is here
+    Creature Dimcreeper(health: 1.0) is here
+    loot: Burger
   Center
-    Adventurer Carl(health: 8) is here
     loot:
   East
+    Adventurer Gorby(health: 1.0) is here
     loot:
   SouthWest
-    Creature Unruly Armor(health: 0); DEAD is here
     loot:
   South
     loot:
   SouthEast
-    Adventurer Bill(health: 3) is here
-    Creature Ooze(health: 0); DEAD is here
+    Creature Cobblebeast(health: 0.0); DEAD is here
+    loot:
+Adventurer Ted(health: 5.0) fought Creature Dimcreeper(health: 1.0)
+Creature Dimcreeper(health: 0.0); DEAD was killed
+Creature Dimcreeper(health: 0.0); DEAD lost to Adventurer Ted(health: 5.0)
+Adventurer Gorby(health: 1.0) moved from East to NorthEast
+ARCANE MAZE: turn 11
+  NorthWest
+    loot: Steak Soup Carrot Burger
+  North
+    loot:
+  NorthEast
+    Adventurer Gorby(health: 1.0) is here
+    loot: Spaghetti
+  West
+    Adventurer Ted(health: 5.0) is here
+    Creature Dimcreeper(health: 0.0); DEAD is here
+    loot: Burger
+  Center
+    loot:
+  East
+    loot:
+  SouthWest
+    loot:
+  South
+    loot:
+  SouthEast
+    Creature Cobblebeast(health: 0.0); DEAD is here
     loot:
 The Adventurers have triumphed!
 ```
-### Run 3 (2x2 maze)
+### Running the small grid from ArcaneTest.runSmallGridGameTest()
 ```
 ARCANE MAZE: turn 1
   NorthWest
-    Adventurer Zoe(health: 5) is here
-    loot:
+    Adventurer Ted(health: 5.0) is here
+    loot: Soup Apple
   NorthEast
-    loot: Cheese Cake
-  SouthWest
     loot:
+  SouthWest
+    loot: Cheese
   SouthEast
-    Creature Unruly Armor(health: 3) is here
-    loot: Ice-Cream Steak
-Adventurer Zoe(health: 5) moved from NorthWest to NorthEast
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 5.0) just ate a Soup
 ARCANE MAZE: turn 2
   NorthWest
-    loot:
+    Adventurer Ted(health: 6.0) is here
+    loot: Apple
   NorthEast
-    Adventurer Zoe(health: 5) is here
-    loot: Cheese Cake
-  SouthWest
     loot:
+  SouthWest
+    loot: Cheese
   SouthEast
-    Creature Unruly Armor(health: 3) is here
-    loot: Ice-Cream Steak
-Adventurer Zoe(health: 5) just ate a Cheese
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 6.0) just ate a Apple
 ARCANE MAZE: turn 3
   NorthWest
+    Adventurer Ted(health: 7.0) is here
     loot:
   NorthEast
-    Adventurer Zoe(health: 6) is here
-    loot: Cake
-  SouthWest
     loot:
+  SouthWest
+    loot: Cheese
   SouthEast
-    Creature Unruly Armor(health: 3) is here
-    loot: Ice-Cream Steak
-Adventurer Zoe(health: 6) just ate a Cake
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 7.0) moved from NorthWest to SouthWest
 ARCANE MAZE: turn 4
   NorthWest
     loot:
   NorthEast
-    Adventurer Zoe(health: 7) is here
     loot:
   SouthWest
-    loot:
+    Adventurer Ted(health: 7.0) is here
+    loot: Cheese
   SouthEast
-    Creature Unruly Armor(health: 3) is here
-    loot: Ice-Cream Steak
-Adventurer Zoe(health: 7) moved from NorthEast to SouthEast
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 7.0) just ate a Cheese
 ARCANE MAZE: turn 5
   NorthWest
     loot:
   NorthEast
     loot:
   SouthWest
+    Adventurer Ted(health: 8.0) is here
     loot:
   SouthEast
-    Creature Unruly Armor(health: 3) is here
-    Adventurer Zoe(health: 7) is here
-    loot: Ice-Cream Steak
-Adventurer Zoe(health: 7) fought Creature Unruly Armor(health: 3)
-Adventurer Zoe(health: 6) lost to Creature Unruly Armor(health: 3)
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 8.0) moved from SouthWest to NorthWest
 ARCANE MAZE: turn 6
   NorthWest
+    Adventurer Ted(health: 8.0) is here
     loot:
   NorthEast
     loot:
   SouthWest
     loot:
   SouthEast
-    Adventurer Zoe(health: 6) is here
-    Creature Unruly Armor(health: 3) is here
-    loot: Ice-Cream Steak
-Adventurer Zoe(health: 6) fought Creature Unruly Armor(health: 3)
-Adventurer Zoe(health: 5) lost to Creature Unruly Armor(health: 3)
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 8.0) moved from NorthWest to NorthEast
 ARCANE MAZE: turn 7
   NorthWest
     loot:
   NorthEast
+    Adventurer Ted(health: 8.0) is here
     loot:
   SouthWest
     loot:
   SouthEast
-    Adventurer Zoe(health: 5) is here
-    Creature Unruly Armor(health: 3) is here
-    loot: Ice-Cream Steak
-Adventurer Zoe(health: 5) fought Creature Unruly Armor(health: 3)
-Adventurer Zoe(health: 4) lost to Creature Unruly Armor(health: 3)
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 8.0) moved from NorthEast to SouthEast
 ARCANE MAZE: turn 8
   NorthWest
     loot:
@@ -1056,12 +691,10 @@ ARCANE MAZE: turn 8
   SouthWest
     loot:
   SouthEast
-    Adventurer Zoe(health: 4) is here
-    Creature Unruly Armor(health: 3) is here
-    loot: Ice-Cream Steak
-Adventurer Zoe(health: 4) fought Creature Unruly Armor(health: 3)
-Creature Unruly Armor(health: 0); DEAD was killed
-Creature Unruly Armor(health: 0); DEAD lost to Adventurer Zoe(health: 4)
+    Creature Ooze(health: 3.0) is here
+    Adventurer Ted(health: 8.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 8.0) fought Creature Ooze(health: 3.0)
 ARCANE MAZE: turn 9
   NorthWest
     loot:
@@ -1070,8 +703,48 @@ ARCANE MAZE: turn 9
   SouthWest
     loot:
   SouthEast
-    Adventurer Zoe(health: 4) is here
-    Creature Unruly Armor(health: 0); DEAD is here
-    loot: Ice-Cream Steak
-The Adventurers have triumphed!
+    Adventurer Ted(health: 8.0) is here
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 8.0) fought Creature Ooze(health: 3.0)
+Adventurer Ted(health: 3.0) lost to Creature Ooze(health: 3.0)
+ARCANE MAZE: turn 10
+  NorthWest
+    loot:
+  NorthEast
+    loot:
+  SouthWest
+    loot:
+  SouthEast
+    Adventurer Ted(health: 3.0) is here
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 3.0) fought Creature Ooze(health: 3.0)
+Adventurer Ted(health: 2.0) lost to Creature Ooze(health: 3.0)
+ARCANE MAZE: turn 11
+  NorthWest
+    loot:
+  NorthEast
+    loot:
+  SouthWest
+    loot:
+  SouthEast
+    Adventurer Ted(health: 2.0) is here
+    Creature Ooze(health: 3.0) is here
+    loot: Spaghetti Apple
+Adventurer Ted(health: 2.0) fought Creature Ooze(health: 3.0)
+Adventurer Ted(health: 0.0); DEAD was killed
+Adventurer Ted(health: 0.0); DEAD lost to Creature Ooze(health: 3.0)
+ARCANE MAZE: turn 12
+  NorthWest
+    loot:
+  NorthEast
+    loot:
+  SouthWest
+    loot:
+  SouthEast
+    Creature Ooze(health: 3.0) is here
+    Adventurer Ted(health: 0.0); DEAD is here
+    loot: Spaghetti Apple
+The Adventurers have died horribly!
 ```
