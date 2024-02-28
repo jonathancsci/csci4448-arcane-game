@@ -8,11 +8,11 @@ import java.util.Random;
 
 public class MazeFactory {
 
-    public static Maze buildFourRoomGrid() {
+    public static Maze createFourRoomGrid() {
         return createGrid(2, 2, 1, 1, 5);
     }
 
-    public static Maze buildNineRoomGrid() {
+    public static Maze createNineRoomGrid() {
         return createGrid(3, 3, 2,2,10);
     }
 

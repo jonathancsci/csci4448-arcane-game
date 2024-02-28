@@ -51,7 +51,7 @@ public class MazeTest {
         Adventurer adventurer2 = AdventurerFactory.createAdventurer();
         Adventurer adventurer3 = AdventurerFactory.createAdventurer();
         Maze maze = new MazeFactory.MazeBuilder()
-                .createRooms(8)
+                .createRooms(9)
                 .createFullRoomConnections()
                 .addAdventurer(adventurer1,0)
                 .addAdventurer(adventurer2,4)
@@ -110,7 +110,7 @@ public class MazeTest {
     @Test
     public void toStringTest() {
         String[] expected = {"  NorthEast","  North","  NorthWest","  Center","  SouthWest"};
-        Maze maze = MazeFactory.buildNineRoomGrid();
+        Maze maze = MazeFactory.createNineRoomGrid();
         String[] printedLines = maze.toString().split("\n");
         for (int i = 0; i < expected.length; i++) {
             assertTrue(Arrays.asList(printedLines).contains(expected[i]), "The first turn of the game did not print what was expected.");
