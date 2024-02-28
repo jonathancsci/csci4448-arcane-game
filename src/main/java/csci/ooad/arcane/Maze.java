@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Maze {
-    Random randomNumberGenerator = new Random();
+    private Random randomNumberGenerator = new Random();
     private Room[] rooms;
     private ArrayList<Adventurer> adventurers = new ArrayList<>();
     private ArrayList<Creature> creatures = new ArrayList<>();
