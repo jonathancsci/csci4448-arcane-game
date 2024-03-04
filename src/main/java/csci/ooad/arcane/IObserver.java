@@ -1,5 +1,7 @@
 package csci.ooad.arcane;
 
+import java.io.IOException;
+
 public interface IObserver {
-    void update(String eventDescription);
+    void update(EventType eventType, String eventDescription);
 }
