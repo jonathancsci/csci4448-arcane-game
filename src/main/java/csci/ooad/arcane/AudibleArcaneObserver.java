@@ -1,11 +1,12 @@
 package csci.ooad.arcane;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AudibleArcaneObserver implements IObserver {
     private IObservable arcaneGame;
-    private List<EventType> interestedEvents;
+    private List<EventType> interestedEvents = new ArrayList<>();
     private Integer delayInSeconds = 3;
 
     public void AudibleArcaneObserver(IObservable arcaneGame) {
