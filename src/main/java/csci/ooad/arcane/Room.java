@@ -2,6 +2,7 @@ package csci.ooad.arcane;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Room {
     private ArrayList<Room> connectedRooms;
@@ -59,6 +60,10 @@ public class Room {
         Food takenFood = loot.get(0);
         loot.remove(takenFood);
         return takenFood;
+    }
+
+    public List<Food> getFood() {
+        return loot;
     }
 
     public ArrayList<Entity> getOccupants() {
