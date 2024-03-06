@@ -1,7 +1,11 @@
 package csci.ooad.arcane;
 
-public class EventBus {
+import java.util.ArrayList;
+import java.util.List;
+
+public class EventBus implements IObservable {
     private static EventBus eventBus;
+    private List<IObserver> observerList = new ArrayList<>();
     private EventBus() {
 
     }
@@ -11,10 +15,12 @@ public class EventBus {
         }
         return eventBus;
     }
-    public void attach(IObserver observer, EventType eventType) {
-
+    public void attach(IObserver observer) {
+        this.observerList.add(observer);
     }
-    public void postMessage(EventType eventType, String eventDescription) {
-
+    public void notifyObservers(EventType postedEventType, String postedEventDescription) {
+        for (IObserver observer : this.observerList) {
+            observer.update(postedEventType, postedEventDescription);
+        }
     }
 }
