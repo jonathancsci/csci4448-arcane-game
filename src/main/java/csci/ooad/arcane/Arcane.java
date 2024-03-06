@@ -6,9 +6,8 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Collections;
 
-public class Arcane implements IObservable {
+public class Arcane implements IObservable, IObserver {
     public static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     private Maze maze;
     private int turnCounter = 0;
@@ -47,18 +46,14 @@ public class Arcane implements IObservable {
         this.observerList.add(newObserver);
     }
 
-    public void detach(IObserver observerToRemove) {
-        this.observerList.remove(observerToRemove);
+    public void notifyObservers(EventType postedEventType, String postedEventDescription) {
+        for (IObserver observer : this.observerList) {
+            observer.update(postedEventType, postedEventDescription);
+        }
     }
 
-    public void notifyObservers() {
-        // Dummy data for now
-        EventType eventType = EventType.GameOver;
-        String eventDescription = "The Adventurers have triumphed!";
-
-        for (IObserver observer : this.observerList) {
-            observer.update(eventType, eventDescription);
-        }
+    public void update(EventType postedEventType, String postedEventDescription) {
+        this.notifyObservers(postedEventType, postedEventDescription);
     }
 
     //the toString is a more conventional form of polymorphism where all of these objects are behaving differently when called, but being treated the same by the callee
