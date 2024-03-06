@@ -1,8 +1,6 @@
 package csci.ooad.arcane;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 public class Maze {
     private Random randomNumberGenerator = new Random();
@@ -25,6 +23,9 @@ public class Maze {
         this.creatures = creatures;
     }
 
+    public Room[] getRooms() {
+        return rooms;
+    }
 
     public Room getRoom(int num) {
         Arcane.logger.debug(""+num);

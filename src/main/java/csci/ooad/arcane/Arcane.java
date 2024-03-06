@@ -4,10 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Collections;
 
-public class Arcane {
+public class Arcane implements IMazeSubject {
     public static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     private Maze maze;
     private int turnCounter = 0;
@@ -39,6 +40,10 @@ public class Arcane {
             return true;
         }
         return false;
+    }
+
+    public Room[] getRooms() {
+        return maze.getRooms();
     }
 
     //the toString is a more conventional form of polymorphism where all of these objects are behaving differently when called, but being treated the same by the callee
