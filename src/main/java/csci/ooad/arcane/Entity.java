@@ -82,6 +82,7 @@ public class Entity implements Comparable<Entity> {
                 Arcane.logger.info(foe + " was killed\n");
             }
             Arcane.logger.info(foe + " lost to " + this+ "\n");
+            EventBus.getInstance().notifyObservers(EventType.FightOutcome,"I won");
         } else if (rollB > rollA) {
             Integer damageForCombatantA = rollB - rollA;
             takeDamage(damageForCombatantA);
