@@ -6,14 +6,14 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Collections;
 
-public class Arcane implements IMazeSubject {
+public class Arcane implements IObservable, IObserver {
     public static final Logger logger = LoggerFactory.getLogger(Arcane.class);
     private Maze maze;
     private int turnCounter = 0;
     private String endMessage = "";
     private Random randomNumberGenerator = new Random();
+    private List<IObserver> observerList = new ArrayList<>();
 
     public Arcane(Maze maze) {
         this.maze = maze;
@@ -42,6 +42,20 @@ public class Arcane implements IMazeSubject {
         return false;
     }
 
+    public void attach(IObserver newObserver) {
+        this.observerList.add(newObserver);
+    }
+
+    public void notifyObservers(EventType postedEventType, String postedEventDescription) {
+        for (IObserver observer : this.observerList) {
+            observer.update(postedEventType, postedEventDescription);
+        }
+    }
+
+    public void update(EventType postedEventType, String postedEventDescription) {
+        this.notifyObservers(postedEventType, postedEventDescription);
+    }
+  
     public Room[] getRooms() {
         return maze.getRooms();
     }
