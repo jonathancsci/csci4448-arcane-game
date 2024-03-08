@@ -55,6 +55,10 @@ public class Arcane implements IObservable, IObserver {
     public void update(EventType postedEventType, String postedEventDescription) {
         this.notifyObservers(postedEventType, postedEventDescription);
     }
+  
+    public Room[] getRooms() {
+        return maze.getRooms();
+    }
 
     //the toString is a more conventional form of polymorphism where all of these objects are behaving differently when called, but being treated the same by the callee
     public String toString() {
