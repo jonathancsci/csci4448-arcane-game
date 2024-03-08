@@ -6,6 +6,8 @@ import csci.ooad.layout.IMazeSubject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static csci.ooad.arcane.Arcane.logger;
+
 public class MazeAdapter implements IMaze, IMazeSubject, IObserver {
     private final Arcane arcane;
     public MazeAdapter(Arcane arc) {
@@ -61,6 +63,7 @@ public class MazeAdapter implements IMaze, IMazeSubject, IObserver {
     }
 
     public void update(EventType eventType, String eventDescription) {
+        logger.info("I AM BEING OBSERVED BY "+observers);
         notifyObservers(eventDescription);
     }
 }

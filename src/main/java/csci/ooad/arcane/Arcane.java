@@ -17,6 +17,7 @@ public class Arcane implements IObservable, IObserver {
 
     public Arcane(Maze maze) {
         this.maze = maze;
+        EventBus.getInstance().attach(this);
     }
 
     public void runGame() {
@@ -47,6 +48,7 @@ public class Arcane implements IObservable, IObserver {
     }
 
     public void notifyObservers(EventType postedEventType, String postedEventDescription) {
+        logger.info("I AM BEING OBSERVED BY "+observerList);
         for (IObserver observer : this.observerList) {
             observer.update(postedEventType, postedEventDescription);
         }
