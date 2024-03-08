@@ -89,7 +89,7 @@ public class Entity implements Comparable<Entity> {
                 Arcane.logger.info(this + " was killed\n");
             }
             Arcane.logger.info(this + " lost to " + foe+ "\n");
-            EventBus.getInstance().postMessage(EventType.FightOutcome,"I lost");
+            EventBus.getInstance().notifyObservers(EventType.FightOutcome,"I lost");
         }
     }
 
