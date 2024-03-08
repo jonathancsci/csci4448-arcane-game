@@ -1,10 +1,17 @@
 package csci.ooad.arcane;
 
+import csci.ooad.layout.IMaze;
+import csci.ooad.layout.IMazeSubject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MazeAdapter implements IMaze {
-    private Arcane arcane;
+public class MazeAdapter implements IMaze, IMazeSubject {
+    private final Arcane arcane;
+    public MazeAdapter(Arcane arcane) {
+        this.arcane = arcane;
+    }
+
     public List<String> getRooms() {
         List<String> names = new ArrayList<String>();
         Room[] rooms = arcane.getRooms();
@@ -46,5 +53,9 @@ public class MazeAdapter implements IMaze {
             }
         }
         return room;
+    }
+
+    public IMaze getMaze() {
+        return this;
     }
 }
