@@ -6,10 +6,11 @@ import csci.ooad.layout.IMazeSubject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MazeAdapter implements IMaze, IMazeSubject {
+public class MazeAdapter implements IMaze, IMazeSubject, IObserver {
     private final Arcane arcane;
-    public MazeAdapter(Arcane arcane) {
-        this.arcane = arcane;
+    public MazeAdapter(Arcane arc) {
+        arcane = arc;
+        arcane.attach(this);
     }
 
     public List<String> getRooms() {
@@ -57,5 +58,9 @@ public class MazeAdapter implements IMaze, IMazeSubject {
 
     public IMaze getMaze() {
         return this;
+    }
+
+    public void update(EventType eventType, String eventDescription) {
+        notifyObservers(eventDescription);
     }
 }
