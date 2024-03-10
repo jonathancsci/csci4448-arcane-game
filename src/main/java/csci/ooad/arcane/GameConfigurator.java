@@ -27,7 +27,7 @@ public class GameConfigurator {
         }
         Arcane arcane = new Arcane(MazeFactory.createMaze(roomNum,adventurerNum,creatureNum,foodNum));
 
-        int SECONDS_TO_PAUSE_BETWEEN_TURNS = 5;
+        int SECONDS_TO_PAUSE_BETWEEN_TURNS = 3;
 
         IMazeObserver mazeObserver = MazeObserver.getNewBuilder("Arcane Game")
                 .useRadialLayoutStrategy()
