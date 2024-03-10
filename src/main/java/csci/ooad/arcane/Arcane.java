@@ -26,18 +26,22 @@ public class Arcane implements IObservable, IObserver {
         while(!isGameOver()) {
             maze.turn();
             logger.info(this.toString());
+            EventBus.getInstance().notifyObservers(EventType.TurnEnded, "Turn " + this.turnCounter + " just ended");
             turnCounter++;
         }
         logger.info(endMessage);
+        EventBus.getInstance().notifyObservers(EventType.GameOver, this.endMessage);
     }
 
     public boolean isGameOver() {
         if(maze.checkAllCreaturesDead()) {
-            endMessage = "The Adventurers have triumphed!";
+            endMessage = "The Adventurers have triumphed! ";
+            endMessage += "The Adventurers left alive are " + maze.getAliveAdventurers();
             return true;
         }
         if(maze.checkAllAdventurersDead()) {
-            endMessage = "The Adventurers have died horribly!";
+            endMessage = "The Adventurers have died horribly! ";
+            endMessage += "The Creatures left alive are " + maze.getAliveCreatures();
             return true;
         }
         return false;
