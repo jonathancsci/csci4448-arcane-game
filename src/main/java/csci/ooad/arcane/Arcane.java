@@ -48,8 +48,8 @@ public class Arcane implements IObservable, IObserver {
     }
 
     public void notifyObservers(EventType postedEventType, String postedEventDescription) {
-        logger.info("I AM BEING OBSERVED BY "+observerList);
         for (IObserver observer : this.observerList) {
+            logger.info("Arcane is observed by "+observer+"\n");
             observer.update(postedEventType, postedEventDescription);
         }
     }
