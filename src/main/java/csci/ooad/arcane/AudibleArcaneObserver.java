@@ -9,15 +9,15 @@ public class AudibleArcaneObserver implements IObserver {
     private List<EventType> interestedEvents = new ArrayList<>();
     private Integer delayInSeconds = 3;
 
-    public void AudibleArcaneObserver(IObservable arcaneGame) {
+    public AudibleArcaneObserver(IObservable arcaneGame) {
         this.arcaneGame = arcaneGame;
     }
-    public void AudibleArcaneObserver(IObservable arcaneGame, List<EventType> eventTypeList, Integer delayInSeconds) {
+    public AudibleArcaneObserver(IObservable arcaneGame, List<EventType> eventTypeList, Integer delayInSeconds) {
         this.arcaneGame = arcaneGame;
         this.interestedEvents = eventTypeList;
         this.delayInSeconds = delayInSeconds;
     }
-    public void AudibleArcaneObserver(IObservable arcaneGame, Integer delayInSeconds) {
+    public AudibleArcaneObserver(IObservable arcaneGame, Integer delayInSeconds) {
         this.arcaneGame = arcaneGame;
         this.interestedEvents = List.of(EventType.All);
         this.delayInSeconds = delayInSeconds;
