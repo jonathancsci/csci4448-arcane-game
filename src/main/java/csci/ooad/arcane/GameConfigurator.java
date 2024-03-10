@@ -27,14 +27,14 @@ public class GameConfigurator {
         }
         Arcane arcane = new Arcane(MazeFactory.createMaze(roomNum,adventurerNum,creatureNum,foodNum));
 
-        int SECONDS_TO_PAUSE_BETWEEN_TURNS = 3;
+        int PAUSE_SECONDS = 4;
 
         IMazeObserver mazeObserver = MazeObserver.getNewBuilder("Arcane Game")
                 .useRadialLayoutStrategy()
-                .setDelayInSecondsAfterUpdate(SECONDS_TO_PAUSE_BETWEEN_TURNS)
+                .setDelayInSecondsAfterUpdate(PAUSE_SECONDS)
                 .build();
 
-        AudibleArcaneObserver audibleObserver = new AudibleArcaneObserver(arcane, List.of(EventType.All), 5);
+        AudibleArcaneObserver audibleObserver = new AudibleArcaneObserver(arcane, List.of(EventType.All), PAUSE_SECONDS);
         arcane.attach(audibleObserver);
 
         new MazeAdapter(arcane).attach(mazeObserver);
