@@ -16,6 +16,26 @@ public class Maze {
         this.rooms = rooms;
     }
 
+    public List<Adventurer> getAliveAdventurers() {
+        List<Adventurer> aliveAdventurers = new ArrayList<>();
+        for (Adventurer adventurer : this.adventurers) {
+            if (!adventurer.isDead()) {
+                aliveAdventurers.add(adventurer);
+            }
+        }
+        return aliveAdventurers;
+    }
+
+    public List<Creature> getAliveCreatures() {
+        List<Creature> aliveCreatures = new ArrayList<>();
+        for (Creature creature : this.creatures) {
+            if (!creature.isDead()) {
+                aliveCreatures.add(creature);
+            }
+        }
+        return aliveCreatures;
+    }
+
     public void setAdventurers(ArrayList<Adventurer> adventurers) {
         this.adventurers = adventurers;
     }
