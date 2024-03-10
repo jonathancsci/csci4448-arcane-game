@@ -21,6 +21,7 @@ public class Arcane implements IObservable, IObserver {
     }
 
     public void runGame() {
+        EventBus.getInstance().notifyObservers(EventType.GameStart, "The game is starting");
         logger.info(this.toString());
         turnCounter++;
         while(!isGameOver()) {
