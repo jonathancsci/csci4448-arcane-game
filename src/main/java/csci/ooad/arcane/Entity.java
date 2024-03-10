@@ -3,7 +3,6 @@ package csci.ooad.arcane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.Random;
 
 public class Entity implements Comparable<Entity> {
@@ -80,17 +79,19 @@ public class Entity implements Comparable<Entity> {
             foe.takeDamage(damageForCombatantB);
             if (foe.isDead()) {
                 Arcane.logger.info(foe + " was killed\n");
+                EventBus.getInstance().notifyObservers(EventType.Death, foe + " was killed");
             }
             Arcane.logger.info(foe + " lost to " + this+ "\n");
-            EventBus.getInstance().notifyObservers(EventType.FightOutcome,"I won");
+            EventBus.getInstance().notifyObservers(EventType.FightOutcome,foe + " lost to " + this + "\n");
         } else if (rollB > rollA) {
             Integer damageForCombatantA = rollB - rollA;
             takeDamage(damageForCombatantA);
             if (isDead()) {
                 Arcane.logger.info(this + " was killed\n");
+                EventBus.getInstance().notifyObservers(EventType.Death, this + " was killed");
             }
             Arcane.logger.info(this + " lost to " + foe+ "\n");
-            EventBus.getInstance().notifyObservers(EventType.FightOutcome,"I lost");
+            EventBus.getInstance().notifyObservers(EventType.FightOutcome,this + " lost to " + foe+ "\n");
         }
     }
 
