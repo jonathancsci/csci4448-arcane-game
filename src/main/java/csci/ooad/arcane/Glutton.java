@@ -15,6 +15,7 @@ public class Glutton extends Adventurer{
         } else if (currentRoom.isThereFood()) {
             Food food = currentRoom.takeFood();
             Arcane.logger.info(this + " just ate a " + food.getName() + "\n");
+            EventBus.getInstance().notifyObservers(EventType.AteSomething, this +" just ate a "+ food.getName() + "\n");
             eatFood(food);
         } else if((creature != null) &&
                 (currentRoom.getHealthiestAdventurer() == this)) {
