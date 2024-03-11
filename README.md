@@ -144,6 +144,36 @@ classDiagram
     Maze o-- Creature
     Room o-- Entity
 ```
+
+
+UML Diagram:
+```mermaid
+sequenceDiagram:
+Arcane->>Maze: turn
+loop Every Adventurer
+  Maze->>Adventurer: turn
+  Adventurer->>Room: getHealthiestCreature
+  Room-->>Adventurer: return
+  alt Creature exists
+    Adventurer->>Creature: rollDice
+    Creature-->>Adventurer: return
+  else
+    Adventurer->>Room: isThereFood
+    Room-->>Adventurer: return
+    alt Food exists
+      Adventurer->>Room: takeFood
+      Room-->>Adventurer: return
+    else
+      Adventurer->>Room: getConnectedRooms
+      Room-->>Adventurer: 
+      Adventurer->>Room: removeOccupant
+      Adventurer->>Room: addOccupant
+    end
+  end
+end
+
+```
+
 Output (note: our testing flushes the console between runs, so you only get this output from the main method):
 ### Running the Game with command line arguments from GameConfiguratorTest.java
 ```
