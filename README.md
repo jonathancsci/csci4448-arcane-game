@@ -175,6 +175,9 @@ sequenceDiagram
     AudibleArcaneObserver->>Arcane: attach
     
     Arcane->>EventBus: notifyObservers
+    EventBus->>Arcane: update
+    Arcane->>AudibleArcaneObserver: update
+    Arcane->>GameLayoutObserver: update
     loop While game isn't over
         Arcane->>Maze: turn
         loop Every Adventurer
@@ -191,8 +194,14 @@ sequenceDiagram
                 end
                 alt Loser died
                     Adventurer->>EventBus: notifyObservers
+                    EventBus->>Arcane: update
+                    Arcane->>AudibleArcaneObserver: update
+                    Arcane->>GameLayoutObserver: update
                 end
                 Adventurer->>EventBus: notifyObservers
+                EventBus->>Arcane: update
+                Arcane->>AudibleArcaneObserver: update
+                Arcane->>GameLayoutObserver: update
             else
             Adventurer->>Room: isThereFood
             Room-->>Adventurer: return
@@ -200,6 +209,9 @@ sequenceDiagram
                 Adventurer->>Room: takeFood
                 Room-->>Adventurer: return
                 Adventurer->>EventBus: notifyObservers
+                EventBus->>Arcane: update
+                Arcane->>AudibleArcaneObserver: update
+                Arcane->>GameLayoutObserver: update
             else
                 Adventurer->>Room: getConnectedRooms
                 Room-->>Adventurer: 
@@ -208,8 +220,14 @@ sequenceDiagram
             end
         end
         Arcane->>EventBus: notifyObservers
+        EventBus->>Arcane: update
+        Arcane->>AudibleArcaneObserver: update
+        Arcane->>GameLayoutObserver: update
     end
     Arcane->>EventBus: notifyObservers
+    EventBus->>Arcane: update
+    Arcane->>AudibleArcaneObserver: update
+    Arcane->>GameLayoutObserver: update
 end
 ```
 
