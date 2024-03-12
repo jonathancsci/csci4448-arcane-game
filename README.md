@@ -148,21 +148,41 @@ classDiagram
 
 UML Diagram:
 ```mermaid
-sequenceDiagram:
-Arcane->>Maze: turn
-loop Every Adventurer
-  Maze->>Adventurer: turn
-  Adventurer->>Room: getHealthiestCreature
-  Room-->>Adventurer: return
-  alt Creature exists
+sequenceDiagram
+  participant GameConfigurator
+  participant MazeFactory
+  participant OtherFactories
+  participant AudibleArcaneObserver
+  participant GameLayoutObserver
+  participant EventBus
+  participant Arcane
+  participant Maze
+  participant Adventurer
+  participant Creature
+  Arcane->>Maze: turn
+  loop Every Adventurer
+    Maze->>Adventurer: turn
+    Adventurer->>Room: getHealthiestCreature
+    Room-->>Adventurer: return
+    alt Creature exists
     Adventurer->>Creature: rollDice
     Creature-->>Adventurer: return
-  else
+      alt Adventurer rolls higher
+        Adventurer->>Creature: takeDamage
+      else
+        Adventurer->>Adventurer: takeDamage
+      end
+      alt Loser died
+        Adventurer->>EventBus: notifyObservers
+      end
+      Adventurer->>EventBus: notifyObservers
+    else
     Adventurer->>Room: isThereFood
     Room-->>Adventurer: return
     alt Food exists
       Adventurer->>Room: takeFood
       Room-->>Adventurer: return
+      Adventurer->>EventBus: notifyObservers
     else
       Adventurer->>Room: getConnectedRooms
       Room-->>Adventurer: 
@@ -171,7 +191,6 @@ loop Every Adventurer
     end
   end
 end
-
 ```
 
 Output (note: our testing flushes the console between runs, so you only get this output from the main method):
