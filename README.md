@@ -174,7 +174,7 @@ sequenceDiagram
     GameConfigurator-->>AudibleArcaneObserver: create
     AudibleArcaneObserver->>Arcane: attach
     
-    Arcane->>EventBus: notifyObservers
+    Arcane->>EventBus: notifyObservers(GameStart)
     EventBus->>Arcane: update
     Arcane->>AudibleArcaneObserver: update
     Arcane->>GameLayoutObserver: update
@@ -193,12 +193,12 @@ sequenceDiagram
                     Adventurer->>Adventurer: takeDamage
                 end
                 alt Loser died
-                    Adventurer->>EventBus: notifyObservers
+                    Adventurer->>EventBus: notifyObservers(Death)
                     EventBus->>Arcane: update
                     Arcane->>AudibleArcaneObserver: update
                     Arcane->>GameLayoutObserver: update
                 end
-                Adventurer->>EventBus: notifyObservers
+                Adventurer->>EventBus: notifyObservers(FightOutcome)
                 EventBus->>Arcane: update
                 Arcane->>AudibleArcaneObserver: update
                 Arcane->>GameLayoutObserver: update
@@ -208,7 +208,7 @@ sequenceDiagram
             alt Food exists
                 Adventurer->>Room: takeFood
                 Room-->>Adventurer: return
-                Adventurer->>EventBus: notifyObservers
+                Adventurer->>EventBus: notifyObservers(AteFood)
                 EventBus->>Arcane: update
                 Arcane->>AudibleArcaneObserver: update
                 Arcane->>GameLayoutObserver: update
@@ -219,12 +219,12 @@ sequenceDiagram
                 Adventurer->>Room: addOccupant
             end
         end
-        Arcane->>EventBus: notifyObservers
+        Arcane->>EventBus: notifyObservers(TurnEnded)
         EventBus->>Arcane: update
         Arcane->>AudibleArcaneObserver: update
         Arcane->>GameLayoutObserver: update
     end
-    Arcane->>EventBus: notifyObservers
+    Arcane->>EventBus: notifyObservers(GameOver)
     EventBus->>Arcane: update
     Arcane->>AudibleArcaneObserver: update
     Arcane->>GameLayoutObserver: update
