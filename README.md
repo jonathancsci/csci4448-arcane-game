@@ -144,52 +144,61 @@ classDiagram
     Maze o-- Creature
     Room o-- Entity
 ```
-
+        
 
 UML Diagram:
 ```mermaid
 sequenceDiagram
-  participant GameConfigurator
-  participant MazeFactory
-  participant OtherFactories
-  participant AudibleArcaneObserver
-  participant GameLayoutObserver
-  participant EventBus
-  participant Arcane
-  participant Maze
-  participant Adventurer
-  participant Creature
-  Arcane->>Maze: turn
-  loop Every Adventurer
-    Maze->>Adventurer: turn
-    Adventurer->>Room: getHealthiestCreature
-    Room-->>Adventurer: return
-    alt Creature exists
-    Adventurer->>Creature: rollDice
-    Creature-->>Adventurer: return
-      alt Adventurer rolls higher
-        Adventurer->>Creature: takeDamage
-      else
-        Adventurer->>Adventurer: takeDamage
-      end
-      alt Loser died
-        Adventurer->>EventBus: notifyObservers
-      end
-      Adventurer->>EventBus: notifyObservers
-    else
-    Adventurer->>Room: isThereFood
-    Room-->>Adventurer: return
-    alt Food exists
-      Adventurer->>Room: takeFood
-      Room-->>Adventurer: return
-      Adventurer->>EventBus: notifyObservers
-    else
-      Adventurer->>Room: getConnectedRooms
-      Room-->>Adventurer: 
-      Adventurer->>Room: removeOccupant
-      Adventurer->>Room: addOccupant
+    participant GameConfigurator
+    participant MazeFactory
+    participant OtherFactories
+    participant AudibleArcaneObserver
+    participant GameLayoutObserver
+    participant Arcane
+    participant EventBus
+    participant Maze
+    participant Room
+    participant Adventurer
+    participant Creature
+    
+    
+    
+    Arcane->>EventBus: notifyObservers
+    loop While game isn't over
+        Arcane->>Maze: turn
+        loop Every Adventurer
+            Maze->>Adventurer: turn
+            Adventurer->>Room: getHealthiestCreature
+            Room-->>Adventurer: return
+            alt Creature exists
+            Adventurer->>Creature: rollDice
+            Creature-->>Adventurer: return
+                alt Adventurer rolls higher
+                    Adventurer->>Creature: takeDamage
+                else
+                    Adventurer->>Adventurer: takeDamage
+                end
+                alt Loser died
+                    Adventurer->>EventBus: notifyObservers
+                end
+                Adventurer->>EventBus: notifyObservers
+            else
+            Adventurer->>Room: isThereFood
+            Room-->>Adventurer: return
+            alt Food exists
+                Adventurer->>Room: takeFood
+                Room-->>Adventurer: return
+                Adventurer->>EventBus: notifyObservers
+            else
+                Adventurer->>Room: getConnectedRooms
+                Room-->>Adventurer: 
+                Adventurer->>Room: removeOccupant
+                Adventurer->>Room: addOccupant
+            end
+        end
+        Arcane->>EventBus: notifyObservers
     end
-  end
+    Arcane->>EventBus: notifyObservers
 end
 ```
 
