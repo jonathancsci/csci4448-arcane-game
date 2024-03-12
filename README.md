@@ -161,7 +161,18 @@ sequenceDiagram
     participant Adventurer
     participant Creature
     
-    
+    GameConfigurator->>MazeFactory: createMaze
+    MazeFactory->>OtherFactories: createEntitiesAndFood
+    OtherFactories-->>MazeFactory: return
+    MazeFactory-->>Maze: create
+    MazeFactory-->>GameConfigurator: return
+    GameConfigurator-->>Arcane: create
+    Arcane->>EventBus: create
+    Arcane->>EventBus: attach
+    GameConfigurator-->>GameLayoutObserver: create
+    GameLayoutObserver->>Arcane: attach
+    GameConfigurator-->>AudibleArcaneObserver: create
+    AudibleArcaneObserver->>Arcane: attach
     
     Arcane->>EventBus: notifyObservers
     loop While game isn't over
