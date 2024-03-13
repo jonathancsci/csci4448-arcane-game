@@ -144,6 +144,93 @@ classDiagram
     Maze o-- Creature
     Room o-- Entity
 ```
+        
+
+UML Diagram:
+```mermaid
+sequenceDiagram
+    participant GameConfigurator
+    participant MazeFactory
+    participant OtherFactories
+    participant AudibleArcaneObserver
+    participant GameLayoutObserver
+    participant Arcane
+    participant EventBus
+    participant Maze
+    participant Room
+    participant Adventurer
+    participant Creature
+    
+    GameConfigurator->>MazeFactory: createMaze
+    MazeFactory->>OtherFactories: createEntitiesAndFood
+    OtherFactories-->>MazeFactory: return
+    MazeFactory-->>Maze: create
+    MazeFactory-->>GameConfigurator: return
+    GameConfigurator-->>Arcane: create
+    Arcane->>EventBus: create
+    Arcane->>EventBus: attach
+    GameConfigurator-->>GameLayoutObserver: create
+    GameLayoutObserver->>Arcane: attach
+    GameConfigurator-->>AudibleArcaneObserver: create
+    AudibleArcaneObserver->>Arcane: attach
+    
+    Arcane->>EventBus: notifyObservers(GameStart)
+    EventBus->>Arcane: update
+    Arcane->>AudibleArcaneObserver: update
+    Arcane->>GameLayoutObserver: update
+    loop While game isn't over
+        Arcane->>Maze: turn
+        loop Every Adventurer
+            Maze->>Adventurer: turn
+            Adventurer->>Room: getHealthiestCreature
+            Room-->>Adventurer: return
+            alt Creature exists
+            Adventurer->>Creature: rollDice
+            Creature-->>Adventurer: return
+                alt Adventurer rolls higher
+                    Adventurer->>Creature: takeDamage
+                else
+                    Adventurer->>Adventurer: takeDamage
+                end
+                alt Loser died
+                    Adventurer->>EventBus: notifyObservers(Death)
+                    EventBus->>Arcane: update
+                    Arcane->>AudibleArcaneObserver: update
+                    Arcane->>GameLayoutObserver: update
+                end
+                Adventurer->>EventBus: notifyObservers(FightOutcome)
+                EventBus->>Arcane: update
+                Arcane->>AudibleArcaneObserver: update
+                Arcane->>GameLayoutObserver: update
+            else
+            Adventurer->>Room: isThereFood
+            Room-->>Adventurer: return
+            alt Food exists
+                Adventurer->>Room: takeFood
+                Room-->>Adventurer: return
+                Adventurer->>EventBus: notifyObservers(AteFood)
+                EventBus->>Arcane: update
+                Arcane->>AudibleArcaneObserver: update
+                Arcane->>GameLayoutObserver: update
+            else
+                Adventurer->>Room: getConnectedRooms
+                Room-->>Adventurer: 
+                Adventurer->>Room: removeOccupant
+                Adventurer->>Room: addOccupant
+            end
+        end
+        Arcane->>EventBus: notifyObservers(TurnEnded)
+        EventBus->>Arcane: update
+        Arcane->>AudibleArcaneObserver: update
+        Arcane->>GameLayoutObserver: update
+    end
+    Arcane->>EventBus: notifyObservers(GameOver)
+    EventBus->>Arcane: update
+    Arcane->>AudibleArcaneObserver: update
+    Arcane->>GameLayoutObserver: update
+end
+```
+
 Output (note: our testing flushes the console between runs, so you only get this output from the main method):
 ### Running the Game with command line arguments from GameConfiguratorTest.java
 ```

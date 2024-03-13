@@ -33,11 +33,10 @@ public class GameConfigurator {
                 .useRadialLayoutStrategy()
                 .setDelayInSecondsAfterUpdate(PAUSE_SECONDS)
                 .build();
+        new MazeAdapter(arcane).attach(mazeObserver);
 
         AudibleArcaneObserver audibleObserver = new AudibleArcaneObserver(arcane, List.of(EventType.All), PAUSE_SECONDS);
         arcane.attach(audibleObserver);
-
-        new MazeAdapter(arcane).attach(mazeObserver);
 
         arcane.runGame();
     }
