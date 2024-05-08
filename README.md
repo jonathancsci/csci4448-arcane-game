@@ -1,5 +1,9 @@
 # ARCANE
 
+> [!CAUTION]
+> 
+> Design patterns and assignment requirements may or may not be properly implemented. Use at your own risk.
+
 Team Members:
 
 1. Gavin Morrison
